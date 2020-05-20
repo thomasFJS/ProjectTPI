@@ -1,0 +1,112 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "153",
+                    "y": "28",
+                    "properties": {
+                        "text": "Login\nhttps://login.php\n"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "367",
+                    "y": "183"
+                },
+                {
+                    "ID": "2",
+                    "typeID": "Label",
+                    "zOrder": "2",
+                    "measuredW": "39",
+                    "measuredH": "21",
+                    "x": "299",
+                    "y": "186",
+                    "properties": {
+                        "text": "Email :"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "Label",
+                    "zOrder": "3",
+                    "measuredW": "62",
+                    "measuredH": "21",
+                    "x": "299",
+                    "y": "226",
+                    "properties": {
+                        "text": "Password :"
+                    }
+                },
+                {
+                    "ID": "4",
+                    "typeID": "TextInput",
+                    "zOrder": "4",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "368",
+                    "y": "224"
+                },
+                {
+                    "ID": "5",
+                    "typeID": "Button",
+                    "zOrder": "5",
+                    "w": "145",
+                    "h": "27",
+                    "measuredW": "56",
+                    "measuredH": "27",
+                    "x": "299",
+                    "y": "267",
+                    "properties": {
+                        "text": "Login"
+                    }
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Link",
+                    "zOrder": "6",
+                    "measuredW": "98",
+                    "measuredH": "21",
+                    "x": "299",
+                    "y": "301",
+                    "properties": {
+                        "text": "Miss password ?"
+                    }
+                },
+                {
+                    "ID": "7",
+                    "typeID": "Label",
+                    "zOrder": "7",
+                    "w": "38",
+                    "measuredW": "32",
+                    "measuredH": "21",
+                    "x": "353",
+                    "y": "134",
+                    "properties": {
+                        "text": "Login"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "New Wireframe 1",
+            "order": 1000000,
+            "parentID": null
+        },
+        "resourceID": "71610CAA-A16F-4856-B96E-95E3993260F7",
+        "mockupH": "400",
+        "mockupW": "450",
+        "measuredW": "603",
+        "measuredH": "428",
+        "version": "1.0"
+    }
+}
