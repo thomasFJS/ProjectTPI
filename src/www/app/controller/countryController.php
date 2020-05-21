@@ -20,7 +20,10 @@ class TCountryController extends TDatabaseController{
         $this->fieldCode = "country_code";
         $this->fieldName = "country_name";
     }
-
+    /**
+     * @brief Get all country in the database
+     * 
+     */
     public function getAllCountry() {
         $result = array();
         $query = <<<EX

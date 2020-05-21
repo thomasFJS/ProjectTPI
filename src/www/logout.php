@@ -6,18 +6,12 @@
 *     Brief               :  logout page.
 *     Date                :  04.09.2019.
 */
-
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/controller/sessionController.php';
 
 if (session_status() == PHP_SESSION_NONE){
     session_start();
 }
+TSessionController::ResetSession();
 
-$_SESSION = array();
-
-if(ini_get("session.use_cookies")){
-    setcookie(session_name(), '', 0);
-}
-
-session_destroy();
 header("Location: index.php");
 ?>

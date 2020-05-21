@@ -36,5 +36,17 @@ class TDatabaseController {
         }
         return self::$db;
     }
+     /**
+     * @brief	Passes on any static calls to this class onto the singleton PDO instance
+     * 
+     * @param 	$chrMethod		called method
+     * @param 	$arrArguments	method's parameters
+     * 
+     * @return 	$mix			method's return value
+     */
+    final public static function __callStatic($chrMethod, $arrArguments) {
+        $pdo = self::getInstance();
+        return call_user_func_array(array($pdo, $chrMethod), $arrArguments);
+    }
 }
 ?>

@@ -8,6 +8,7 @@
 */
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/controller/userController.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/controller/sessionController.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/tUser.php';
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -27,7 +28,7 @@ if (session_status() == PHP_SESSION_NONE) {
     
     //Show the good navbar depends if logged and if user is admin
     if (UserController::getInstance()->isLogged()) {
-        if (UserController::getInstance()->isAllowed($_SESSION['userLogged'])) {
+        if (UserController::getInstance()->isAllowed(TSessionController::getUserLogged())) {
             include "./inc/navbar/navbarAdmin.php";
         }
         else {

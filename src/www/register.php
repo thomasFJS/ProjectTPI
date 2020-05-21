@@ -119,11 +119,14 @@ if (session_status() == PHP_SESSION_NONE) {
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="userLogo">Logo :</label>
+                            <input type="file" class="form-control-file" id="userLogo">
+                        </div>
+                        <div class="form-group">
                                 <label for="">&nbsp;</label>
                                 <button type="submit" class="form-control btn btn-outline-primary" id="registerUser" name="registerUser">Register</button>
                                 <a href="./index.php">Already register? Log in</a>
-                        </div>
-                        
+                        </div> 
                         </form>
                     </div>
                 </div>

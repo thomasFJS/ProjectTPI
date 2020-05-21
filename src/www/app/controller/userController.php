@@ -129,7 +129,7 @@ class UserController extends TDatabaseController{
 
             $result = $req->fetch(PDO::FETCH_ASSOC);
 
-            return $result !== false > 0 ? new TUser($result[$this->fieldEmail], $result[$this->fieldNickname], $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole]) : null;           
+            return $result !== false > 0 ? new TUser($result[$this->fieldNickname], $result[$this->fieldEmail],  $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole]) : null;           
         } catch(PDOException $e) {
             echo "Error while login" . $e->getMessage();
 
@@ -179,7 +179,7 @@ class UserController extends TDatabaseController{
             $req->execute();
 
             $this::getDb()->commit();
-            TMailerController::sendMail(array($userEmail), $token);
+            TMailerController::sendMail("Account Activation", array($userEmail), TMailerController::getActivationMail($token));
             return true;
         } catch(PDOException $e){
             $this::getDb()->rollBack();
@@ -216,20 +216,13 @@ class UserController extends TDatabaseController{
         }
         return self::$instance;
     }
-
-    public function VerifyToken(string $token) : bool{
-        $query = <<<EX
-            SELECT nickname 
-            FROM players
-            WHERE email_token = :token
-        EX;
-        $req = $this::getDb()->prepare($query);
-        $req->bindParam(':token', $token, \PDO::PARAM_STR);
-        $req->execute();
-
-        return $req->rowCount() == 1 ? true : false;
-    }
-
+    /**
+     * @brief Activate account with the token
+     * 
+     * @param string $token activation token
+     * 
+     * @return bool true if account's activation success, else false
+     */
     public function ActivateAccount(string $token) : bool{
         try{
             $query = <<<EX
@@ -247,6 +240,28 @@ class UserController extends TDatabaseController{
             
             return false;
         }
+    }
+    /**
+     * @brief Verify if account is activated
+     * 
+     * @param string $nickname user's nickname
+     * 
+     * @return bool true if account's activated, else false
+     */
+    public function VerifyActivation(string $nickname) : bool{
+        $query = <<<EX
+            SELECT activation
+            FROM players
+            WHERE nickname = :nickname
+        EX;
+
+        $req = $this::getDb()->prepare($query);
+        $req->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+        $req->execute();
+
+        $result = $req->fetch();
+        //return true if account's activated (1)
+        return $result[0] == 1 ? true : false;
     }
 
 }
