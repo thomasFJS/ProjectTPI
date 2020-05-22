@@ -18,6 +18,17 @@ function register(event) {
     let verifyPassword = $("#verifyPassword").val();
     let country = $("#country option:selected").text();
     let birthday = $('#birthday').val();
+    let userLogo = $("#userLogo").prop('files').length > 0 ? $('#userLogo').prop('files')[0] : null;
+    //Create data to send
+    let formData = new FormData();
+    formData.append("nickname", nickname);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("verifyPassword", verifyPassword);
+    formData.append("country", country);
+    formData.append("birthday", birthday);
+    formData.append("media[]", userLogo);
+
 
     if (nickname.length == 0) {
         $("#nicknameUser").css("border-color", "red");
@@ -54,8 +65,10 @@ function register(event) {
     $.ajax({
         method: 'POST',
         url: './app/api/register.php',
-        data: {'nickname': nickname, 'email': email, 'password': password, 'verifyPassword': verifyPassword, 'country': country, 'birthday': birthday},
+        data: formData,
         dataType: 'json',
+        contentType: false,
+        processData: false,
 
         success: function(data){
             switch(data.ReturnCode){

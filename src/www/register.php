@@ -43,7 +43,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="card">
                 <div class="card-header">Register as new user</div>
                 <div class="card-body">
-                    <form method="post">
+                    <form enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
@@ -120,7 +120,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         </div>
                         <div class="form-group">
                             <label for="userLogo">Logo :</label>
-                            <input type="file" class="form-control-file" id="userLogo">
+                            <input type="file" class="form-control-file" name="userLogo" id="userLogo">
                         </div>
                         <div class="form-group">
                                 <label for="">&nbsp;</label>

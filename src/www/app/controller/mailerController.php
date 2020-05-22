@@ -29,7 +29,7 @@ class TMailerController{
      * 
      * @return bool true if the mail's send, else false
      */
-    public static function sendMail(string $subject, string $userEmail, string $body) : bool{       
+    public static function sendMail(string $subject, array $userEmail, string $body) : bool{       
 
             try {
                 $instance = Swift_SmtpTransport::newInstance(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANS)

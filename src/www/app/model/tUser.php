@@ -14,7 +14,7 @@ class TUser{
     /**
     * @brief Constructeur appelé à la création de l'objet
     */
-    public function __construct($NicknameParam = "", $EmailParam = "", $CountryParam = "",$BirthdayParam = "",$RoleParam = "", $ActivationParam = 0, $StateParam = 1)
+    public function __construct($NicknameParam = "", $EmailParam = "", $CountryParam = "",$BirthdayParam = "",$RoleParam = "", $LogoParam ="", $ActivationParam = 0, $StateParam = 1)
     {
         $this->Nickname = $NicknameParam;
         $this->Email = $EmailParam;
@@ -23,6 +23,7 @@ class TUser{
         $this->Activation = $ActivationParam;
         $this->State = $StateParam;
         $this->Role = $RoleParam;
+        $this->Logo = $LogoParam;
     } 
 
     public $Nickname;
@@ -38,5 +39,7 @@ class TUser{
     public $State;
 
     public $Role;
+
+    public $Logo;
 }
 ?>

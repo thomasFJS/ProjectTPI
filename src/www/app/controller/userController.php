@@ -32,6 +32,7 @@ class UserController extends TDatabaseController{
         $this->fieldPassword = "password";
         $this->fieldSalt = "salt";
         $this->fieldToken = "email_token";
+        $this->fieldLogo = "logo";
     }
     /**
      * @brief Get salt from field 
@@ -115,7 +116,7 @@ class UserController extends TDatabaseController{
         $pwd = hash("sha256", $userPwd . $salt);
 
         $query = <<<EX
-            SELECT `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldCountry}`,`{$this->fieldBirthday}`, `{$this->fieldRole}`
+            SELECT `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldCountry}`,`{$this->fieldBirthday}`, `{$this->fieldRole}`, `{$this->fieldLogo}`
             FROM `{$this->tableName}`
             WHERE `{$loginField}` = :connectValue
             AND `{$this->fieldPassword}` = :userPwd
@@ -129,7 +130,7 @@ class UserController extends TDatabaseController{
 
             $result = $req->fetch(PDO::FETCH_ASSOC);
 
-            return $result !== false > 0 ? new TUser($result[$this->fieldNickname], $result[$this->fieldEmail],  $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole]) : null;           
+            return $result !== false > 0 ? new TUser($result[$this->fieldNickname], $result[$this->fieldEmail],  $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole], $result[$this->fieldLogo]) : null;           
         } catch(PDOException $e) {
             echo "Error while login" . $e->getMessage();
 
@@ -147,10 +148,10 @@ class UserController extends TDatabaseController{
      * 
      * @return bool register state 
      */
-    public function RegisterNewUser(string $userEmail, string $userNickname, string $userPwd, string $userCountry, string $userBirthday) : bool {
+    public function RegisterNewUser(string $userEmail, string $userNickname, string $userPwd, string $userCountry, string $userBirthday, string $userLogo) : bool {
         $query = <<<EX
-            INSERT INTO `{$this->tableName}`({$this->fieldNickname}, {$this->fieldEmail}, {$this->fieldCountry}, {$this->fieldBirthday}, {$this->fieldActivation}, {$this->fieldSalt}, {$this->fieldPassword}, {$this->fieldRole}, {$this->fieldToken})
-            VALUES(:userNickname, :userEmail, :userCountry, :userBirthday, :userActivation, :userSalt, :userPassword, :userRole, :token)
+            INSERT INTO `{$this->tableName}`({$this->fieldNickname}, {$this->fieldEmail}, {$this->fieldCountry}, {$this->fieldBirthday}, {$this->fieldActivation}, {$this->fieldSalt}, {$this->fieldPassword}, {$this->fieldRole}, {$this->fieldToken}, {$this->fieldLogo})
+            VALUES(:userNickname, :userEmail, :userCountry, :userBirthday, :userActivation, :userSalt, :userPassword, :userRole, :token, :logo)
         EX;
 
         $salt = hash('sha256', microtime());
@@ -176,6 +177,7 @@ class UserController extends TDatabaseController{
             $req->bindParam(':userActivation', $activation, PDO::PARAM_INT);
             $req->bindParam(':userRole', $userRole, PDO::PARAM_INT);
             $req->bindParam(':token', $token, \PDO::PARAM_STR);
+            $req->bindParam(':logo', $userLogo, \PDO::PARAM_STR);
             $req->execute();
 
             $this::getDb()->commit();
@@ -263,6 +265,5 @@ class UserController extends TDatabaseController{
         //return true if account's activated (1)
         return $result[0] == 1 ? true : false;
     }
-
 }
 ?>
