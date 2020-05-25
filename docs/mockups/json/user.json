@@ -13,7 +13,7 @@
                     "x": "75",
                     "y": "12",
                     "properties": {
-                        "text": "Utilisateur\nhttps://users.php"
+                        "text": "Utilisateur\nhttps://usersProfil.php"
                     }
                 },
                 {
@@ -78,12 +78,12 @@
                     "typeID": "TextInput",
                     "zOrder": "5",
                     "w": "103",
-                    "measuredW": "72",
+                    "measuredW": "80",
                     "measuredH": "27",
                     "x": "448",
                     "y": "144",
                     "properties": {
-                        "text": "Nickname",
+                        "text": "JohnDoe59",
                         "state": "disabled"
                     }
                 },
@@ -110,8 +110,8 @@
                     "x": "379",
                     "y": "299",
                     "properties": {
-                        "text": "Description",
-                        "state": "disabled"
+                        "state": "disabled",
+                        "text": "J'aime la moto :)"
                     }
                 },
                 {
@@ -143,12 +143,12 @@
                     "typeID": "TextInput",
                     "zOrder": "10",
                     "w": "74",
-                    "measuredW": "41",
+                    "measuredW": "38",
                     "measuredH": "27",
                     "x": "379",
                     "y": "234",
                     "properties": {
-                        "text": "Nom",
+                        "text": "Doe",
                         "state": "disabled"
                     }
                 },
@@ -178,12 +178,12 @@
                     "typeID": "TextInput",
                     "zOrder": "13",
                     "w": "103",
-                    "measuredW": "46",
+                    "measuredW": "102",
                     "measuredH": "27",
                     "x": "448",
                     "y": "173",
                     "properties": {
-                        "text": "Email",
+                        "text": "John@doe.com",
                         "state": "disabled"
                     }
                 },
@@ -198,7 +198,7 @@
                     "x": "379",
                     "y": "370",
                     "properties": {
-                        "text": "Pays\n",
+                        "text": "Suisse\n",
                         "state": "disabled"
                     }
                 },
@@ -219,12 +219,12 @@
                     "typeID": "TextInput",
                     "zOrder": "16",
                     "w": "74",
-                    "measuredW": "59",
+                    "measuredW": "42",
                     "measuredH": "27",
                     "x": "476",
                     "y": "234",
                     "properties": {
-                        "text": "Prenom",
+                        "text": "John",
                         "state": "disabled"
                     }
                 },

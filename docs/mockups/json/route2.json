@@ -7,13 +7,13 @@
                     "typeID": "BrowserWindow",
                     "zOrder": "0",
                     "w": "738",
-                    "h": "515",
+                    "h": "580",
                     "measuredW": "450",
                     "measuredH": "400",
                     "x": "75",
                     "y": "12",
                     "properties": {
-                        "text": "Route\nhttps://route.php"
+                        "text": "Route\nhttps://itineraryDetails.php"
                     }
                 },
                 {
@@ -24,7 +24,7 @@
                     "measuredW": "66",
                     "measuredH": "27",
                     "x": "82",
-                    "y": "474",
+                    "y": "538",
                     "properties": {
                         "borderStyle": "line",
                         "text": "FOOTER",
@@ -235,12 +235,12 @@
                     "typeID": "TextInput",
                     "zOrder": "17",
                     "w": "103",
-                    "measuredW": "42",
+                    "measuredW": "81",
                     "measuredH": "27",
                     "x": "583",
                     "y": "176",
                     "properties": {
-                        "text": "Titre"
+                        "text": "Tour du lac"
                     }
                 },
                 {
@@ -266,7 +266,7 @@
                     "x": "542",
                     "y": "226",
                     "properties": {
-                        "text": "Description"
+                        "text": "Jolie balade sur les routes du lac"
                     }
                 },
                 {
@@ -286,12 +286,12 @@
                     "typeID": "ComboBox",
                     "zOrder": "21",
                     "w": "59",
-                    "measuredW": "58",
+                    "measuredW": "70",
                     "measuredH": "27",
                     "x": "542",
                     "y": "292",
                     "properties": {
-                        "text": "Pays"
+                        "text": "Suisse"
                     }
                 },
                 {
@@ -311,36 +311,36 @@
                     "typeID": "TextInput",
                     "zOrder": "23",
                     "w": "74",
-                    "measuredW": "67",
+                    "measuredW": "69",
                     "measuredH": "27",
                     "x": "625",
                     "y": "292",
                     "properties": {
-                        "text": "Distance"
+                        "text": "160.18km"
                     }
                 },
                 {
                     "ID": "35",
                     "typeID": "Label",
                     "zOrder": "24",
-                    "measuredW": "88",
+                    "measuredW": "48",
                     "measuredH": "21",
                     "x": "542",
                     "y": "329",
                     "properties": {
-                        "text": "Temps moyen :"
+                        "text": "Durée  :"
                     }
                 },
                 {
                     "ID": "36",
                     "typeID": "NumericStepper",
                     "zOrder": "25",
-                    "measuredW": "65",
+                    "measuredW": "60",
                     "measuredH": "24",
                     "x": "539",
                     "y": "350",
                     "properties": {
-                        "text": "10:00"
+                        "text": "3:36"
                     }
                 },
                 {
@@ -403,6 +403,69 @@
                     "properties": {
                         "text": ">"
                     }
+                },
+                {
+                    "ID": "46",
+                    "typeID": "TextArea",
+                    "zOrder": "31",
+                    "w": "706",
+                    "h": "36",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "91",
+                    "y": "475",
+                    "properties": {
+                        "text": "Balade vraiment sympatique a faire en groupe"
+                    }
+                },
+                {
+                    "ID": "47",
+                    "typeID": "Image",
+                    "zOrder": "32",
+                    "w": "43",
+                    "h": "36",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "754",
+                    "y": "475"
+                },
+                {
+                    "ID": "48",
+                    "typeID": "Label",
+                    "zOrder": "33",
+                    "w": "114",
+                    "measuredW": "106",
+                    "measuredH": "21",
+                    "x": "353",
+                    "y": "511",
+                    "properties": {
+                        "text": "21:42 25.05.2020"
+                    }
+                },
+                {
+                    "ID": "49",
+                    "typeID": "Label",
+                    "zOrder": "34",
+                    "w": "55",
+                    "measuredW": "51",
+                    "measuredH": "21",
+                    "x": "214",
+                    "y": "511",
+                    "properties": {
+                        "text": "JohnDoe"
+                    }
+                },
+                {
+                    "ID": "50",
+                    "typeID": "Label",
+                    "zOrder": "35",
+                    "measuredW": "86",
+                    "measuredH": "21",
+                    "x": "91",
+                    "y": "455",
+                    "properties": {
+                        "text": "Commentaire :"
+                    }
                 }
             ]
         },
@@ -412,10 +475,10 @@
             "parentID": null
         },
         "resourceID": "C913FB1E-E534-4F85-816E-3561E1D11576",
-        "mockupH": "515",
+        "mockupH": "580",
         "mockupW": "738",
         "measuredW": "813",
-        "measuredH": "527",
+        "measuredH": "592",
         "version": "1.0"
     }
 }

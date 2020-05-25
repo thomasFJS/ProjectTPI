@@ -32,72 +32,33 @@
                     }
                 },
                 {
-                    "ID": "6",
-                    "typeID": "TextArea",
-                    "zOrder": "2",
-                    "w": "116",
-                    "h": "104",
-                    "measuredW": "200",
-                    "measuredH": "140",
-                    "x": "184",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
-                        "size": "8"
-                    }
-                },
-                {
                     "ID": "7",
                     "typeID": "ComboBox",
-                    "zOrder": "3",
-                    "measuredW": "58",
+                    "zOrder": "2",
+                    "measuredW": "70",
                     "measuredH": "27",
-                    "x": "144",
+                    "x": "170",
                     "y": "129",
                     "properties": {
-                        "text": "Pays"
+                        "text": "Suisse"
                     }
                 },
                 {
                     "ID": "8",
                     "typeID": "ComboBox",
-                    "zOrder": "4",
-                    "measuredW": "65",
+                    "zOrder": "3",
+                    "measuredW": "38",
                     "measuredH": "27",
-                    "x": "235",
+                    "x": "300",
                     "y": "129",
                     "properties": {
-                        "text": "Notes"
-                    }
-                },
-                {
-                    "ID": "9",
-                    "typeID": "NumericStepper",
-                    "zOrder": "5",
-                    "measuredW": "110",
-                    "measuredH": "24",
-                    "x": "322",
-                    "y": "131",
-                    "properties": {
-                        "text": "Distance Min"
-                    }
-                },
-                {
-                    "ID": "10",
-                    "typeID": "NumericStepper",
-                    "zOrder": "6",
-                    "measuredW": "115",
-                    "measuredH": "24",
-                    "x": "439",
-                    "y": "131",
-                    "properties": {
-                        "text": "Distance Max"
+                        "text": "3"
                     }
                 },
                 {
                     "ID": "11",
                     "typeID": "Map",
-                    "zOrder": "7",
+                    "zOrder": "4",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
@@ -108,7 +69,7 @@
                 {
                     "ID": "12",
                     "typeID": "HRule",
-                    "zOrder": "8",
+                    "zOrder": "5",
                     "w": "724",
                     "measuredW": "100",
                     "measuredH": "10",
@@ -116,33 +77,9 @@
                     "y": "161"
                 },
                 {
-                    "ID": "13",
-                    "typeID": "NumericStepper",
-                    "zOrder": "9",
-                    "measuredW": "97",
-                    "measuredH": "24",
-                    "x": "570",
-                    "y": "131",
-                    "properties": {
-                        "text": "Temps min"
-                    }
-                },
-                {
-                    "ID": "14",
-                    "typeID": "NumericStepper",
-                    "zOrder": "10",
-                    "measuredW": "101",
-                    "measuredH": "24",
-                    "x": "677",
-                    "y": "131",
-                    "properties": {
-                        "text": "Temps Max"
-                    }
-                },
-                {
                     "ID": "15",
                     "typeID": "TextArea",
-                    "zOrder": "11",
+                    "zOrder": "6",
                     "w": "116",
                     "h": "104",
                     "measuredW": "200",
@@ -150,14 +87,14 @@
                     "x": "332",
                     "y": "313",
                     "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   2:06\t\tSuisse\nDistance :\tNote :\n  100km\t\t   4\n",
                         "size": "8"
                     }
                 },
                 {
                     "ID": "16",
                     "typeID": "Map",
-                    "zOrder": "12",
+                    "zOrder": "7",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
@@ -166,24 +103,9 @@
                     "y": "199"
                 },
                 {
-                    "ID": "17",
-                    "typeID": "TextArea",
-                    "zOrder": "13",
-                    "w": "116",
-                    "h": "104",
-                    "measuredW": "200",
-                    "measuredH": "140",
-                    "x": "481",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
-                        "size": "8"
-                    }
-                },
-                {
                     "ID": "18",
                     "typeID": "Map",
-                    "zOrder": "14",
+                    "zOrder": "8",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
@@ -194,7 +116,7 @@
                 {
                     "ID": "19",
                     "typeID": "TextArea",
-                    "zOrder": "15",
+                    "zOrder": "9",
                     "w": "116",
                     "h": "104",
                     "measuredW": "200",
@@ -202,14 +124,14 @@
                     "x": "631",
                     "y": "313",
                     "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
+                        "text": "Nom itinéraire :\n\nDurée :\t     Pays :\n3:36\t     Suisse\nDistance :    Note :\n  160km\t         4\n",
                         "size": "8"
                     }
                 },
                 {
                     "ID": "20",
                     "typeID": "Map",
-                    "zOrder": "16",
+                    "zOrder": "10",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
@@ -220,7 +142,7 @@
                 {
                     "ID": "22",
                     "typeID": "TextInput",
-                    "zOrder": "17",
+                    "zOrder": "11",
                     "w": "724",
                     "measuredW": "66",
                     "measuredH": "27",
@@ -234,66 +156,380 @@
                     }
                 },
                 {
-                    "ID": "23",
-                    "typeID": "Link",
-                    "zOrder": "18",
-                    "measuredW": "21",
-                    "measuredH": "18",
-                    "x": "260",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom",
-                        "size": "10"
-                    }
-                },
-                {
                     "ID": "24",
                     "typeID": "Link",
-                    "zOrder": "19",
-                    "measuredW": "21",
+                    "zOrder": "12",
+                    "measuredW": "48",
                     "measuredH": "18",
-                    "x": "405",
+                    "x": "394",
                     "y": "313",
                     "properties": {
-                        "text": "Nom",
+                        "text": "St-Cergue",
                         "size": "10"
                     }
                 },
                 {
                     "ID": "27",
                     "typeID": "Link",
-                    "zOrder": "20",
-                    "measuredW": "21",
+                    "zOrder": "13",
+                    "measuredW": "55",
                     "measuredH": "18",
-                    "x": "705",
+                    "x": "692",
                     "y": "313",
                     "properties": {
-                        "text": "Nom",
-                        "size": "10"
-                    }
-                },
-                {
-                    "ID": "28",
-                    "typeID": "Link",
-                    "zOrder": "21",
-                    "measuredW": "21",
-                    "measuredH": "18",
-                    "x": "554",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom",
+                        "text": "Tour du Lac",
                         "size": "10"
                     }
                 },
                 {
                     "ID": "29",
                     "typeID": "VerticalScrollBar",
-                    "zOrder": "22",
+                    "zOrder": "14",
                     "h": "309",
                     "measuredW": "16",
                     "measuredH": "100",
                     "x": "847",
                     "y": "167"
+                },
+                {
+                    "ID": "30",
+                    "typeID": "Button",
+                    "zOrder": "15",
+                    "measuredW": "91",
+                    "measuredH": "27",
+                    "x": "763",
+                    "y": "129",
+                    "properties": {
+                        "text": "Rechercher"
+                    }
+                },
+                {
+                    "ID": "31",
+                    "typeID": "ComboBox",
+                    "zOrder": "16",
+                    "w": "100",
+                    "measuredW": "87",
+                    "measuredH": "27",
+                    "x": "416",
+                    "y": "129",
+                    "properties": {
+                        "text": "N'importe"
+                    }
+                },
+                {
+                    "ID": "32",
+                    "typeID": "ComboBox",
+                    "zOrder": "17",
+                    "w": "121",
+                    "measuredW": "87",
+                    "measuredH": "27",
+                    "x": "597",
+                    "y": "129",
+                    "properties": {
+                        "text": "N'importe"
+                    }
+                },
+                {
+                    "ID": "33",
+                    "typeID": "TextInput",
+                    "zOrder": "18",
+                    "measuredW": "123",
+                    "measuredH": "27",
+                    "x": "596",
+                    "y": "152",
+                    "properties": {
+                        "text": "Moins de 2 heures"
+                    }
+                },
+                {
+                    "ID": "34",
+                    "typeID": "Label",
+                    "zOrder": "19",
+                    "measuredW": "44",
+                    "measuredH": "21",
+                    "x": "538",
+                    "y": "132",
+                    "properties": {
+                        "text": "Durée :"
+                    }
+                },
+                {
+                    "ID": "35",
+                    "typeID": "Label",
+                    "zOrder": "20",
+                    "measuredW": "60",
+                    "measuredH": "21",
+                    "x": "345",
+                    "y": "132",
+                    "properties": {
+                        "text": "Distance :"
+                    }
+                },
+                {
+                    "ID": "36",
+                    "typeID": "TextInput",
+                    "zOrder": "21",
+                    "measuredW": "100",
+                    "measuredH": "27",
+                    "x": "416",
+                    "y": "153",
+                    "properties": {
+                        "text": "De 0 à 150 km"
+                    }
+                },
+                {
+                    "ID": "37",
+                    "typeID": "Label",
+                    "zOrder": "22",
+                    "measuredW": "42",
+                    "measuredH": "21",
+                    "x": "250",
+                    "y": "132",
+                    "properties": {
+                        "text": "Notes :"
+                    }
+                },
+                {
+                    "ID": "38",
+                    "typeID": "Label",
+                    "zOrder": "23",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "135",
+                    "y": "132",
+                    "properties": {
+                        "text": "Pays :"
+                    }
+                },
+                {
+                    "ID": "39",
+                    "typeID": "TextInput",
+                    "zOrder": "24",
+                    "w": "70",
+                    "measuredW": "55",
+                    "measuredH": "27",
+                    "x": "170",
+                    "y": "153",
+                    "properties": {
+                        "text": "France"
+                    }
+                },
+                {
+                    "ID": "40",
+                    "typeID": "TextInput",
+                    "zOrder": "25",
+                    "w": "37",
+                    "measuredW": "23",
+                    "measuredH": "27",
+                    "x": "301",
+                    "y": "153",
+                    "properties": {
+                        "text": "2"
+                    }
+                },
+                {
+                    "ID": "41",
+                    "typeID": "TextArea",
+                    "zOrder": "26",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "481",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   3:40\t\tSuisse\nDistance :\tNote :\n  180km\t\t   2\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "42",
+                    "typeID": "Link",
+                    "zOrder": "27",
+                    "measuredW": "35",
+                    "measuredH": "18",
+                    "x": "547",
+                    "y": "313",
+                    "properties": {
+                        "text": "Balade ",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "44",
+                    "typeID": "TextArea",
+                    "zOrder": "28",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "184",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   1:06\t\tSuisse\nDistance :\tNote :\n  60km\t\t   3\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "45",
+                    "typeID": "Link",
+                    "zOrder": "29",
+                    "measuredW": "32",
+                    "measuredH": "18",
+                    "x": "255",
+                    "y": "313",
+                    "properties": {
+                        "text": "Balade",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "46",
+                    "typeID": "Label",
+                    "zOrder": "30",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "190",
+                    "y": "384",
+                    "properties": {
+                        "text": "Par :",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "47",
+                    "typeID": "Image",
+                    "zOrder": "31",
+                    "w": "15",
+                    "h": "17",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "211",
+                    "y": "384"
+                },
+                {
+                    "ID": "48",
+                    "typeID": "Link",
+                    "zOrder": "32",
+                    "measuredW": "52",
+                    "measuredH": "18",
+                    "x": "226",
+                    "y": "384",
+                    "properties": {
+                        "text": "thomasFJS",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "49",
+                    "typeID": "Label",
+                    "zOrder": "33",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "338",
+                    "y": "384",
+                    "properties": {
+                        "text": "Par :",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "50",
+                    "typeID": "Image",
+                    "zOrder": "34",
+                    "w": "15",
+                    "h": "17",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "359",
+                    "y": "384"
+                },
+                {
+                    "ID": "51",
+                    "typeID": "Link",
+                    "zOrder": "35",
+                    "measuredW": "36",
+                    "measuredH": "18",
+                    "x": "374",
+                    "y": "384",
+                    "properties": {
+                        "text": "Batwiks",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "52",
+                    "typeID": "Label",
+                    "zOrder": "36",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "491",
+                    "y": "384",
+                    "properties": {
+                        "text": "Par :",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "53",
+                    "typeID": "Image",
+                    "zOrder": "37",
+                    "w": "15",
+                    "h": "17",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "512",
+                    "y": "384"
+                },
+                {
+                    "ID": "54",
+                    "typeID": "Link",
+                    "zOrder": "38",
+                    "measuredW": "49",
+                    "measuredH": "18",
+                    "x": "527",
+                    "y": "384",
+                    "properties": {
+                        "text": "JohnyyZoo",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "55",
+                    "typeID": "Label",
+                    "zOrder": "39",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "640",
+                    "y": "384",
+                    "properties": {
+                        "text": "Par :",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "56",
+                    "typeID": "Image",
+                    "zOrder": "40",
+                    "w": "15",
+                    "h": "17",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "661",
+                    "y": "384"
+                },
+                {
+                    "ID": "57",
+                    "typeID": "Link",
+                    "zOrder": "41",
+                    "measuredW": "45",
+                    "measuredH": "18",
+                    "x": "676",
+                    "y": "384",
+                    "properties": {
+                        "text": "LeoDnx91",
+                        "size": "10"
+                    }
                 }
             ]
         },

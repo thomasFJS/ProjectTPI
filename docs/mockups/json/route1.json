@@ -13,7 +13,7 @@
                     "x": "75",
                     "y": "12",
                     "properties": {
-                        "text": "Route\nhttps://route.php"
+                        "text": "Route\nhttps://itineraryDetails.php"
                     }
                 },
                 {
@@ -58,7 +58,7 @@
                     "x": "107",
                     "y": "117",
                     "properties": {
-                        "text": "Itinerary"
+                        "text": "Itinéraire"
                     }
                 },
                 {
@@ -149,55 +149,9 @@
                     }
                 },
                 {
-                    "ID": "42",
-                    "typeID": "TextInput",
-                    "zOrder": "11",
-                    "w": "149",
-                    "measuredW": "79",
-                    "measuredH": "27",
-                    "x": "127",
-                    "y": "409"
-                },
-                {
-                    "ID": "43",
-                    "typeID": "Label",
-                    "zOrder": "12",
-                    "measuredW": "149",
-                    "measuredH": "21",
-                    "x": "127",
-                    "y": "388",
-                    "properties": {
-                        "text": "Ajouter un commentaire :"
-                    }
-                },
-                {
-                    "ID": "44",
-                    "typeID": "Label",
-                    "zOrder": "13",
-                    "measuredW": "42",
-                    "measuredH": "21",
-                    "x": "298",
-                    "y": "388",
-                    "properties": {
-                        "text": "Notes :"
-                    }
-                },
-                {
-                    "ID": "45",
-                    "typeID": "NumericStepper",
-                    "zOrder": "14",
-                    "measuredW": "42",
-                    "measuredH": "24",
-                    "x": "295",
-                    "y": "411",
-                    "properties": {
-                        "text": "2"
-                    }
-                },
-                {
                     "ID": "46",
                     "typeID": "FieldSet",
-                    "zOrder": "15",
+                    "zOrder": "11",
                     "w": "200",
                     "h": "289",
                     "measuredW": "200",
@@ -205,38 +159,13 @@
                     "x": "521",
                     "y": "140",
                     "properties": {
-                        "text": "Route infos"
-                    }
-                },
-                {
-                    "ID": "47",
-                    "typeID": "Label",
-                    "zOrder": "16",
-                    "measuredW": "33",
-                    "measuredH": "21",
-                    "x": "540",
-                    "y": "168",
-                    "properties": {
-                        "text": "Title :"
-                    }
-                },
-                {
-                    "ID": "48",
-                    "typeID": "TextInput",
-                    "zOrder": "17",
-                    "w": "103",
-                    "measuredW": "40",
-                    "measuredH": "27",
-                    "x": "581",
-                    "y": "165",
-                    "properties": {
-                        "text": "Title"
+                        "text": "Infos Itinéraire"
                     }
                 },
                 {
                     "ID": "49",
                     "typeID": "Label",
-                    "zOrder": "18",
+                    "zOrder": "12",
                     "measuredW": "74",
                     "measuredH": "21",
                     "x": "540",
@@ -248,7 +177,7 @@
                 {
                     "ID": "50",
                     "typeID": "TextArea",
-                    "zOrder": "19",
+                    "zOrder": "13",
                     "w": "160",
                     "h": "45",
                     "measuredW": "200",
@@ -256,17 +185,18 @@
                     "x": "540",
                     "y": "215",
                     "properties": {
-                        "text": "Description"
+                        "text": "Jolie balade sur les route du lac",
+                        "state": "disabled"
                     }
                 },
                 {
                     "ID": "51",
                     "typeID": "Label",
-                    "zOrder": "20",
+                    "zOrder": "14",
                     "measuredW": "35",
                     "measuredH": "21",
-                    "x": "539",
-                    "y": "260",
+                    "x": "541",
+                    "y": "309",
                     "properties": {
                         "text": "Pays :"
                     }
@@ -274,23 +204,24 @@
                 {
                     "ID": "52",
                     "typeID": "ComboBox",
-                    "zOrder": "21",
-                    "w": "59",
-                    "measuredW": "58",
+                    "zOrder": "15",
+                    "w": "69",
+                    "measuredW": "70",
                     "measuredH": "27",
-                    "x": "540",
-                    "y": "281",
+                    "x": "536",
+                    "y": "330",
                     "properties": {
-                        "text": "Pays"
+                        "text": "Suisse",
+                        "state": "disabled"
                     }
                 },
                 {
                     "ID": "53",
                     "typeID": "Label",
-                    "zOrder": "22",
+                    "zOrder": "16",
                     "measuredW": "60",
                     "measuredH": "21",
-                    "x": "623",
+                    "x": "630",
                     "y": "260",
                     "properties": {
                         "text": "Distance :"
@@ -299,44 +230,47 @@
                 {
                     "ID": "54",
                     "typeID": "TextInput",
-                    "zOrder": "23",
+                    "zOrder": "17",
                     "w": "74",
-                    "measuredW": "67",
+                    "measuredW": "69",
                     "measuredH": "27",
                     "x": "623",
                     "y": "281",
                     "properties": {
-                        "text": "Distance"
+                        "text": "160.18km",
+                        "state": "disabled"
                     }
                 },
                 {
                     "ID": "55",
                     "typeID": "Label",
-                    "zOrder": "24",
-                    "measuredW": "88",
+                    "zOrder": "18",
+                    "w": "83",
+                    "measuredW": "44",
                     "measuredH": "21",
                     "x": "540",
-                    "y": "318",
+                    "y": "260",
                     "properties": {
-                        "text": "Temps moyen :"
+                        "text": "Durée :"
                     }
                 },
                 {
                     "ID": "56",
                     "typeID": "NumericStepper",
-                    "zOrder": "25",
-                    "measuredW": "65",
+                    "zOrder": "19",
+                    "measuredW": "60",
                     "measuredH": "24",
-                    "x": "537",
-                    "y": "339",
+                    "x": "541",
+                    "y": "283",
                     "properties": {
-                        "text": "10:00"
+                        "text": "3:36",
+                        "state": "disabled"
                     }
                 },
                 {
                     "ID": "59",
                     "typeID": "Image",
-                    "zOrder": "26",
+                    "zOrder": "20",
                     "w": "44",
                     "h": "43",
                     "measuredW": "77",
@@ -347,7 +281,7 @@
                 {
                     "ID": "60",
                     "typeID": "Label",
-                    "zOrder": "27",
+                    "zOrder": "21",
                     "measuredW": "9",
                     "measuredH": "21",
                     "x": "579",
@@ -359,7 +293,7 @@
                 {
                     "ID": "61",
                     "typeID": "Label",
-                    "zOrder": "28",
+                    "zOrder": "22",
                     "measuredW": "10",
                     "measuredH": "21",
                     "x": "634",
@@ -371,10 +305,10 @@
                 {
                     "ID": "62",
                     "typeID": "Label",
-                    "zOrder": "29",
+                    "zOrder": "23",
                     "measuredW": "95",
                     "measuredH": "21",
-                    "x": "372",
+                    "x": "290",
                     "y": "388",
                     "properties": {
                         "text": "Note Moyenne : "
@@ -383,10 +317,10 @@
                 {
                     "ID": "63",
                     "typeID": "Label",
-                    "zOrder": "30",
+                    "zOrder": "24",
                     "measuredW": "46",
                     "measuredH": "21",
-                    "x": "397",
+                    "x": "315",
                     "y": "412",
                     "properties": {
                         "text": "4 (256)"
@@ -395,58 +329,164 @@
                 {
                     "ID": "64",
                     "typeID": "TextArea",
-                    "zOrder": "31",
-                    "w": "360",
-                    "h": "32",
+                    "zOrder": "25",
+                    "w": "654",
+                    "h": "36",
                     "measuredW": "200",
                     "measuredH": "140",
-                    "x": "107",
-                    "y": "467",
+                    "x": "109",
+                    "y": "511",
                     "properties": {
-                        "text": "This is a comment"
+                        "text": "Balade vraiment sympatique a faire en groupe"
                     }
                 },
                 {
                     "ID": "65",
                     "typeID": "Image",
-                    "zOrder": "32",
+                    "zOrder": "26",
                     "w": "40",
                     "h": "36",
                     "measuredW": "77",
                     "measuredH": "79",
-                    "x": "721",
-                    "y": "467"
+                    "x": "723",
+                    "y": "511"
                 },
                 {
                     "ID": "66",
                     "typeID": "Label",
-                    "zOrder": "33",
-                    "measuredW": "127",
+                    "zOrder": "27",
+                    "measuredW": "106",
                     "measuredH": "21",
-                    "x": "340",
-                    "y": "503",
+                    "x": "352",
+                    "y": "547",
                     "properties": {
-                        "text": "Date du commentaire"
+                        "text": "21:42 25.05.2020"
                     }
                 },
                 {
                     "ID": "67",
                     "typeID": "VerticalScrollBar",
-                    "zOrder": "34",
+                    "zOrder": "28",
                     "h": "459",
                     "measuredW": "16",
                     "measuredH": "100",
                     "x": "797",
                     "y": "115"
+                },
+                {
+                    "ID": "73",
+                    "typeID": "Label",
+                    "zOrder": "29",
+                    "measuredW": "51",
+                    "measuredH": "21",
+                    "x": "223",
+                    "y": "547",
+                    "properties": {
+                        "text": "JohnDoe"
+                    }
+                },
+                {
+                    "ID": "74",
+                    "typeID": "TextInput",
+                    "zOrder": "30",
+                    "w": "362",
+                    "measuredW": "101",
+                    "measuredH": "27",
+                    "x": "107",
+                    "y": "472",
+                    "properties": {
+                        "text": "Inscrivez-vous",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "76",
+                    "typeID": "Label",
+                    "zOrder": "31",
+                    "measuredW": "42",
+                    "measuredH": "21",
+                    "x": "151",
+                    "y": "388",
+                    "properties": {
+                        "text": "Notes :"
+                    }
+                },
+                {
+                    "ID": "77",
+                    "typeID": "NumericStepper",
+                    "zOrder": "32",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "151",
+                    "y": "411",
+                    "properties": {
+                        "text": "2",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "78",
+                    "typeID": "Label",
+                    "zOrder": "33",
+                    "measuredW": "86",
+                    "measuredH": "21",
+                    "x": "107",
+                    "y": "451",
+                    "properties": {
+                        "text": "Commentaire :"
+                    }
+                },
+                {
+                    "ID": "79",
+                    "typeID": "Button",
+                    "zOrder": "34",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "521",
+                    "y": "472",
+                    "properties": {
+                        "text": "Poster",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "80",
+                    "typeID": "Label",
+                    "zOrder": "35",
+                    "w": "159",
+                    "measuredW": "77",
+                    "measuredH": "22",
+                    "x": "541",
+                    "y": "157",
+                    "properties": {
+                        "text": "Tour du Lac",
+                        "align": "center",
+                        "size": "14"
+                    }
+                },
+                {
+                    "ID": "82",
+                    "typeID": "Button",
+                    "zOrder": "36",
+                    "w": "48",
+                    "h": "27",
+                    "measuredW": "58",
+                    "measuredH": "27",
+                    "x": "201",
+                    "y": "411",
+                    "properties": {
+                        "text": "Noter",
+                        "state": "disabled"
+                    }
                 }
             ]
         },
         "attributes": {
-            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 6",
-            "order": 1000047.5606774595,
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 8",
+            "order": 1000051.0839693238,
             "parentID": null
         },
-        "resourceID": "6921315B-1140-4F48-8AEB-ACFBD57D08CA",
+        "resourceID": "575A8713-14AB-4AB9-A540-4DFAEE249636",
         "mockupH": "615",
         "mockupW": "738",
         "measuredW": "813",

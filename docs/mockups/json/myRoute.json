@@ -32,24 +32,9 @@
                     }
                 },
                 {
-                    "ID": "6",
-                    "typeID": "TextArea",
-                    "zOrder": "2",
-                    "w": "116",
-                    "h": "104",
-                    "measuredW": "200",
-                    "measuredH": "140",
-                    "x": "184",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
-                        "size": "8"
-                    }
-                },
-                {
                     "ID": "11",
                     "typeID": "Map",
-                    "zOrder": "3",
+                    "zOrder": "2",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
@@ -60,7 +45,7 @@
                 {
                     "ID": "12",
                     "typeID": "HRule",
-                    "zOrder": "4",
+                    "zOrder": "3",
                     "w": "724",
                     "measuredW": "100",
                     "measuredH": "10",
@@ -68,50 +53,20 @@
                     "y": "161"
                 },
                 {
-                    "ID": "15",
-                    "typeID": "TextArea",
-                    "zOrder": "5",
-                    "w": "116",
-                    "h": "104",
-                    "measuredW": "200",
-                    "measuredH": "140",
-                    "x": "332",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
-                        "size": "8"
-                    }
-                },
-                {
                     "ID": "16",
                     "typeID": "Map",
-                    "zOrder": "6",
+                    "zOrder": "4",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
                     "measuredH": "222",
                     "x": "332",
                     "y": "199"
-                },
-                {
-                    "ID": "17",
-                    "typeID": "TextArea",
-                    "zOrder": "7",
-                    "w": "116",
-                    "h": "104",
-                    "measuredW": "200",
-                    "measuredH": "140",
-                    "x": "481",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
-                        "size": "8"
-                    }
                 },
                 {
                     "ID": "18",
                     "typeID": "Map",
-                    "zOrder": "8",
+                    "zOrder": "5",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
@@ -120,24 +75,9 @@
                     "y": "199"
                 },
                 {
-                    "ID": "19",
-                    "typeID": "TextArea",
-                    "zOrder": "9",
-                    "w": "116",
-                    "h": "104",
-                    "measuredW": "200",
-                    "measuredH": "140",
-                    "x": "631",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
-                        "size": "8"
-                    }
-                },
-                {
                     "ID": "20",
                     "typeID": "Map",
-                    "zOrder": "10",
+                    "zOrder": "6",
                     "w": "116",
                     "h": "114",
                     "measuredW": "252",
@@ -148,7 +88,7 @@
                 {
                     "ID": "22",
                     "typeID": "TextInput",
-                    "zOrder": "11",
+                    "zOrder": "7",
                     "w": "724",
                     "measuredW": "66",
                     "measuredH": "27",
@@ -162,65 +102,13 @@
                     }
                 },
                 {
-                    "ID": "23",
-                    "typeID": "Link",
-                    "zOrder": "12",
-                    "measuredW": "21",
-                    "measuredH": "18",
-                    "x": "260",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom",
-                        "size": "10"
-                    }
-                },
-                {
-                    "ID": "24",
-                    "typeID": "Link",
-                    "zOrder": "13",
-                    "measuredW": "21",
-                    "measuredH": "18",
-                    "x": "405",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom",
-                        "size": "10"
-                    }
-                },
-                {
-                    "ID": "27",
-                    "typeID": "Link",
-                    "zOrder": "14",
-                    "measuredW": "21",
-                    "measuredH": "18",
-                    "x": "705",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom",
-                        "size": "10"
-                    }
-                },
-                {
-                    "ID": "28",
-                    "typeID": "Link",
-                    "zOrder": "15",
-                    "measuredW": "21",
-                    "measuredH": "18",
-                    "x": "554",
-                    "y": "313",
-                    "properties": {
-                        "text": "Nom",
-                        "size": "10"
-                    }
-                },
-                {
                     "ID": "29",
                     "typeID": "Label",
-                    "zOrder": "16",
+                    "zOrder": "8",
                     "measuredW": "161",
                     "measuredH": "32",
-                    "x": "445",
-                    "y": "129",
+                    "x": "416",
+                    "y": "121",
                     "properties": {
                         "text": "Mes itinéraires",
                         "size": "24"
@@ -229,12 +117,124 @@
                 {
                     "ID": "30",
                     "typeID": "VerticalScrollBar",
-                    "zOrder": "17",
+                    "zOrder": "9",
                     "h": "309",
                     "measuredW": "16",
                     "measuredH": "100",
                     "x": "847",
                     "y": "167"
+                },
+                {
+                    "ID": "32",
+                    "typeID": "TextArea",
+                    "zOrder": "10",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "332",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   2:06\t\tSuisse\nDistance :\tNote :\n  100km\t\t   4\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "33",
+                    "typeID": "TextArea",
+                    "zOrder": "11",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "631",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nDurée :\t     Pays :\n3:36\t     Suisse\nDistance :    Note :\n  160km\t         4\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "34",
+                    "typeID": "Link",
+                    "zOrder": "12",
+                    "measuredW": "48",
+                    "measuredH": "18",
+                    "x": "394",
+                    "y": "313",
+                    "properties": {
+                        "text": "St-Cergue",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "35",
+                    "typeID": "Link",
+                    "zOrder": "13",
+                    "measuredW": "55",
+                    "measuredH": "18",
+                    "x": "692",
+                    "y": "313",
+                    "properties": {
+                        "text": "Tour du Lac",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "36",
+                    "typeID": "TextArea",
+                    "zOrder": "14",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "481",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   3:40\t\tSuisse\nDistance :\tNote :\n  180km\t\t   2\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "37",
+                    "typeID": "Link",
+                    "zOrder": "15",
+                    "measuredW": "35",
+                    "measuredH": "18",
+                    "x": "547",
+                    "y": "313",
+                    "properties": {
+                        "text": "Balade ",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "38",
+                    "typeID": "TextArea",
+                    "zOrder": "16",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "184",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   1:06\t\tSuisse\nDistance :\tNote :\n  60km\t\t   3\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "39",
+                    "typeID": "Link",
+                    "zOrder": "17",
+                    "measuredW": "32",
+                    "measuredH": "18",
+                    "x": "255",
+                    "y": "313",
+                    "properties": {
+                        "text": "Balade",
+                        "size": "10"
+                    }
                 }
             ]
         },

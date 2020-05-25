@@ -66,10 +66,13 @@
                     "typeID": "TextInput",
                     "zOrder": "4",
                     "w": "122",
-                    "measuredW": "79",
+                    "measuredW": "81",
                     "measuredH": "27",
                     "x": "300",
-                    "y": "199"
+                    "y": "199",
+                    "properties": {
+                        "text": "JohnDoe56"
+                    }
                 },
                 {
                     "ID": "6",
@@ -92,7 +95,10 @@
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "302",
-                    "y": "294"
+                    "y": "294",
+                    "properties": {
+                        "text": "******"
+                    }
                 },
                 {
                     "ID": "14",
@@ -153,17 +159,23 @@
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "446",
-                    "y": "294"
+                    "y": "294",
+                    "properties": {
+                        "text": "******"
+                    }
                 },
                 {
                     "ID": "28",
                     "typeID": "TextInput",
                     "zOrder": "12",
                     "w": "122",
-                    "measuredW": "79",
+                    "measuredW": "104",
                     "measuredH": "27",
                     "x": "301",
-                    "y": "246"
+                    "y": "246",
+                    "properties": {
+                        "text": "John@Doe.com"
+                    }
                 },
                 {
                     "ID": "29",

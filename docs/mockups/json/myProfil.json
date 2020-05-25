@@ -66,10 +66,13 @@
                     "typeID": "TextInput",
                     "zOrder": "4",
                     "w": "122",
-                    "measuredW": "79",
+                    "measuredW": "81",
                     "measuredH": "27",
                     "x": "286",
-                    "y": "171"
+                    "y": "171",
+                    "properties": {
+                        "text": "JohnDoe56"
+                    }
                 },
                 {
                     "ID": "6",
@@ -92,7 +95,10 @@
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "286",
-                    "y": "235"
+                    "y": "235",
+                    "properties": {
+                        "text": "Doe"
+                    }
                 },
                 {
                     "ID": "9",
@@ -111,12 +117,12 @@
                     "typeID": "ComboBox",
                     "zOrder": "8",
                     "w": "74",
-                    "measuredW": "58",
+                    "measuredW": "70",
                     "measuredH": "27",
                     "x": "287",
                     "y": "366",
                     "properties": {
-                        "text": "Pays"
+                        "text": "Suisse"
                     }
                 },
                 {
@@ -166,7 +172,10 @@
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "474",
-                    "y": "235"
+                    "y": "235",
+                    "properties": {
+                        "text": "John"
+                    }
                 },
                 {
                     "ID": "17",
@@ -177,7 +186,10 @@
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "285",
-                    "y": "288"
+                    "y": "288",
+                    "properties": {
+                        "text": "J'aime la moto :)"
+                    }
                 },
                 {
                     "ID": "18",

@@ -66,10 +66,13 @@
                     "typeID": "TextInput",
                     "zOrder": "4",
                     "w": "148",
-                    "measuredW": "79",
+                    "measuredW": "85",
                     "measuredH": "27",
                     "x": "286",
-                    "y": "174"
+                    "y": "174",
+                    "properties": {
+                        "text": "Tour du Lac"
+                    }
                 },
                 {
                     "ID": "6",
@@ -92,7 +95,10 @@
                     "measuredW": "200",
                     "measuredH": "140",
                     "x": "286",
-                    "y": "285"
+                    "y": "285",
+                    "properties": {
+                        "text": "Jolie balade sur les routes du lac"
+                    }
                 },
                 {
                     "ID": "9",
@@ -110,12 +116,12 @@
                     "ID": "10",
                     "typeID": "ComboBox",
                     "zOrder": "8",
-                    "measuredW": "58",
+                    "measuredW": "70",
                     "measuredH": "27",
                     "x": "286",
                     "y": "227",
                     "properties": {
-                        "text": "Pays"
+                        "text": "Suisse"
                     }
                 },
                 {
@@ -134,24 +140,24 @@
                     "ID": "12",
                     "typeID": "NumericStepper",
                     "zOrder": "10",
-                    "measuredW": "114",
+                    "measuredW": "60",
                     "measuredH": "24",
                     "x": "288",
                     "y": "380",
                     "properties": {
-                        "text": "Temps Moyen"
+                        "text": "3:36"
                     }
                 },
                 {
                     "ID": "13",
                     "typeID": "Label",
                     "zOrder": "11",
-                    "measuredW": "88",
+                    "measuredW": "44",
                     "measuredH": "21",
                     "x": "288",
                     "y": "359",
                     "properties": {
-                        "text": "Temps moyen :"
+                        "text": "Durée :"
                     }
                 },
                 {
