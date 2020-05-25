@@ -1,0 +1,185 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "515",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "75",
+                    "y": "12",
+                    "properties": {
+                        "text": "Création d'itinéraire\nhttps://createRoute.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "474",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "374",
+                    "h": "324",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "265",
+                    "y": "134",
+                    "properties": {
+                        "text": "Créer votre itinéraire"
+                    }
+                },
+                {
+                    "ID": "4",
+                    "typeID": "TextInput",
+                    "zOrder": "4",
+                    "w": "148",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "286",
+                    "y": "174"
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Label",
+                    "zOrder": "5",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "287",
+                    "y": "150",
+                    "properties": {
+                        "text": "Titre :"
+                    }
+                },
+                {
+                    "ID": "8",
+                    "typeID": "TextArea",
+                    "zOrder": "6",
+                    "w": "226",
+                    "h": "74",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "286",
+                    "y": "285"
+                },
+                {
+                    "ID": "9",
+                    "typeID": "Label",
+                    "zOrder": "7",
+                    "measuredW": "74",
+                    "measuredH": "21",
+                    "x": "286",
+                    "y": "264",
+                    "properties": {
+                        "text": "Description :"
+                    }
+                },
+                {
+                    "ID": "10",
+                    "typeID": "ComboBox",
+                    "zOrder": "8",
+                    "measuredW": "58",
+                    "measuredH": "27",
+                    "x": "286",
+                    "y": "227",
+                    "properties": {
+                        "text": "Pays"
+                    }
+                },
+                {
+                    "ID": "11",
+                    "typeID": "Label",
+                    "zOrder": "9",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "286",
+                    "y": "206",
+                    "properties": {
+                        "text": "Pays :"
+                    }
+                },
+                {
+                    "ID": "12",
+                    "typeID": "NumericStepper",
+                    "zOrder": "10",
+                    "measuredW": "114",
+                    "measuredH": "24",
+                    "x": "288",
+                    "y": "380",
+                    "properties": {
+                        "text": "Temps Moyen"
+                    }
+                },
+                {
+                    "ID": "13",
+                    "typeID": "Label",
+                    "zOrder": "11",
+                    "measuredW": "88",
+                    "measuredH": "21",
+                    "x": "288",
+                    "y": "359",
+                    "properties": {
+                        "text": "Temps moyen :"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Button",
+                    "zOrder": "12",
+                    "w": "327",
+                    "h": "27",
+                    "measuredW": "120",
+                    "measuredH": "27",
+                    "x": "288",
+                    "y": "418",
+                    "properties": {
+                        "text": "Placer Itinéraire"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
+            "order": 1000017.6627751152,
+            "parentID": null
+        },
+        "resourceID": "C1ECCB8D-D775-4506-89BE-E750E6111780",
+        "mockupH": "515",
+        "mockupW": "738",
+        "measuredW": "813",
+        "measuredH": "527",
+        "version": "1.0"
+    }
+}

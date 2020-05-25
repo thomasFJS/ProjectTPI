@@ -1,0 +1,413 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "615",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "75",
+                    "y": "12",
+                    "properties": {
+                        "text": "Route\nhttps://route.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "574",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "657",
+                    "h": "335",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "107",
+                    "y": "117",
+                    "properties": {
+                        "text": "Itinéraire"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Map",
+                    "zOrder": "4",
+                    "w": "315",
+                    "h": "214",
+                    "measuredW": "252",
+                    "measuredH": "222",
+                    "x": "151",
+                    "y": "136"
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextArea",
+                    "zOrder": "5",
+                    "w": "78",
+                    "h": "25",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "143",
+                    "y": "141",
+                    "properties": {
+                        "text": "Point 1\n"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "RoundButton",
+                    "zOrder": "6",
+                    "w": "21",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "238",
+                    "y": "192"
+                },
+                {
+                    "ID": "19",
+                    "typeID": "RoundButton",
+                    "zOrder": "7",
+                    "w": "22",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "334",
+                    "y": "258"
+                },
+                {
+                    "ID": "20",
+                    "typeID": "VRule",
+                    "zOrder": "8",
+                    "h": "61",
+                    "measuredW": "10",
+                    "measuredH": "100",
+                    "x": "340",
+                    "y": "197",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "21",
+                    "typeID": "HRule",
+                    "zOrder": "9",
+                    "w": "91",
+                    "measuredW": "100",
+                    "measuredH": "10",
+                    "x": "259",
+                    "y": "197",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "TextArea",
+                    "zOrder": "10",
+                    "w": "78",
+                    "h": "25",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "143",
+                    "y": "166",
+                    "properties": {
+                        "text": "Point 2\n"
+                    }
+                },
+                {
+                    "ID": "46",
+                    "typeID": "FieldSet",
+                    "zOrder": "11",
+                    "w": "200",
+                    "h": "289",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "521",
+                    "y": "140",
+                    "properties": {
+                        "text": "Infos Itinéraire"
+                    }
+                },
+                {
+                    "ID": "47",
+                    "typeID": "Label",
+                    "zOrder": "12",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "540",
+                    "y": "168",
+                    "properties": {
+                        "text": "Titre :"
+                    }
+                },
+                {
+                    "ID": "48",
+                    "typeID": "TextInput",
+                    "zOrder": "13",
+                    "w": "103",
+                    "measuredW": "42",
+                    "measuredH": "27",
+                    "x": "581",
+                    "y": "165",
+                    "properties": {
+                        "text": "Titre",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "49",
+                    "typeID": "Label",
+                    "zOrder": "14",
+                    "measuredW": "74",
+                    "measuredH": "21",
+                    "x": "540",
+                    "y": "194",
+                    "properties": {
+                        "text": "Description :"
+                    }
+                },
+                {
+                    "ID": "50",
+                    "typeID": "TextArea",
+                    "zOrder": "15",
+                    "w": "160",
+                    "h": "45",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "540",
+                    "y": "215",
+                    "properties": {
+                        "text": "Description",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "51",
+                    "typeID": "Label",
+                    "zOrder": "16",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "539",
+                    "y": "260",
+                    "properties": {
+                        "text": "Pays :"
+                    }
+                },
+                {
+                    "ID": "52",
+                    "typeID": "ComboBox",
+                    "zOrder": "17",
+                    "w": "59",
+                    "measuredW": "58",
+                    "measuredH": "27",
+                    "x": "540",
+                    "y": "281",
+                    "properties": {
+                        "text": "Pays"
+                    }
+                },
+                {
+                    "ID": "53",
+                    "typeID": "Label",
+                    "zOrder": "18",
+                    "measuredW": "60",
+                    "measuredH": "21",
+                    "x": "623",
+                    "y": "260",
+                    "properties": {
+                        "text": "Distance :"
+                    }
+                },
+                {
+                    "ID": "54",
+                    "typeID": "TextInput",
+                    "zOrder": "19",
+                    "w": "74",
+                    "measuredW": "67",
+                    "measuredH": "27",
+                    "x": "623",
+                    "y": "281",
+                    "properties": {
+                        "text": "Distance",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "55",
+                    "typeID": "Label",
+                    "zOrder": "20",
+                    "measuredW": "88",
+                    "measuredH": "21",
+                    "x": "540",
+                    "y": "318",
+                    "properties": {
+                        "text": "Temps moyen :"
+                    }
+                },
+                {
+                    "ID": "56",
+                    "typeID": "NumericStepper",
+                    "zOrder": "21",
+                    "measuredW": "65",
+                    "measuredH": "24",
+                    "x": "537",
+                    "y": "339",
+                    "properties": {
+                        "text": "10:00"
+                    }
+                },
+                {
+                    "ID": "59",
+                    "typeID": "Image",
+                    "zOrder": "22",
+                    "w": "44",
+                    "h": "43",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "590",
+                    "y": "373"
+                },
+                {
+                    "ID": "60",
+                    "typeID": "Label",
+                    "zOrder": "23",
+                    "measuredW": "9",
+                    "measuredH": "21",
+                    "x": "579",
+                    "y": "384",
+                    "properties": {
+                        "text": "<"
+                    }
+                },
+                {
+                    "ID": "61",
+                    "typeID": "Label",
+                    "zOrder": "24",
+                    "measuredW": "10",
+                    "measuredH": "21",
+                    "x": "634",
+                    "y": "384",
+                    "properties": {
+                        "text": ">"
+                    }
+                },
+                {
+                    "ID": "62",
+                    "typeID": "Label",
+                    "zOrder": "25",
+                    "measuredW": "95",
+                    "measuredH": "21",
+                    "x": "372",
+                    "y": "388",
+                    "properties": {
+                        "text": "Note Moyenne : "
+                    }
+                },
+                {
+                    "ID": "63",
+                    "typeID": "Label",
+                    "zOrder": "26",
+                    "measuredW": "46",
+                    "measuredH": "21",
+                    "x": "397",
+                    "y": "412",
+                    "properties": {
+                        "text": "4 (256)"
+                    }
+                },
+                {
+                    "ID": "64",
+                    "typeID": "TextArea",
+                    "zOrder": "27",
+                    "w": "360",
+                    "h": "32",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "107",
+                    "y": "467",
+                    "properties": {
+                        "text": "Ceci est un commentaire"
+                    }
+                },
+                {
+                    "ID": "65",
+                    "typeID": "Image",
+                    "zOrder": "28",
+                    "w": "40",
+                    "h": "36",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "721",
+                    "y": "467"
+                },
+                {
+                    "ID": "66",
+                    "typeID": "Label",
+                    "zOrder": "29",
+                    "measuredW": "127",
+                    "measuredH": "21",
+                    "x": "340",
+                    "y": "503",
+                    "properties": {
+                        "text": "Date du commentaire"
+                    }
+                },
+                {
+                    "ID": "67",
+                    "typeID": "VerticalScrollBar",
+                    "zOrder": "30",
+                    "h": "459",
+                    "measuredW": "16",
+                    "measuredH": "100",
+                    "x": "797",
+                    "y": "115"
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 8",
+            "order": 1000051.0839693238,
+            "parentID": null
+        },
+        "resourceID": "575A8713-14AB-4AB9-A540-4DFAEE249636",
+        "mockupH": "615",
+        "mockupW": "738",
+        "measuredW": "813",
+        "measuredH": "627",
+        "version": "1.0"
+    }
+}

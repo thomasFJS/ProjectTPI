@@ -1,0 +1,194 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "515",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "72",
+                    "y": "14",
+                    "properties": {
+                        "text": "Register\nhttps://register.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "474",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "319",
+                    "h": "247",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "284",
+                    "y": "148",
+                    "properties": {
+                        "text": "Register"
+                    }
+                },
+                {
+                    "ID": "4",
+                    "typeID": "TextInput",
+                    "zOrder": "4",
+                    "w": "122",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "300",
+                    "y": "199"
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Label",
+                    "zOrder": "5",
+                    "measuredW": "65",
+                    "measuredH": "21",
+                    "x": "300",
+                    "y": "178",
+                    "properties": {
+                        "text": "Nickname :"
+                    }
+                },
+                {
+                    "ID": "8",
+                    "typeID": "TextArea",
+                    "zOrder": "6",
+                    "w": "120",
+                    "h": "27",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "302",
+                    "y": "294"
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Button",
+                    "zOrder": "7",
+                    "w": "290",
+                    "h": "27",
+                    "measuredW": "75",
+                    "measuredH": "27",
+                    "x": "301",
+                    "y": "337",
+                    "properties": {
+                        "text": "Register"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Label",
+                    "zOrder": "8",
+                    "measuredW": "62",
+                    "measuredH": "21",
+                    "x": "302",
+                    "y": "273",
+                    "properties": {
+                        "text": "Password :"
+                    }
+                },
+                {
+                    "ID": "25",
+                    "typeID": "Link",
+                    "zOrder": "9",
+                    "measuredW": "106",
+                    "measuredH": "21",
+                    "x": "301",
+                    "y": "364",
+                    "properties": {
+                        "text": "Already register ?"
+                    }
+                },
+                {
+                    "ID": "26",
+                    "typeID": "Label",
+                    "zOrder": "10",
+                    "measuredW": "112",
+                    "measuredH": "21",
+                    "x": "455",
+                    "y": "273",
+                    "properties": {
+                        "text": "Confirm Password :"
+                    }
+                },
+                {
+                    "ID": "27",
+                    "typeID": "TextArea",
+                    "zOrder": "11",
+                    "w": "120",
+                    "h": "27",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "455",
+                    "y": "294"
+                },
+                {
+                    "ID": "28",
+                    "typeID": "TextInput",
+                    "zOrder": "12",
+                    "w": "122",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "301",
+                    "y": "246"
+                },
+                {
+                    "ID": "29",
+                    "typeID": "Label",
+                    "zOrder": "13",
+                    "measuredW": "39",
+                    "measuredH": "21",
+                    "x": "301",
+                    "y": "225",
+                    "properties": {
+                        "text": "Email :"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 4",
+            "order": 1000028.1404361898,
+            "parentID": null
+        },
+        "resourceID": "59DF1D40-F229-42C7-8F2C-C0AC4F55C096",
+        "mockupH": "515",
+        "mockupW": "738",
+        "measuredW": "810",
+        "measuredH": "529",
+        "version": "1.0"
+    }
+}

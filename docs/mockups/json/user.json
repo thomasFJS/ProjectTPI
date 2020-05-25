@@ -1,0 +1,281 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "521",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "75",
+                    "y": "12",
+                    "properties": {
+                        "text": "Utilisateur\nhttps://users.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "476",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "374",
+                    "h": "335",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "257",
+                    "y": "125",
+                    "properties": {
+                        "text": "User's name"
+                    }
+                },
+                {
+                    "ID": "47",
+                    "typeID": "Label",
+                    "zOrder": "4",
+                    "measuredW": "69",
+                    "measuredH": "21",
+                    "x": "379",
+                    "y": "147",
+                    "properties": {
+                        "text": "Nickname : "
+                    }
+                },
+                {
+                    "ID": "48",
+                    "typeID": "TextInput",
+                    "zOrder": "5",
+                    "w": "103",
+                    "measuredW": "72",
+                    "measuredH": "27",
+                    "x": "448",
+                    "y": "144",
+                    "properties": {
+                        "text": "Nickname",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "49",
+                    "typeID": "Label",
+                    "zOrder": "6",
+                    "measuredW": "74",
+                    "measuredH": "21",
+                    "x": "379",
+                    "y": "278",
+                    "properties": {
+                        "text": "Description :"
+                    }
+                },
+                {
+                    "ID": "50",
+                    "typeID": "TextArea",
+                    "zOrder": "7",
+                    "w": "174",
+                    "h": "45",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "379",
+                    "y": "299",
+                    "properties": {
+                        "text": "Description",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "51",
+                    "typeID": "Label",
+                    "zOrder": "8",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "381",
+                    "y": "347",
+                    "properties": {
+                        "text": "Pays :"
+                    }
+                },
+                {
+                    "ID": "53",
+                    "typeID": "Label",
+                    "zOrder": "9",
+                    "measuredW": "33",
+                    "measuredH": "21",
+                    "x": "379",
+                    "y": "213",
+                    "properties": {
+                        "text": "Nom :"
+                    }
+                },
+                {
+                    "ID": "54",
+                    "typeID": "TextInput",
+                    "zOrder": "10",
+                    "w": "74",
+                    "measuredW": "41",
+                    "measuredH": "27",
+                    "x": "379",
+                    "y": "234",
+                    "properties": {
+                        "text": "Nom",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "68",
+                    "typeID": "Image",
+                    "zOrder": "11",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "277",
+                    "y": "147"
+                },
+                {
+                    "ID": "69",
+                    "typeID": "Label",
+                    "zOrder": "12",
+                    "measuredW": "43",
+                    "measuredH": "21",
+                    "x": "379",
+                    "y": "176",
+                    "properties": {
+                        "text": "Email : "
+                    }
+                },
+                {
+                    "ID": "70",
+                    "typeID": "TextInput",
+                    "zOrder": "13",
+                    "w": "103",
+                    "measuredW": "46",
+                    "measuredH": "27",
+                    "x": "448",
+                    "y": "173",
+                    "properties": {
+                        "text": "Email",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "71",
+                    "typeID": "TextArea",
+                    "zOrder": "14",
+                    "w": "97",
+                    "h": "26",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "379",
+                    "y": "370",
+                    "properties": {
+                        "text": "Pays\n",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "72",
+                    "typeID": "Label",
+                    "zOrder": "15",
+                    "measuredW": "53",
+                    "measuredH": "21",
+                    "x": "476",
+                    "y": "213",
+                    "properties": {
+                        "text": "Prénom :"
+                    }
+                },
+                {
+                    "ID": "73",
+                    "typeID": "TextInput",
+                    "zOrder": "16",
+                    "w": "74",
+                    "measuredW": "59",
+                    "measuredH": "27",
+                    "x": "476",
+                    "y": "234",
+                    "properties": {
+                        "text": "Prenom",
+                        "state": "disabled"
+                    }
+                },
+                {
+                    "ID": "74",
+                    "typeID": "Switch",
+                    "zOrder": "17",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "508",
+                    "y": "372",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "75",
+                    "typeID": "Label",
+                    "zOrder": "18",
+                    "measuredW": "43",
+                    "measuredH": "21",
+                    "x": "492",
+                    "y": "347",
+                    "properties": {
+                        "text": "Statut :"
+                    }
+                },
+                {
+                    "ID": "76",
+                    "typeID": "Button",
+                    "zOrder": "19",
+                    "measuredW": "101",
+                    "measuredH": "27",
+                    "x": "415",
+                    "y": "417",
+                    "properties": {
+                        "text": "Save change"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 7",
+            "order": 1000055.11462046,
+            "parentID": null
+        },
+        "resourceID": "9CDBA011-44D1-4AC7-B9ED-9E69C634B889",
+        "mockupH": "521",
+        "mockupW": "738",
+        "measuredW": "813",
+        "measuredH": "533",
+        "version": "1.0"
+    }
+}

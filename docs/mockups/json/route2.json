@@ -1,0 +1,421 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "515",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "75",
+                    "y": "12",
+                    "properties": {
+                        "text": "Route\nhttps://route.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "474",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "706",
+                    "h": "324",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "91",
+                    "y": "131",
+                    "properties": {
+                        "text": "Itinerary"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Button",
+                    "zOrder": "4",
+                    "w": "327",
+                    "h": "27",
+                    "measuredW": "88",
+                    "measuredH": "27",
+                    "x": "140",
+                    "y": "384",
+                    "properties": {
+                        "text": "Save route"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Map",
+                    "zOrder": "5",
+                    "w": "315",
+                    "h": "214",
+                    "measuredW": "252",
+                    "measuredH": "222",
+                    "x": "146",
+                    "y": "154"
+                },
+                {
+                    "ID": "16",
+                    "typeID": "SearchBox",
+                    "zOrder": "6",
+                    "w": "78",
+                    "measuredW": "140",
+                    "measuredH": "25",
+                    "x": "138",
+                    "y": "154",
+                    "properties": {
+                        "text": "Recherche adresse"
+                    }
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextArea",
+                    "zOrder": "7",
+                    "w": "78",
+                    "h": "25",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "138",
+                    "y": "180",
+                    "properties": {
+                        "text": "Point 1\n"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "RoundButton",
+                    "zOrder": "8",
+                    "w": "21",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "226",
+                    "y": "198"
+                },
+                {
+                    "ID": "19",
+                    "typeID": "RoundButton",
+                    "zOrder": "9",
+                    "w": "22",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "322",
+                    "y": "264"
+                },
+                {
+                    "ID": "20",
+                    "typeID": "VRule",
+                    "zOrder": "10",
+                    "h": "61",
+                    "measuredW": "10",
+                    "measuredH": "100",
+                    "x": "328",
+                    "y": "203",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "21",
+                    "typeID": "HRule",
+                    "zOrder": "11",
+                    "w": "91",
+                    "measuredW": "100",
+                    "measuredH": "10",
+                    "x": "247",
+                    "y": "203",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "TextArea",
+                    "zOrder": "12",
+                    "w": "78",
+                    "h": "25",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "138",
+                    "y": "203",
+                    "properties": {
+                        "text": "Point 2\n"
+                    }
+                },
+                {
+                    "ID": "23",
+                    "typeID": "RoundButton",
+                    "zOrder": "13",
+                    "w": "21",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "138",
+                    "y": "228",
+                    "properties": {
+                        "text": "+"
+                    }
+                },
+                {
+                    "ID": "24",
+                    "typeID": "Button",
+                    "zOrder": "14",
+                    "w": "327",
+                    "h": "27",
+                    "measuredW": "98",
+                    "measuredH": "27",
+                    "x": "140",
+                    "y": "411",
+                    "properties": {
+                        "text": "Delete route",
+                        "color": "15374745"
+                    }
+                },
+                {
+                    "ID": "25",
+                    "typeID": "FieldSet",
+                    "zOrder": "15",
+                    "w": "200",
+                    "h": "289",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "523",
+                    "y": "151",
+                    "properties": {
+                        "text": "Route infos"
+                    }
+                },
+                {
+                    "ID": "26",
+                    "typeID": "Label",
+                    "zOrder": "16",
+                    "measuredW": "33",
+                    "measuredH": "21",
+                    "x": "542",
+                    "y": "179",
+                    "properties": {
+                        "text": "Title :"
+                    }
+                },
+                {
+                    "ID": "27",
+                    "typeID": "TextInput",
+                    "zOrder": "17",
+                    "w": "103",
+                    "measuredW": "40",
+                    "measuredH": "27",
+                    "x": "583",
+                    "y": "176",
+                    "properties": {
+                        "text": "Title"
+                    }
+                },
+                {
+                    "ID": "28",
+                    "typeID": "Label",
+                    "zOrder": "18",
+                    "measuredW": "74",
+                    "measuredH": "21",
+                    "x": "542",
+                    "y": "205",
+                    "properties": {
+                        "text": "Description :"
+                    }
+                },
+                {
+                    "ID": "29",
+                    "typeID": "TextArea",
+                    "zOrder": "19",
+                    "w": "160",
+                    "h": "45",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "542",
+                    "y": "226",
+                    "properties": {
+                        "text": "Description"
+                    }
+                },
+                {
+                    "ID": "30",
+                    "typeID": "Label",
+                    "zOrder": "20",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "541",
+                    "y": "271",
+                    "properties": {
+                        "text": "Pays :"
+                    }
+                },
+                {
+                    "ID": "31",
+                    "typeID": "ComboBox",
+                    "zOrder": "21",
+                    "w": "59",
+                    "measuredW": "58",
+                    "measuredH": "27",
+                    "x": "542",
+                    "y": "292",
+                    "properties": {
+                        "text": "Pays"
+                    }
+                },
+                {
+                    "ID": "32",
+                    "typeID": "Label",
+                    "zOrder": "22",
+                    "measuredW": "60",
+                    "measuredH": "21",
+                    "x": "625",
+                    "y": "271",
+                    "properties": {
+                        "text": "Distance :"
+                    }
+                },
+                {
+                    "ID": "33",
+                    "typeID": "TextInput",
+                    "zOrder": "23",
+                    "w": "74",
+                    "measuredW": "67",
+                    "measuredH": "27",
+                    "x": "625",
+                    "y": "292",
+                    "properties": {
+                        "text": "Distance"
+                    }
+                },
+                {
+                    "ID": "35",
+                    "typeID": "Label",
+                    "zOrder": "24",
+                    "measuredW": "88",
+                    "measuredH": "21",
+                    "x": "542",
+                    "y": "329",
+                    "properties": {
+                        "text": "Temps moyen :"
+                    }
+                },
+                {
+                    "ID": "36",
+                    "typeID": "NumericStepper",
+                    "zOrder": "25",
+                    "measuredW": "65",
+                    "measuredH": "24",
+                    "x": "539",
+                    "y": "350",
+                    "properties": {
+                        "text": "10:00"
+                    }
+                },
+                {
+                    "ID": "37",
+                    "typeID": "Button",
+                    "zOrder": "26",
+                    "w": "69",
+                    "h": "27",
+                    "measuredW": "68",
+                    "measuredH": "27",
+                    "x": "636",
+                    "y": "348",
+                    "properties": {
+                        "text": "Ajouter"
+                    }
+                },
+                {
+                    "ID": "38",
+                    "typeID": "Label",
+                    "zOrder": "27",
+                    "measuredW": "51",
+                    "measuredH": "21",
+                    "x": "636",
+                    "y": "329",
+                    "properties": {
+                        "text": "Images :"
+                    }
+                },
+                {
+                    "ID": "39",
+                    "typeID": "Image",
+                    "zOrder": "28",
+                    "w": "44",
+                    "h": "43",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "592",
+                    "y": "384"
+                },
+                {
+                    "ID": "40",
+                    "typeID": "Label",
+                    "zOrder": "29",
+                    "measuredW": "9",
+                    "measuredH": "21",
+                    "x": "581",
+                    "y": "395",
+                    "properties": {
+                        "text": "<"
+                    }
+                },
+                {
+                    "ID": "41",
+                    "typeID": "Label",
+                    "zOrder": "30",
+                    "measuredW": "10",
+                    "measuredH": "21",
+                    "x": "636",
+                    "y": "395",
+                    "properties": {
+                        "text": ">"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 5",
+            "order": 1000039.9778011471,
+            "parentID": null
+        },
+        "resourceID": "C913FB1E-E534-4F85-816E-3561E1D11576",
+        "mockupH": "515",
+        "mockupW": "738",
+        "measuredW": "813",
+        "measuredH": "527",
+        "version": "1.0"
+    }
+}

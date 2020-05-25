@@ -1,0 +1,245 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "515",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "75",
+                    "y": "12",
+                    "properties": {
+                        "text": "Profil\nhttps://profil.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "474",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "374",
+                    "h": "324",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "257",
+                    "y": "131",
+                    "properties": {
+                        "text": "Modifier votre profil"
+                    }
+                },
+                {
+                    "ID": "4",
+                    "typeID": "TextInput",
+                    "zOrder": "4",
+                    "w": "122",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "286",
+                    "y": "171"
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Label",
+                    "zOrder": "5",
+                    "measuredW": "65",
+                    "measuredH": "21",
+                    "x": "287",
+                    "y": "150",
+                    "properties": {
+                        "text": "Nickname :"
+                    }
+                },
+                {
+                    "ID": "8",
+                    "typeID": "TextArea",
+                    "zOrder": "6",
+                    "w": "120",
+                    "h": "27",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "286",
+                    "y": "235"
+                },
+                {
+                    "ID": "9",
+                    "typeID": "Label",
+                    "zOrder": "7",
+                    "measuredW": "53",
+                    "measuredH": "21",
+                    "x": "474",
+                    "y": "214",
+                    "properties": {
+                        "text": "Prénom :"
+                    }
+                },
+                {
+                    "ID": "10",
+                    "typeID": "ComboBox",
+                    "zOrder": "8",
+                    "w": "74",
+                    "measuredW": "58",
+                    "measuredH": "27",
+                    "x": "287",
+                    "y": "366",
+                    "properties": {
+                        "text": "Pays"
+                    }
+                },
+                {
+                    "ID": "11",
+                    "typeID": "Label",
+                    "zOrder": "9",
+                    "measuredW": "35",
+                    "measuredH": "21",
+                    "x": "286",
+                    "y": "345",
+                    "properties": {
+                        "text": "Pays :"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Button",
+                    "zOrder": "10",
+                    "w": "305",
+                    "h": "27",
+                    "measuredW": "154",
+                    "measuredH": "27",
+                    "x": "288",
+                    "y": "418",
+                    "properties": {
+                        "text": "Sauvegarder les infos"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Label",
+                    "zOrder": "11",
+                    "measuredW": "33",
+                    "measuredH": "21",
+                    "x": "287",
+                    "y": "214",
+                    "properties": {
+                        "text": "Nom :"
+                    }
+                },
+                {
+                    "ID": "16",
+                    "typeID": "TextArea",
+                    "zOrder": "12",
+                    "w": "114",
+                    "h": "27",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "474",
+                    "y": "235"
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextArea",
+                    "zOrder": "13",
+                    "w": "121",
+                    "h": "44",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "285",
+                    "y": "288"
+                },
+                {
+                    "ID": "18",
+                    "typeID": "Label",
+                    "zOrder": "14",
+                    "measuredW": "74",
+                    "measuredH": "21",
+                    "x": "287",
+                    "y": "269",
+                    "properties": {
+                        "text": "Description :"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "Image",
+                    "zOrder": "15",
+                    "w": "60",
+                    "h": "60",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "476",
+                    "y": "290"
+                },
+                {
+                    "ID": "23",
+                    "typeID": "Label",
+                    "zOrder": "16",
+                    "measuredW": "44",
+                    "measuredH": "21",
+                    "x": "476",
+                    "y": "269",
+                    "properties": {
+                        "text": "Avatar :"
+                    }
+                },
+                {
+                    "ID": "24",
+                    "typeID": "Button",
+                    "zOrder": "17",
+                    "w": "119",
+                    "h": "27",
+                    "measuredW": "127",
+                    "measuredH": "27",
+                    "x": "476",
+                    "y": "355",
+                    "properties": {
+                        "text": "Changer d'avatar"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 2",
+            "order": 1000022.8965278843,
+            "parentID": null
+        },
+        "resourceID": "96FB440D-EE7A-418D-ACC7-56AA8FF95224",
+        "mockupH": "515",
+        "mockupW": "738",
+        "measuredW": "813",
+        "measuredH": "527",
+        "version": "1.0"
+    }
+}

@@ -1,0 +1,253 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "515",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "128",
+                    "y": "16",
+                    "properties": {
+                        "text": "Mes itinéraires\nhttps://myRoute.php"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "135",
+                    "y": "94",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "6",
+                    "typeID": "TextArea",
+                    "zOrder": "2",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "184",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "11",
+                    "typeID": "Map",
+                    "zOrder": "3",
+                    "w": "116",
+                    "h": "114",
+                    "measuredW": "252",
+                    "measuredH": "222",
+                    "x": "184",
+                    "y": "199"
+                },
+                {
+                    "ID": "12",
+                    "typeID": "HRule",
+                    "zOrder": "4",
+                    "w": "724",
+                    "measuredW": "100",
+                    "measuredH": "10",
+                    "x": "135",
+                    "y": "161"
+                },
+                {
+                    "ID": "15",
+                    "typeID": "TextArea",
+                    "zOrder": "5",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "332",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "16",
+                    "typeID": "Map",
+                    "zOrder": "6",
+                    "w": "116",
+                    "h": "114",
+                    "measuredW": "252",
+                    "measuredH": "222",
+                    "x": "332",
+                    "y": "199"
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextArea",
+                    "zOrder": "7",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "481",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "Map",
+                    "zOrder": "8",
+                    "w": "116",
+                    "h": "114",
+                    "measuredW": "252",
+                    "measuredH": "222",
+                    "x": "481",
+                    "y": "199"
+                },
+                {
+                    "ID": "19",
+                    "typeID": "TextArea",
+                    "zOrder": "9",
+                    "w": "116",
+                    "h": "104",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "631",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n",
+                        "size": "8"
+                    }
+                },
+                {
+                    "ID": "20",
+                    "typeID": "Map",
+                    "zOrder": "10",
+                    "w": "116",
+                    "h": "114",
+                    "measuredW": "252",
+                    "measuredH": "222",
+                    "x": "631",
+                    "y": "199"
+                },
+                {
+                    "ID": "22",
+                    "typeID": "TextInput",
+                    "zOrder": "11",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "135",
+                    "y": "476",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "23",
+                    "typeID": "Link",
+                    "zOrder": "12",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "260",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "24",
+                    "typeID": "Link",
+                    "zOrder": "13",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "405",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "27",
+                    "typeID": "Link",
+                    "zOrder": "14",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "705",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "28",
+                    "typeID": "Link",
+                    "zOrder": "15",
+                    "measuredW": "21",
+                    "measuredH": "18",
+                    "x": "554",
+                    "y": "313",
+                    "properties": {
+                        "text": "Nom",
+                        "size": "10"
+                    }
+                },
+                {
+                    "ID": "29",
+                    "typeID": "Label",
+                    "zOrder": "16",
+                    "measuredW": "104",
+                    "measuredH": "32",
+                    "x": "445",
+                    "y": "129",
+                    "properties": {
+                        "text": "My Route",
+                        "size": "24"
+                    }
+                },
+                {
+                    "ID": "30",
+                    "typeID": "VerticalScrollBar",
+                    "zOrder": "17",
+                    "h": "309",
+                    "measuredW": "16",
+                    "measuredH": "100",
+                    "x": "847",
+                    "y": "167"
+                }
+            ]
+        },
+        "attributes": {
+            "name": "New Wireframe 2 copy",
+            "order": 1000011.4551653075,
+            "parentID": null
+        },
+        "resourceID": "FB51C7BD-878A-4C3D-89FC-AB0CA47E9324",
+        "mockupH": "515",
+        "mockupW": "738",
+        "measuredW": "866",
+        "measuredH": "531",
+        "version": "1.0"
+    }
+}

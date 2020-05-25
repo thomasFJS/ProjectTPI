@@ -1,0 +1,206 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "515",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "75",
+                    "y": "12",
+                    "properties": {
+                        "text": "Création d'itinéraire\nhttps://createRoute.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "474",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "408",
+                    "h": "324",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "231",
+                    "y": "134",
+                    "properties": {
+                        "text": "Créer votre itinéraire"
+                    }
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Button",
+                    "zOrder": "4",
+                    "w": "327",
+                    "h": "27",
+                    "measuredW": "60",
+                    "measuredH": "27",
+                    "x": "280",
+                    "y": "387",
+                    "properties": {
+                        "text": "Créer"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Map",
+                    "zOrder": "5",
+                    "w": "315",
+                    "h": "214",
+                    "measuredW": "252",
+                    "measuredH": "222",
+                    "x": "286",
+                    "y": "157"
+                },
+                {
+                    "ID": "16",
+                    "typeID": "SearchBox",
+                    "zOrder": "6",
+                    "w": "78",
+                    "measuredW": "140",
+                    "measuredH": "25",
+                    "x": "278",
+                    "y": "157",
+                    "properties": {
+                        "text": "Recherche adresse"
+                    }
+                },
+                {
+                    "ID": "17",
+                    "typeID": "TextArea",
+                    "zOrder": "7",
+                    "w": "78",
+                    "h": "25",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "278",
+                    "y": "183",
+                    "properties": {
+                        "text": "Point 1\n"
+                    }
+                },
+                {
+                    "ID": "18",
+                    "typeID": "RoundButton",
+                    "zOrder": "8",
+                    "w": "21",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "366",
+                    "y": "201"
+                },
+                {
+                    "ID": "19",
+                    "typeID": "RoundButton",
+                    "zOrder": "9",
+                    "w": "22",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "462",
+                    "y": "267"
+                },
+                {
+                    "ID": "20",
+                    "typeID": "VRule",
+                    "zOrder": "10",
+                    "h": "61",
+                    "measuredW": "10",
+                    "measuredH": "100",
+                    "x": "468",
+                    "y": "206",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "21",
+                    "typeID": "HRule",
+                    "zOrder": "11",
+                    "w": "91",
+                    "measuredW": "100",
+                    "measuredH": "10",
+                    "x": "387",
+                    "y": "206",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "22",
+                    "typeID": "TextArea",
+                    "zOrder": "12",
+                    "w": "78",
+                    "h": "25",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "278",
+                    "y": "206",
+                    "properties": {
+                        "text": "Point 2\n"
+                    }
+                },
+                {
+                    "ID": "23",
+                    "typeID": "RoundButton",
+                    "zOrder": "13",
+                    "w": "21",
+                    "h": "20",
+                    "measuredW": "32",
+                    "measuredH": "32",
+                    "x": "278",
+                    "y": "231",
+                    "properties": {
+                        "text": "+"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy",
+            "order": 1000029.6646253992,
+            "parentID": null
+        },
+        "resourceID": "8014F866-731F-4CD6-9341-32A07DC1CEFD",
+        "mockupH": "515",
+        "mockupW": "738",
+        "measuredW": "813",
+        "measuredH": "527",
+        "version": "1.0"
+    }
+}

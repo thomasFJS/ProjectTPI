@@ -1,0 +1,149 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "515",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "72",
+                    "y": "14",
+                    "properties": {
+                        "text": "Login\nhttps://login.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "474",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "3",
+                    "typeID": "FieldSet",
+                    "zOrder": "3",
+                    "w": "213",
+                    "h": "231",
+                    "measuredW": "200",
+                    "measuredH": "170",
+                    "x": "337",
+                    "y": "156",
+                    "properties": {
+                        "text": "Login"
+                    }
+                },
+                {
+                    "ID": "4",
+                    "typeID": "TextInput",
+                    "zOrder": "4",
+                    "w": "122",
+                    "measuredW": "79",
+                    "measuredH": "27",
+                    "x": "382",
+                    "y": "210"
+                },
+                {
+                    "ID": "6",
+                    "typeID": "Label",
+                    "zOrder": "5",
+                    "measuredW": "68",
+                    "measuredH": "21",
+                    "x": "383",
+                    "y": "189",
+                    "properties": {
+                        "text": "Username :"
+                    }
+                },
+                {
+                    "ID": "8",
+                    "typeID": "TextArea",
+                    "zOrder": "6",
+                    "w": "120",
+                    "h": "27",
+                    "measuredW": "200",
+                    "measuredH": "140",
+                    "x": "382",
+                    "y": "274"
+                },
+                {
+                    "ID": "14",
+                    "typeID": "Button",
+                    "zOrder": "7",
+                    "w": "188",
+                    "h": "27",
+                    "measuredW": "56",
+                    "measuredH": "27",
+                    "x": "349",
+                    "y": "333",
+                    "properties": {
+                        "text": "Login"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Label",
+                    "zOrder": "8",
+                    "measuredW": "62",
+                    "measuredH": "21",
+                    "x": "383",
+                    "y": "253",
+                    "properties": {
+                        "text": "Password :"
+                    }
+                },
+                {
+                    "ID": "25",
+                    "typeID": "Link",
+                    "zOrder": "9",
+                    "measuredW": "104",
+                    "measuredH": "21",
+                    "x": "349",
+                    "y": "360",
+                    "properties": {
+                        "text": "Not register yet ?"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 3",
+            "order": 1000026.6825612265,
+            "parentID": null
+        },
+        "resourceID": "9B8A1001-CB8F-465C-9CFB-080B73217F22",
+        "mockupH": "515",
+        "mockupW": "738",
+        "measuredW": "810",
+        "measuredH": "529",
+        "version": "1.0"
+    }
+}
