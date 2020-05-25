@@ -58,7 +58,7 @@
                     "x": "257",
                     "y": "125",
                     "properties": {
-                        "text": "User's name"
+                        "text": "Profil de l'utilisateur"
                     }
                 },
                 {
@@ -261,7 +261,7 @@
                     "x": "415",
                     "y": "417",
                     "properties": {
-                        "text": "Save change"
+                        "text": "Sauvegarder"
                     }
                 }
             ]

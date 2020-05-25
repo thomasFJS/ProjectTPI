@@ -58,7 +58,7 @@
                     "x": "91",
                     "y": "131",
                     "properties": {
-                        "text": "Itinerary"
+                        "text": "Itinéraire"
                     }
                 },
                 {
@@ -67,12 +67,12 @@
                     "zOrder": "4",
                     "w": "327",
                     "h": "27",
-                    "measuredW": "88",
+                    "measuredW": "156",
                     "measuredH": "27",
                     "x": "140",
                     "y": "384",
                     "properties": {
-                        "text": "Save route"
+                        "text": "Sauvegarder itinéraire"
                     }
                 },
                 {
@@ -195,12 +195,12 @@
                     "zOrder": "14",
                     "w": "327",
                     "h": "27",
-                    "measuredW": "98",
+                    "measuredW": "86",
                     "measuredH": "27",
                     "x": "140",
                     "y": "411",
                     "properties": {
-                        "text": "Delete route",
+                        "text": "Supprimer",
                         "color": "15374745"
                     }
                 },
@@ -215,19 +215,19 @@
                     "x": "523",
                     "y": "151",
                     "properties": {
-                        "text": "Route infos"
+                        "text": "Infos itinéraire"
                     }
                 },
                 {
                     "ID": "26",
                     "typeID": "Label",
                     "zOrder": "16",
-                    "measuredW": "33",
+                    "measuredW": "35",
                     "measuredH": "21",
                     "x": "542",
                     "y": "179",
                     "properties": {
-                        "text": "Title :"
+                        "text": "Titre :"
                     }
                 },
                 {
@@ -235,12 +235,12 @@
                     "typeID": "TextInput",
                     "zOrder": "17",
                     "w": "103",
-                    "measuredW": "40",
+                    "measuredW": "42",
                     "measuredH": "27",
                     "x": "583",
                     "y": "176",
                     "properties": {
-                        "text": "Title"
+                        "text": "Titre"
                     }
                 },
                 {

@@ -217,12 +217,12 @@
                     "ID": "29",
                     "typeID": "Label",
                     "zOrder": "16",
-                    "measuredW": "104",
+                    "measuredW": "161",
                     "measuredH": "32",
                     "x": "445",
                     "y": "129",
                     "properties": {
-                        "text": "My Route",
+                        "text": "Mes itinéraires",
                         "size": "24"
                     }
                 },

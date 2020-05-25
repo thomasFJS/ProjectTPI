@@ -124,12 +124,12 @@
                     "ID": "25",
                     "typeID": "Link",
                     "zOrder": "9",
-                    "measuredW": "104",
+                    "measuredW": "117",
                     "measuredH": "21",
                     "x": "349",
                     "y": "360",
                     "properties": {
-                        "text": "Not register yet ?"
+                        "text": "Pas encore inscrit ?"
                     }
                 }
             ]

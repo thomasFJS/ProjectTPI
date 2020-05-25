@@ -58,7 +58,7 @@
                     "x": "284",
                     "y": "148",
                     "properties": {
-                        "text": "Register"
+                        "text": "Inscription"
                     }
                 },
                 {
@@ -100,48 +100,48 @@
                     "zOrder": "7",
                     "w": "290",
                     "h": "27",
-                    "measuredW": "75",
+                    "measuredW": "86",
                     "measuredH": "27",
                     "x": "301",
                     "y": "337",
                     "properties": {
-                        "text": "Register"
+                        "text": "Inscription"
                     }
                 },
                 {
                     "ID": "15",
                     "typeID": "Label",
                     "zOrder": "8",
-                    "measuredW": "62",
+                    "measuredW": "88",
                     "measuredH": "21",
                     "x": "302",
                     "y": "273",
                     "properties": {
-                        "text": "Password :"
+                        "text": "Mot de passe :"
                     }
                 },
                 {
                     "ID": "25",
                     "typeID": "Link",
                     "zOrder": "9",
-                    "measuredW": "106",
+                    "measuredW": "80",
                     "measuredH": "21",
                     "x": "301",
                     "y": "364",
                     "properties": {
-                        "text": "Already register ?"
+                        "text": "Déjà inscrit ?"
                     }
                 },
                 {
                     "ID": "26",
                     "typeID": "Label",
                     "zOrder": "10",
-                    "measuredW": "112",
+                    "measuredW": "151",
                     "measuredH": "21",
-                    "x": "455",
+                    "x": "446",
                     "y": "273",
                     "properties": {
-                        "text": "Confirm Password :"
+                        "text": "Confirmer mot de passe :"
                     }
                 },
                 {
@@ -152,7 +152,7 @@
                     "h": "27",
                     "measuredW": "200",
                     "measuredH": "140",
-                    "x": "455",
+                    "x": "446",
                     "y": "294"
                 },
                 {

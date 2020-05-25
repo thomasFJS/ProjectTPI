@@ -395,6 +395,18 @@
                     "measuredH": "100",
                     "x": "797",
                     "y": "115"
+                },
+                {
+                    "ID": "73",
+                    "typeID": "Label",
+                    "zOrder": "31",
+                    "measuredW": "99",
+                    "measuredH": "21",
+                    "x": "221",
+                    "y": "503",
+                    "properties": {
+                        "text": "Nom d'utilisateur"
+                    }
                 }
             ]
         },

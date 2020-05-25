@@ -212,12 +212,12 @@
                     "ID": "47",
                     "typeID": "Label",
                     "zOrder": "16",
-                    "measuredW": "33",
+                    "measuredW": "35",
                     "measuredH": "21",
                     "x": "540",
                     "y": "168",
                     "properties": {
-                        "text": "Title :"
+                        "text": "Titre :"
                     }
                 },
                 {
@@ -225,12 +225,12 @@
                     "typeID": "TextInput",
                     "zOrder": "17",
                     "w": "103",
-                    "measuredW": "40",
+                    "measuredW": "42",
                     "measuredH": "27",
                     "x": "581",
                     "y": "165",
                     "properties": {
-                        "text": "Title",
+                        "text": "Titre",
                         "state": "disabled"
                     }
                 },
@@ -406,7 +406,7 @@
                     "x": "107",
                     "y": "467",
                     "properties": {
-                        "text": "This is a comment"
+                        "text": "Ceci est un commentaire"
                     }
                 },
                 {
@@ -470,12 +470,24 @@
                     "ID": "72",
                     "typeID": "Button",
                     "zOrder": "37",
-                    "measuredW": "57",
+                    "measuredW": "81",
                     "measuredH": "27",
                     "x": "283",
                     "y": "353",
                     "properties": {
-                        "text": "Apply"
+                        "text": "Appliquer"
+                    }
+                },
+                {
+                    "ID": "73",
+                    "typeID": "Label",
+                    "zOrder": "38",
+                    "measuredW": "99",
+                    "measuredH": "21",
+                    "x": "221",
+                    "y": "503",
+                    "properties": {
+                        "text": "Nom d'utilisateur"
                     }
                 }
             ]
