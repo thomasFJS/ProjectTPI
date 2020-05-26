@@ -3,7 +3,7 @@
         "controls": {
             "control": [
                 {
-                    "ID": "78",
+                    "ID": "79",
                     "typeID": "MenuBar",
                     "zOrder": "0",
                     "w": "600",
@@ -11,9 +11,9 @@
                     "measuredW": "602",
                     "measuredH": "32",
                     "x": "444",
-                    "y": "226",
+                    "y": "274",
                     "properties": {
-                        "text": "Accueil,Créer un itinéraire, Mes itinéraires,Mon Profil\t\t          Déconnexion"
+                        "text": "Accueil,Gestion utilisateurs, \t\t\t                                    Déconnexion"
                     }
                 }
             ]
@@ -27,7 +27,7 @@
         "mockupH": "32",
         "mockupW": "600",
         "measuredW": "1044",
-        "measuredH": "258",
+        "measuredH": "306",
         "version": "1.0"
     }
 }

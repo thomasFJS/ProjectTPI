@@ -1,0 +1,512 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "0",
+                    "typeID": "BrowserWindow",
+                    "zOrder": "0",
+                    "w": "738",
+                    "h": "521",
+                    "measuredW": "450",
+                    "measuredH": "400",
+                    "x": "75",
+                    "y": "9",
+                    "properties": {
+                        "text": "Gestion Utilisateurs\nhttps://usersManagement.php"
+                    }
+                },
+                {
+                    "ID": "1",
+                    "typeID": "TextInput",
+                    "zOrder": "1",
+                    "w": "724",
+                    "measuredW": "66",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "476",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "FOOTER",
+                        "align": "center",
+                        "color": "13421772"
+                    }
+                },
+                {
+                    "ID": "2",
+                    "typeID": "TextInput",
+                    "zOrder": "2",
+                    "w": "724",
+                    "measuredW": "63",
+                    "measuredH": "27",
+                    "x": "82",
+                    "y": "88",
+                    "properties": {
+                        "borderStyle": "line",
+                        "text": "NAVBAR",
+                        "align": "center"
+                    }
+                },
+                {
+                    "ID": "82",
+                    "typeID": "Canvas",
+                    "zOrder": "3",
+                    "w": "681",
+                    "h": "60",
+                    "measuredW": "100",
+                    "measuredH": "70",
+                    "x": "100",
+                    "y": "161"
+                },
+                {
+                    "ID": "83",
+                    "typeID": "Image",
+                    "zOrder": "4",
+                    "w": "56",
+                    "h": "60",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "100",
+                    "y": "161"
+                },
+                {
+                    "ID": "84",
+                    "typeID": "Switch",
+                    "zOrder": "5",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "721",
+                    "y": "181",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "85",
+                    "typeID": "Label",
+                    "zOrder": "6",
+                    "measuredW": "37",
+                    "measuredH": "21",
+                    "x": "723",
+                    "y": "131",
+                    "properties": {
+                        "text": "Statut"
+                    }
+                },
+                {
+                    "ID": "86",
+                    "typeID": "Label",
+                    "zOrder": "7",
+                    "measuredW": "58",
+                    "measuredH": "21",
+                    "x": "181",
+                    "y": "129",
+                    "properties": {
+                        "text": "Nickname"
+                    }
+                },
+                {
+                    "ID": "87",
+                    "typeID": "Label",
+                    "zOrder": "8",
+                    "measuredW": "32",
+                    "measuredH": "21",
+                    "x": "293",
+                    "y": "129",
+                    "properties": {
+                        "text": "Email"
+                    }
+                },
+                {
+                    "ID": "88",
+                    "typeID": "Label",
+                    "zOrder": "9",
+                    "measuredW": "28",
+                    "measuredH": "21",
+                    "x": "534",
+                    "y": "131",
+                    "properties": {
+                        "text": "Pays"
+                    }
+                },
+                {
+                    "ID": "89",
+                    "typeID": "Label",
+                    "zOrder": "10",
+                    "measuredW": "27",
+                    "measuredH": "21",
+                    "x": "385",
+                    "y": "129",
+                    "properties": {
+                        "text": "Nom"
+                    }
+                },
+                {
+                    "ID": "90",
+                    "typeID": "Label",
+                    "zOrder": "11",
+                    "measuredW": "47",
+                    "measuredH": "21",
+                    "x": "442",
+                    "y": "129",
+                    "properties": {
+                        "text": "Prénom"
+                    }
+                },
+                {
+                    "ID": "91",
+                    "typeID": "Label",
+                    "zOrder": "12",
+                    "measuredW": "66",
+                    "measuredH": "21",
+                    "x": "179",
+                    "y": "182",
+                    "properties": {
+                        "text": "JohnDoe57"
+                    }
+                },
+                {
+                    "ID": "92",
+                    "typeID": "Label",
+                    "zOrder": "13",
+                    "measuredW": "88",
+                    "measuredH": "21",
+                    "x": "265",
+                    "y": "182",
+                    "properties": {
+                        "text": "John@doe.com"
+                    }
+                },
+                {
+                    "ID": "93",
+                    "typeID": "Label",
+                    "zOrder": "14",
+                    "measuredW": "24",
+                    "measuredH": "21",
+                    "x": "387",
+                    "y": "182",
+                    "properties": {
+                        "text": "Doe"
+                    }
+                },
+                {
+                    "ID": "94",
+                    "typeID": "Label",
+                    "zOrder": "15",
+                    "measuredW": "28",
+                    "measuredH": "21",
+                    "x": "452",
+                    "y": "182",
+                    "properties": {
+                        "text": "John"
+                    }
+                },
+                {
+                    "ID": "95",
+                    "typeID": "Label",
+                    "zOrder": "16",
+                    "measuredW": "40",
+                    "measuredH": "21",
+                    "x": "534",
+                    "y": "182",
+                    "properties": {
+                        "text": "Suisse"
+                    }
+                },
+                {
+                    "ID": "96",
+                    "typeID": "Canvas",
+                    "zOrder": "17",
+                    "w": "681",
+                    "h": "60",
+                    "measuredW": "100",
+                    "measuredH": "70",
+                    "x": "100",
+                    "y": "240"
+                },
+                {
+                    "ID": "97",
+                    "typeID": "Image",
+                    "zOrder": "18",
+                    "w": "56",
+                    "h": "60",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "100",
+                    "y": "240"
+                },
+                {
+                    "ID": "98",
+                    "typeID": "Switch",
+                    "zOrder": "19",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "721",
+                    "y": "260",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "99",
+                    "typeID": "Label",
+                    "zOrder": "20",
+                    "measuredW": "66",
+                    "measuredH": "21",
+                    "x": "179",
+                    "y": "261",
+                    "properties": {
+                        "text": "JohnDoe99"
+                    }
+                },
+                {
+                    "ID": "100",
+                    "typeID": "Label",
+                    "zOrder": "21",
+                    "measuredW": "87",
+                    "measuredH": "21",
+                    "x": "265",
+                    "y": "261",
+                    "properties": {
+                        "text": "Doe@john.com"
+                    }
+                },
+                {
+                    "ID": "101",
+                    "typeID": "Label",
+                    "zOrder": "22",
+                    "measuredW": "24",
+                    "measuredH": "21",
+                    "x": "387",
+                    "y": "261",
+                    "properties": {
+                        "text": "Doe"
+                    }
+                },
+                {
+                    "ID": "102",
+                    "typeID": "Label",
+                    "zOrder": "23",
+                    "measuredW": "28",
+                    "measuredH": "21",
+                    "x": "452",
+                    "y": "261",
+                    "properties": {
+                        "text": "John"
+                    }
+                },
+                {
+                    "ID": "103",
+                    "typeID": "Label",
+                    "zOrder": "24",
+                    "measuredW": "41",
+                    "measuredH": "21",
+                    "x": "534",
+                    "y": "261",
+                    "properties": {
+                        "text": "France"
+                    }
+                },
+                {
+                    "ID": "104",
+                    "typeID": "Canvas",
+                    "zOrder": "25",
+                    "w": "681",
+                    "h": "60",
+                    "measuredW": "100",
+                    "measuredH": "70",
+                    "x": "100",
+                    "y": "316"
+                },
+                {
+                    "ID": "105",
+                    "typeID": "Image",
+                    "zOrder": "26",
+                    "w": "56",
+                    "h": "60",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "100",
+                    "y": "316"
+                },
+                {
+                    "ID": "106",
+                    "typeID": "Switch",
+                    "zOrder": "27",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "721",
+                    "y": "336",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "107",
+                    "typeID": "Label",
+                    "zOrder": "28",
+                    "measuredW": "61",
+                    "measuredH": "21",
+                    "x": "179",
+                    "y": "337",
+                    "properties": {
+                        "text": "thomasFjs"
+                    }
+                },
+                {
+                    "ID": "108",
+                    "typeID": "Label",
+                    "zOrder": "29",
+                    "measuredW": "97",
+                    "measuredH": "21",
+                    "x": "265",
+                    "y": "337",
+                    "properties": {
+                        "text": "thomas@fjs.com"
+                    }
+                },
+                {
+                    "ID": "109",
+                    "typeID": "Label",
+                    "zOrder": "30",
+                    "measuredW": "18",
+                    "measuredH": "21",
+                    "x": "387",
+                    "y": "337",
+                    "properties": {
+                        "text": "Fjs"
+                    }
+                },
+                {
+                    "ID": "110",
+                    "typeID": "Label",
+                    "zOrder": "31",
+                    "measuredW": "47",
+                    "measuredH": "21",
+                    "x": "452",
+                    "y": "337",
+                    "properties": {
+                        "text": "Thomas"
+                    }
+                },
+                {
+                    "ID": "111",
+                    "typeID": "Label",
+                    "zOrder": "32",
+                    "measuredW": "40",
+                    "measuredH": "21",
+                    "x": "534",
+                    "y": "337",
+                    "properties": {
+                        "text": "Suisse"
+                    }
+                },
+                {
+                    "ID": "112",
+                    "typeID": "Canvas",
+                    "zOrder": "33",
+                    "w": "681",
+                    "h": "60",
+                    "measuredW": "100",
+                    "measuredH": "70",
+                    "x": "100",
+                    "y": "392"
+                },
+                {
+                    "ID": "113",
+                    "typeID": "Image",
+                    "zOrder": "34",
+                    "w": "56",
+                    "h": "60",
+                    "measuredW": "77",
+                    "measuredH": "79",
+                    "x": "100",
+                    "y": "392"
+                },
+                {
+                    "ID": "114",
+                    "typeID": "Switch",
+                    "zOrder": "35",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "721",
+                    "y": "412",
+                    "properties": {
+                        "color": "13576743"
+                    }
+                },
+                {
+                    "ID": "115",
+                    "typeID": "Label",
+                    "zOrder": "36",
+                    "measuredW": "55",
+                    "measuredH": "21",
+                    "x": "179",
+                    "y": "413",
+                    "properties": {
+                        "text": "David123"
+                    }
+                },
+                {
+                    "ID": "116",
+                    "typeID": "Label",
+                    "zOrder": "37",
+                    "measuredW": "104",
+                    "measuredH": "21",
+                    "x": "265",
+                    "y": "413",
+                    "properties": {
+                        "text": "david@gmail.com"
+                    }
+                },
+                {
+                    "ID": "117",
+                    "typeID": "Label",
+                    "zOrder": "38",
+                    "measuredW": "24",
+                    "measuredH": "21",
+                    "x": "387",
+                    "y": "413",
+                    "properties": {
+                        "text": "Doe"
+                    }
+                },
+                {
+                    "ID": "118",
+                    "typeID": "Label",
+                    "zOrder": "39",
+                    "measuredW": "34",
+                    "measuredH": "21",
+                    "x": "452",
+                    "y": "413",
+                    "properties": {
+                        "text": "David"
+                    }
+                },
+                {
+                    "ID": "119",
+                    "typeID": "Label",
+                    "zOrder": "40",
+                    "measuredW": "40",
+                    "measuredH": "21",
+                    "x": "534",
+                    "y": "413",
+                    "properties": {
+                        "text": "Suisse"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 13",
+            "order": 1000061.7992252412,
+            "parentID": null
+        },
+        "resourceID": "5B57E818-9C21-4A96-9175-E46166070F55",
+        "mockupH": "521",
+        "mockupW": "738",
+        "measuredW": "813",
+        "measuredH": "530",
+        "version": "1.0"
+    }
+}
