@@ -67,8 +67,8 @@
                     "zOrder": "4",
                     "measuredW": "69",
                     "measuredH": "21",
-                    "x": "213",
-                    "y": "147",
+                    "x": "211",
+                    "y": "157",
                     "properties": {
                         "text": "Nickname : "
                     }
@@ -80,8 +80,8 @@
                     "w": "103",
                     "measuredW": "80",
                     "measuredH": "27",
-                    "x": "282",
-                    "y": "144",
+                    "x": "280",
+                    "y": "154",
                     "properties": {
                         "text": "JohnDoe59",
                         "state": "disabled"
@@ -93,8 +93,8 @@
                     "zOrder": "6",
                     "measuredW": "74",
                     "measuredH": "21",
-                    "x": "213",
-                    "y": "278",
+                    "x": "211",
+                    "y": "205",
                     "properties": {
                         "text": "Description :"
                     }
@@ -107,8 +107,8 @@
                     "h": "45",
                     "measuredW": "200",
                     "measuredH": "140",
-                    "x": "213",
-                    "y": "299",
+                    "x": "211",
+                    "y": "226",
                     "properties": {
                         "state": "disabled",
                         "text": "J'aime la moto :)"
@@ -120,154 +120,40 @@
                     "zOrder": "8",
                     "measuredW": "35",
                     "measuredH": "21",
-                    "x": "215",
-                    "y": "347",
+                    "x": "211",
+                    "y": "282",
                     "properties": {
                         "text": "Pays :"
                     }
                 },
                 {
-                    "ID": "53",
-                    "typeID": "Label",
-                    "zOrder": "9",
-                    "measuredW": "33",
-                    "measuredH": "21",
-                    "x": "213",
-                    "y": "213",
-                    "properties": {
-                        "text": "Nom :"
-                    }
-                },
-                {
-                    "ID": "54",
-                    "typeID": "TextInput",
-                    "zOrder": "10",
-                    "w": "74",
-                    "measuredW": "38",
-                    "measuredH": "27",
-                    "x": "213",
-                    "y": "234",
-                    "properties": {
-                        "text": "Doe",
-                        "state": "disabled"
-                    }
-                },
-                {
                     "ID": "68",
                     "typeID": "Image",
-                    "zOrder": "11",
+                    "zOrder": "9",
                     "measuredW": "77",
                     "measuredH": "79",
                     "x": "111",
                     "y": "147"
                 },
                 {
-                    "ID": "69",
-                    "typeID": "Label",
-                    "zOrder": "12",
-                    "measuredW": "43",
-                    "measuredH": "21",
-                    "x": "213",
-                    "y": "176",
-                    "properties": {
-                        "text": "Email : "
-                    }
-                },
-                {
-                    "ID": "70",
-                    "typeID": "TextInput",
-                    "zOrder": "13",
-                    "w": "103",
-                    "measuredW": "102",
-                    "measuredH": "27",
-                    "x": "282",
-                    "y": "173",
-                    "properties": {
-                        "text": "John@doe.com",
-                        "state": "disabled"
-                    }
-                },
-                {
                     "ID": "71",
                     "typeID": "TextArea",
-                    "zOrder": "14",
+                    "zOrder": "10",
                     "w": "97",
                     "h": "26",
                     "measuredW": "200",
                     "measuredH": "140",
-                    "x": "213",
-                    "y": "370",
+                    "x": "211",
+                    "y": "303",
                     "properties": {
                         "text": "Suisse\n",
                         "state": "disabled"
                     }
                 },
                 {
-                    "ID": "72",
-                    "typeID": "Label",
-                    "zOrder": "15",
-                    "measuredW": "53",
-                    "measuredH": "21",
-                    "x": "310",
-                    "y": "213",
-                    "properties": {
-                        "text": "Prénom :"
-                    }
-                },
-                {
-                    "ID": "73",
-                    "typeID": "TextInput",
-                    "zOrder": "16",
-                    "w": "74",
-                    "measuredW": "42",
-                    "measuredH": "27",
-                    "x": "310",
-                    "y": "234",
-                    "properties": {
-                        "text": "John",
-                        "state": "disabled"
-                    }
-                },
-                {
-                    "ID": "74",
-                    "typeID": "Switch",
-                    "zOrder": "17",
-                    "measuredW": "42",
-                    "measuredH": "24",
-                    "x": "342",
-                    "y": "372",
-                    "properties": {
-                        "color": "13576743"
-                    }
-                },
-                {
-                    "ID": "75",
-                    "typeID": "Label",
-                    "zOrder": "18",
-                    "measuredW": "43",
-                    "measuredH": "21",
-                    "x": "326",
-                    "y": "347",
-                    "properties": {
-                        "text": "Statut :"
-                    }
-                },
-                {
-                    "ID": "76",
-                    "typeID": "Button",
-                    "zOrder": "19",
-                    "measuredW": "101",
-                    "measuredH": "27",
-                    "x": "249",
-                    "y": "417",
-                    "properties": {
-                        "text": "Sauvegarder"
-                    }
-                },
-                {
                     "ID": "77",
                     "typeID": "FieldSet",
-                    "zOrder": "20",
+                    "zOrder": "11",
                     "w": "200",
                     "h": "335",
                     "measuredW": "200",
@@ -281,7 +167,7 @@
                 {
                     "ID": "78",
                     "typeID": "Link",
-                    "zOrder": "21",
+                    "zOrder": "12",
                     "measuredW": "67",
                     "measuredH": "21",
                     "x": "605",
@@ -291,9 +177,9 @@
                     }
                 },
                 {
-                    "ID": "79",
+                    "ID": "81",
                     "typeID": "Link",
-                    "zOrder": "22",
+                    "zOrder": "13",
                     "measuredW": "118",
                     "measuredH": "21",
                     "x": "580",
@@ -305,11 +191,11 @@
             ]
         },
         "attributes": {
-            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 7",
-            "order": 1000055.11462046,
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 12",
+            "order": 1000059.9308421495,
             "parentID": null
         },
-        "resourceID": "9CDBA011-44D1-4AC7-B9ED-9E69C634B889",
+        "resourceID": "9D0BA8FF-00B9-4575-86AD-ECD467032714",
         "mockupH": "521",
         "mockupW": "738",
         "measuredW": "813",

@@ -87,7 +87,7 @@
                     "x": "332",
                     "y": "313",
                     "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   2:06\t\tSuisse\nDistance :\tNote :\n  100km\t\t   4\n",
+                        "text": "Nom itinéraire :\n\n  Durée :\t               Pays :\n   2:06\t\tSuisse\nDistance :\tNote :\n  100km\t\t   4\n",
                         "size": "8"
                     }
                 },
@@ -338,7 +338,7 @@
                     "x": "481",
                     "y": "313",
                     "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   3:40\t\tSuisse\nDistance :\tNote :\n  180km\t\t   2\n",
+                        "text": "Nom itinéraire :\n\n Durée :\t\tPays :\n   3:40\t\tSuisse\nDistance :\tNote :\n  180km\t\t   2\n",
                         "size": "8"
                     }
                 },
@@ -366,7 +366,7 @@
                     "x": "184",
                     "y": "313",
                     "properties": {
-                        "text": "Nom itinéraire :\n\nTemps moyen :\tPays :\n   1:06\t\tSuisse\nDistance :\tNote :\n  60km\t\t   3\n",
+                        "text": "Nom itinéraire :\n\n Durée :\t              Pays :\n   1:06\t\tSuisse\nDistance :\tNote :\n  60km\t\t   3\n",
                         "size": "8"
                     }
                 },

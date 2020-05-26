@@ -1,0 +1,33 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "77",
+                    "typeID": "MenuBar",
+                    "zOrder": "0",
+                    "w": "600",
+                    "h": "32",
+                    "measuredW": "606",
+                    "measuredH": "32",
+                    "x": "444",
+                    "y": "178",
+                    "properties": {
+                        "text": "Accueil\t\t\t\t\t       \t\t     \t   Connexion, Inscription"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 11",
+            "order": 1000063.3287267861,
+            "parentID": null
+        },
+        "resourceID": "CA7350D0-40CC-4924-A51A-BE587030E0A6",
+        "mockupH": "32",
+        "mockupW": "600",
+        "measuredW": "1044",
+        "measuredH": "210",
+        "version": "1.0"
+    }
+}

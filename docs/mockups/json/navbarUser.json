@@ -1,0 +1,33 @@
+{
+    "mockup": {
+        "controls": {
+            "control": [
+                {
+                    "ID": "78",
+                    "typeID": "MenuBar",
+                    "zOrder": "0",
+                    "w": "600",
+                    "h": "32",
+                    "measuredW": "605",
+                    "measuredH": "32",
+                    "x": "444",
+                    "y": "226",
+                    "properties": {
+                        "text": "Accueil,Créer un itinéraire, Mes itinéraires\t\t\t\t           Déconnexion"
+                    }
+                }
+            ]
+        },
+        "attributes": {
+            "name": "Nom itinéraire :\t\n\nTemps moyen :\tPays :\n(DD:)HH:MM\t\nDistance :\tNote :\n  (KM)\n copy 11",
+            "order": 1000063.3287267861,
+            "parentID": null
+        },
+        "resourceID": "CA7350D0-40CC-4924-A51A-BE587030E0A6",
+        "mockupH": "32",
+        "mockupW": "600",
+        "measuredW": "1044",
+        "measuredH": "258",
+        "version": "1.0"
+    }
+}
