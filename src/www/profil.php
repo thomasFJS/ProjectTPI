@@ -35,6 +35,7 @@ $userLogged = TSessionController::getUserLogged();
           center: [46.204391, 6.143158],
           layers: L.mapquest.tileLayer('map'),
           zoom: 13
+
         });
 
         L.mapquest.directions().route({
