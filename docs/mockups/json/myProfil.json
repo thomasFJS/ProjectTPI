@@ -141,11 +141,11 @@
                     "ID": "14",
                     "typeID": "Button",
                     "zOrder": "10",
-                    "w": "305",
+                    "w": "144",
                     "h": "27",
                     "measuredW": "154",
                     "measuredH": "27",
-                    "x": "288",
+                    "x": "459",
                     "y": "418",
                     "properties": {
                         "text": "Sauvegarder les infos"
@@ -238,6 +238,21 @@
                     "y": "355",
                     "properties": {
                         "text": "Changer d'avatar"
+                    }
+                },
+                {
+                    "ID": "25",
+                    "typeID": "Button",
+                    "zOrder": "18",
+                    "w": "144",
+                    "h": "27",
+                    "measuredW": "70",
+                    "measuredH": "27",
+                    "x": "289",
+                    "y": "418",
+                    "properties": {
+                        "text": "Annuler",
+                        "color": "15374745"
                     }
                 }
             ]

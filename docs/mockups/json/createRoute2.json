@@ -65,11 +65,11 @@
                     "ID": "14",
                     "typeID": "Button",
                     "zOrder": "4",
-                    "w": "327",
+                    "w": "329",
                     "h": "27",
                     "measuredW": "60",
                     "measuredH": "27",
-                    "x": "280",
+                    "x": "278",
                     "y": "387",
                     "properties": {
                         "text": "Créer"
@@ -187,6 +187,21 @@
                     "y": "231",
                     "properties": {
                         "text": "+"
+                    }
+                },
+                {
+                    "ID": "24",
+                    "typeID": "Button",
+                    "zOrder": "14",
+                    "w": "329",
+                    "h": "27",
+                    "measuredW": "70",
+                    "measuredH": "27",
+                    "x": "279",
+                    "y": "414",
+                    "properties": {
+                        "text": "Annuler",
+                        "color": "15374745"
                     }
                 }
             ]

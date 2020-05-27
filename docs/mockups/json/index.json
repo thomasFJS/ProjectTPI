@@ -204,83 +204,33 @@
                     }
                 },
                 {
-                    "ID": "31",
-                    "typeID": "ComboBox",
-                    "zOrder": "16",
-                    "w": "100",
-                    "measuredW": "87",
-                    "measuredH": "27",
-                    "x": "416",
-                    "y": "129",
-                    "properties": {
-                        "text": "N'importe"
-                    }
-                },
-                {
-                    "ID": "32",
-                    "typeID": "ComboBox",
-                    "zOrder": "17",
-                    "w": "121",
-                    "measuredW": "87",
-                    "measuredH": "27",
-                    "x": "597",
-                    "y": "129",
-                    "properties": {
-                        "text": "N'importe"
-                    }
-                },
-                {
-                    "ID": "33",
-                    "typeID": "TextInput",
-                    "zOrder": "18",
-                    "measuredW": "123",
-                    "measuredH": "27",
-                    "x": "596",
-                    "y": "152",
-                    "properties": {
-                        "text": "Moins de 2 heures"
-                    }
-                },
-                {
                     "ID": "34",
                     "typeID": "Label",
-                    "zOrder": "19",
-                    "measuredW": "44",
+                    "zOrder": "16",
+                    "measuredW": "134",
                     "measuredH": "21",
-                    "x": "538",
-                    "y": "132",
+                    "x": "348",
+                    "y": "142",
                     "properties": {
-                        "text": "Durée :"
+                        "text": "Distance Max (en km):"
                     }
                 },
                 {
                     "ID": "35",
                     "typeID": "Label",
-                    "zOrder": "20",
-                    "measuredW": "60",
+                    "zOrder": "17",
+                    "measuredW": "133",
                     "measuredH": "21",
-                    "x": "345",
-                    "y": "132",
+                    "x": "350",
+                    "y": "121",
                     "properties": {
-                        "text": "Distance :"
-                    }
-                },
-                {
-                    "ID": "36",
-                    "typeID": "TextInput",
-                    "zOrder": "21",
-                    "measuredW": "100",
-                    "measuredH": "27",
-                    "x": "416",
-                    "y": "153",
-                    "properties": {
-                        "text": "De 0 à 150 km"
+                        "text": "Distance Min (en km) :"
                     }
                 },
                 {
                     "ID": "37",
                     "typeID": "Label",
-                    "zOrder": "22",
+                    "zOrder": "18",
                     "measuredW": "42",
                     "measuredH": "21",
                     "x": "250",
@@ -292,7 +242,7 @@
                 {
                     "ID": "38",
                     "typeID": "Label",
-                    "zOrder": "23",
+                    "zOrder": "19",
                     "measuredW": "35",
                     "measuredH": "21",
                     "x": "135",
@@ -304,7 +254,7 @@
                 {
                     "ID": "39",
                     "typeID": "TextInput",
-                    "zOrder": "24",
+                    "zOrder": "20",
                     "w": "70",
                     "measuredW": "55",
                     "measuredH": "27",
@@ -317,7 +267,7 @@
                 {
                     "ID": "40",
                     "typeID": "TextInput",
-                    "zOrder": "25",
+                    "zOrder": "21",
                     "w": "37",
                     "measuredW": "23",
                     "measuredH": "27",
@@ -330,7 +280,7 @@
                 {
                     "ID": "41",
                     "typeID": "TextArea",
-                    "zOrder": "26",
+                    "zOrder": "22",
                     "w": "116",
                     "h": "104",
                     "measuredW": "200",
@@ -345,7 +295,7 @@
                 {
                     "ID": "42",
                     "typeID": "Link",
-                    "zOrder": "27",
+                    "zOrder": "23",
                     "measuredW": "35",
                     "measuredH": "18",
                     "x": "547",
@@ -358,7 +308,7 @@
                 {
                     "ID": "44",
                     "typeID": "TextArea",
-                    "zOrder": "28",
+                    "zOrder": "24",
                     "w": "116",
                     "h": "104",
                     "measuredW": "200",
@@ -373,7 +323,7 @@
                 {
                     "ID": "45",
                     "typeID": "Link",
-                    "zOrder": "29",
+                    "zOrder": "25",
                     "measuredW": "32",
                     "measuredH": "18",
                     "x": "255",
@@ -386,7 +336,7 @@
                 {
                     "ID": "46",
                     "typeID": "Label",
-                    "zOrder": "30",
+                    "zOrder": "26",
                     "measuredW": "21",
                     "measuredH": "18",
                     "x": "190",
@@ -399,7 +349,7 @@
                 {
                     "ID": "47",
                     "typeID": "Image",
-                    "zOrder": "31",
+                    "zOrder": "27",
                     "w": "15",
                     "h": "17",
                     "measuredW": "77",
@@ -410,7 +360,7 @@
                 {
                     "ID": "48",
                     "typeID": "Link",
-                    "zOrder": "32",
+                    "zOrder": "28",
                     "measuredW": "52",
                     "measuredH": "18",
                     "x": "226",
@@ -423,7 +373,7 @@
                 {
                     "ID": "49",
                     "typeID": "Label",
-                    "zOrder": "33",
+                    "zOrder": "29",
                     "measuredW": "21",
                     "measuredH": "18",
                     "x": "338",
@@ -436,7 +386,7 @@
                 {
                     "ID": "50",
                     "typeID": "Image",
-                    "zOrder": "34",
+                    "zOrder": "30",
                     "w": "15",
                     "h": "17",
                     "measuredW": "77",
@@ -447,7 +397,7 @@
                 {
                     "ID": "51",
                     "typeID": "Link",
-                    "zOrder": "35",
+                    "zOrder": "31",
                     "measuredW": "36",
                     "measuredH": "18",
                     "x": "374",
@@ -460,7 +410,7 @@
                 {
                     "ID": "52",
                     "typeID": "Label",
-                    "zOrder": "36",
+                    "zOrder": "32",
                     "measuredW": "21",
                     "measuredH": "18",
                     "x": "491",
@@ -473,7 +423,7 @@
                 {
                     "ID": "53",
                     "typeID": "Image",
-                    "zOrder": "37",
+                    "zOrder": "33",
                     "w": "15",
                     "h": "17",
                     "measuredW": "77",
@@ -484,7 +434,7 @@
                 {
                     "ID": "54",
                     "typeID": "Link",
-                    "zOrder": "38",
+                    "zOrder": "34",
                     "measuredW": "49",
                     "measuredH": "18",
                     "x": "527",
@@ -497,7 +447,7 @@
                 {
                     "ID": "55",
                     "typeID": "Label",
-                    "zOrder": "39",
+                    "zOrder": "35",
                     "measuredW": "21",
                     "measuredH": "18",
                     "x": "640",
@@ -510,7 +460,7 @@
                 {
                     "ID": "56",
                     "typeID": "Image",
-                    "zOrder": "40",
+                    "zOrder": "36",
                     "w": "15",
                     "h": "17",
                     "measuredW": "77",
@@ -521,7 +471,7 @@
                 {
                     "ID": "57",
                     "typeID": "Link",
-                    "zOrder": "41",
+                    "zOrder": "37",
                     "measuredW": "45",
                     "measuredH": "18",
                     "x": "676",
@@ -529,6 +479,78 @@
                     "properties": {
                         "text": "LeoDnx91",
                         "size": "10"
+                    }
+                },
+                {
+                    "ID": "58",
+                    "typeID": "NumericStepper",
+                    "zOrder": "38",
+                    "measuredW": "49",
+                    "measuredH": "24",
+                    "x": "491",
+                    "y": "119",
+                    "properties": {
+                        "text": "50"
+                    }
+                },
+                {
+                    "ID": "59",
+                    "typeID": "NumericStepper",
+                    "zOrder": "39",
+                    "measuredW": "54",
+                    "measuredH": "24",
+                    "x": "489",
+                    "y": "141",
+                    "properties": {
+                        "text": "150"
+                    }
+                },
+                {
+                    "ID": "60",
+                    "typeID": "Label",
+                    "zOrder": "40",
+                    "measuredW": "103",
+                    "measuredH": "21",
+                    "x": "563",
+                    "y": "120",
+                    "properties": {
+                        "text": "Durée Min (en h):"
+                    }
+                },
+                {
+                    "ID": "61",
+                    "typeID": "Label",
+                    "zOrder": "41",
+                    "measuredW": "107",
+                    "measuredH": "21",
+                    "x": "562",
+                    "y": "142",
+                    "properties": {
+                        "text": "Durée Max (en h):"
+                    }
+                },
+                {
+                    "ID": "62",
+                    "typeID": "NumericStepper",
+                    "zOrder": "42",
+                    "measuredW": "42",
+                    "measuredH": "24",
+                    "x": "674",
+                    "y": "119",
+                    "properties": {
+                        "text": "2"
+                    }
+                },
+                {
+                    "ID": "63",
+                    "typeID": "NumericStepper",
+                    "zOrder": "43",
+                    "measuredW": "41",
+                    "measuredH": "24",
+                    "x": "674",
+                    "y": "143",
+                    "properties": {
+                        "text": "5"
                     }
                 }
             ]

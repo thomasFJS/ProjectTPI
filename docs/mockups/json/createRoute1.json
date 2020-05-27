@@ -164,14 +164,29 @@
                     "ID": "14",
                     "typeID": "Button",
                     "zOrder": "12",
-                    "w": "327",
+                    "w": "153",
                     "h": "27",
-                    "measuredW": "120",
+                    "measuredW": "82",
+                    "measuredH": "27",
+                    "x": "462",
+                    "y": "418",
+                    "properties": {
+                        "text": "Continuer"
+                    }
+                },
+                {
+                    "ID": "15",
+                    "typeID": "Button",
+                    "zOrder": "13",
+                    "w": "158",
+                    "h": "27",
+                    "measuredW": "70",
                     "measuredH": "27",
                     "x": "288",
                     "y": "418",
                     "properties": {
-                        "text": "Placer Itinéraire"
+                        "text": "Annuler",
+                        "color": "15374745"
                     }
                 }
             ]
