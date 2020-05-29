@@ -29,12 +29,24 @@ class FWaypoint{
         $this->Latitude = $LatitudeParam;
     } 
 
+    /**
+     * @var int Waypoint's index in the itinerary
+     */
     public int $Index;
 
+    /**
+     * @var string Waypoint's address 
+     */
     public string $Address;
 
+    /**
+     * @var string Waypoint's longitude 
+     */
     public string $Longitude;
 
+    /**
+     * @var string Waypoint's latitude
+     */
     public string $Latitude;
 
 }

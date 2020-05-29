@@ -22,7 +22,7 @@ class FSessionManager {
      * 
      * @return bool true if the user is set, else false;
      */
-    public static function setUserLogged(TUser $user) : bool{
+    public static function SetUserLogged(TUser $user) : bool{
         if($user !== null)
         {
             $_SESSION['userLogged'] = $user;
@@ -37,7 +37,7 @@ class FSessionManager {
      * 
      * @return TUser $_SESSION['userLogged] the user 
      */
-    public static function getUserLogged() : ?TUser{
+    public static function GetUserLogged() : ?TUser{
         return $_SESSION['userLogged'];
     }
     /**
@@ -45,7 +45,7 @@ class FSessionManager {
      * 
      * @return bool true if session clear success, else false
      */
-    public static function ResetSession() : bool{
+    public static function Reset() : bool{
         if(ini_get("session.use_cookies")){
             setcookie(session_name(), '', 0);
         }       

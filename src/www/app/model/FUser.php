@@ -36,29 +36,58 @@ class FUser{
         $this->Surname = $SurnameParam;
         $this->Bio = $BioParam;
         $this->Avatar = $AvatarParam;
-        $this->Country = $CountryParam
+        $this->Country = $CountryParam;
         $this->Status = $StatusParam;
         $this->Role = $RoleParam;
     } 
 
+    /**
+     * @var int User's unique id
+     */
     public int $Id;
-
+    /**
+     * @var string User's email
+     */
     public string $Email;
 
+    /**
+     * @var string User's nickname
+     */
     public string $Nickname;
 
+    /**
+     * @var string User's name
+     */
     public string $Name;
 
+    /**
+     * @var string User's surname
+     */
     public string $Surname;
 
+    /**
+     * @var string User's bio
+     */
     public string $Bio;
 
+    /**
+     * @var string User's avatar encoded in base 64
+     */
     public string $Avatar;
 
+    /**
+     * @var string User's residence country
+     */
     public string $Country;
 
+    /**
+     * @var int User's account status code
+     */
     public int $Status;
 
+    /**
+     * @var int User's account role code
+     */
     public int $Role;
 
 }

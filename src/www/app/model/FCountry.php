@@ -2,7 +2,7 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  FUser.
+*     Page                :  FCountry.
 *     Brief               :  Country's model.
 *     Date                :  28.05.2020.
 *     Version             :  1.0.
@@ -24,8 +24,14 @@ class FCountry{
         $this->Code = $CodeParam;
     } 
 
-    public $Name;
+    /**
+     * @var string Country's name
+     */
+    public string $Name;
 
-    public $Code;
+    /**
+     * @var string Country's iso2 code
+     */
+    public string $Code;
 }
 ?>

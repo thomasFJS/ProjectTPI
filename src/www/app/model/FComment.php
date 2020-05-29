@@ -26,11 +26,19 @@ class FComment{
         $this->PostedAt = $PostedAtParam;
         $this->User = $UserParam;
     } 
-
+    /**
+     * @var string comment's text
+     */
     public string $Comment;
 
+    /**
+     * @var string date and hour where the post was posted
+     */
     public string $PostedAt;
 
+    /**
+     * @var FUser comment's owner
+     */
     public FUser $User;
 
 }

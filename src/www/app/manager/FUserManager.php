@@ -77,14 +77,14 @@ class FUserManager extends FDatabaseManager{
 
         $result = $req->fetch(PDO::FETCH_ASSOC);
 
-        return $result !== false ? $result[$this->fieldSalt] : null;
+        return $result !== FALSE ? $result[$this->fieldSalt] : null;
     }
     /**
      * @brief Get User if login informations are correct
      * 
      * @param array $args Array with login informations.
      * 
-     * @return FUser||null
+     * @return FUser||FALSE
      */
     public static function Login(array $args): ?TUser {
         $args += [
@@ -132,10 +132,9 @@ class FUserManager extends FDatabaseManager{
 
             $result = $req->fetch(PDO::FETCH_ASSOC);
 
-            return $result !== false > 0 ? new TUser($result[$this->fieldNickname], $result[$this->fieldEmail],  $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole], $result[$this->fieldLogo]) : null;           
+            return $result !== false > 0 ? new TUser($result[$this->fieldNickname], $result[$this->fieldEmail],  $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole], $result[$this->fieldLogo]) : FALSE;           
         } catch(PDOException $e) {
-            echo "Error while login" . $e->getMessage();
-            return null;
+            return FALSE;
         }
         }
     }
@@ -150,47 +149,37 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool register state 
      */
-    public static function Register(string $userEmail, string $userNickname, string $userPwd, string $userCountry, string $userBirthday, string $userLogo) : bool {
+    public static function Register(string $userEmail, string $userNickname, string $userPwd) : bool {
         $query = <<<EX
-            INSERT INTO `{$this->tableName}`({$this->fieldNickname}, {$this->fieldEmail}, {$this->fieldCountry}, {$this->fieldBirthday}, {$this->fieldActivation}, {$this->fieldSalt}, {$this->fieldPassword}, {$this->fieldRole}, {$this->fieldToken}, {$this->fieldLogo})
-            VALUES(:userNickname, :userEmail, :userCountry, :userBirthday, :userActivation, :userSalt, :userPassword, :userRole, :token, :logo)
+            INSERT INTO `{$this->tableName}`({$this->fieldNickname}, {$this->fieldEmail}, {$this->fieldPassword}, {$this->fieldStatus}, {$this->fieldRole}, {$this->fieldToken})
+            VALUES(:userNickname, :userEmail, :userPassword, :userStatus, :userRole, :token)
         EX;
 
-        $salt = hash('sha256', microtime());
-        //$userPwd = hash('sha256', $userPwd . $salt);
         $userPwd = password_hash($userPwd, PASSWORD_DEFAULT);
 
         $token = hash('sha256', $userEmail . microtime());
         //account not activate
-        $activation = 0;
+        $userStatus = 1;
         //role 1 = user
         $userRole = 1;
 
-
         try {
-            $this::getDb()->beginTransaction();
-
             $req = $this::getDb()->prepare($query);
             $req->bindParam(':userNickname', $userNickname, PDO::PARAM_STR);
             $req->bindParam(':userEmail', $userEmail, PDO::PARAM_STR);            
             $req->bindParam(':userPassword', $userPwd, PDO::PARAM_STR);
-            $req->bindParam(':userSalt', $salt, PDO::PARAM_STR);
-            $req->bindParam(':userCountry', $userCountry, PDO::PARAM_STR);
-            $req->bindParam(':userBirthday', $userBirthday, PDO::PARAM_STR);
-            $req->bindParam(':userActivation', $activation, PDO::PARAM_INT);
+            $req->bindParam(':userStatus', $userStatus, PDO::PARAM_INT);
             $req->bindParam(':userRole', $userRole, PDO::PARAM_INT);
             $req->bindParam(':token', $token, \PDO::PARAM_STR);
-            $req->bindParam(':logo', $userLogo, \PDO::PARAM_STR);
             $req->execute();
 
-            $this::getDb()->commit();
             TMailerController::sendMail("Account Activation", array($userEmail), TMailerController::getActivationMail($token));
-            return true;
-        } catch(PDOException $e){
-            $this::getDb()->rollBack();
-            echo 'Error while register a new user' .$e->getMessage();          
-            return false;
+            
+        } catch(PDOException $e){     
+            return FALSE;
         }
+        //Done
+        return TRUE;
     }
     /**
      * @brief Get hash password 
@@ -210,14 +199,12 @@ class FUserManager extends FDatabaseManager{
         $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
-
-        return $result ==! false ? $result : null;
-        }catch(PDOException $e){
-            echo 'Error while getting password' .$e->getMessage();
-            
-            return null;
+       
+        }catch(PDOException $e){       
+            return FALSE;
         }
-        
+        //Done
+        return $result ==! FALSE ? $result : FALSE;
     }
     /**
      * @brief Check if user is admin or not
@@ -227,7 +214,7 @@ class FUserManager extends FDatabaseManager{
      * @return bool true if admin, false if user
      */
     public static function IsAllowed(TUser $user) : bool {
-        return $user->Role == 2 ? true : false;
+        return $user->Role == 2 ? TRUE : FALSE;
     }
     /**
      * @brief Check if user is logged or not
@@ -235,7 +222,7 @@ class FUserManager extends FDatabaseManager{
      * @return bool true if user's logged, else false
      */
     public static function IsLogged() : bool {
-        return isset($_SESSION['isLogged']) ? true : false;
+        return isset($_SESSION['isLogged']) ? TRUE : FALSE;
     }
     /**
      * @brief Create the initial instance for the controller or get it
@@ -265,11 +252,11 @@ class FUserManager extends FDatabaseManager{
             $req->bindParam(':token', $token, \PDO::PARAM_STR);
             $req->execute();
 
-            return true;
+            return TRUE;
         } catch(PDOException $e){
             echo 'Error while activating a new user' .$e->getMessage();
             
-            return false;
+            return FALSE;
         }
     }
     /**
@@ -292,7 +279,7 @@ class FUserManager extends FDatabaseManager{
 
         $result = $req->fetch();
         //return true if account's activated (1)
-        return $result[0] == 1 ? true : false;
+        return $result[0] == 1 ? TRUE : FALSE;
     }
 }
 ?>

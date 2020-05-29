@@ -14,11 +14,17 @@ class FMailerManager{
     private static $instance; 
     private function __construct(){}
     private function __clone(){}
-    public static function init(){
+    /**
+     * @brief Create the initial instance for the manager or get it
+     * @return $instance
+     */
+    public static function getInstance(){
         if(!self::$instance){
-            
+            self::$instance = Swift_SmtpTransport::newInstance(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANS)
+            ->setUsername(EMAIL_USERNAME)
+            ->setPassword(EMAIL_PASSWORD);
         }
-        return self::$instance;          
+        return self::$instance;
     }
     /**
      * @brief Send mail function 
@@ -32,9 +38,7 @@ class FMailerManager{
     public static function sendMail(string $subject, array $userEmail, string $body) : bool{       
 
             try {
-                $instance = Swift_SmtpTransport::newInstance(EMAIL_SERVER, EMAIL_PORT, EMAIL_TRANS)
-                ->setUsername(EMAIL_USERNAME)
-                ->setPassword(EMAIL_PASSWORD);
+                $instance = $this::getInstance();
                 $mailer = Swift_Mailer::newInstance($instance);
                 $message = Swift_Message::newInstance();
                 $message->setSubject($subject);

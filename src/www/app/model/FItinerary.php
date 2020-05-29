@@ -23,43 +23,70 @@ class FItinerary{
      * @param string $DurationParam itinerary's duration
      * @param string $DistanceParam itinerary's distance
      * @param string $CountryParam itinerary's country
-     * @param string $StatusParam itinerary's country
-     * @param int $StatusParam user's status code
-     * @param int $RoleParam user's role code
+     * @param string $StatusParam itinerary's status
+     * @param Array<FWaypoint> $WaypointsParam Array with all itinerary's waypoints.
+     * @param Array<FComment> $CommentsParam Array with all itinerary's comments.
      */
-    public function __construct(int $IdParam = "", string $EmailParam = "", string $NicknameParam = "", string $NameParam = "", string $SurnameParam = "", string $BioParam = "", string $AvatarParam = "", string $CountryParam = "", int $StatusParam = "", int $RoleParam = "")
+    public function __construct(int $IdParam = "", string $TitleParam = "", string $RatingParam = "", string $DescriptionParam = "", string $DurationParam = "", string $DistanceParam = "", string $CountryParam = "", int $StatusParam = "", array $WaypointsParam, array $CommentsParam)
     {
         $this->Id = $IdParam;
-        $this->Email = $EmailParam;
-        $this->Nickname = $NicknameParam;
-        $this->Name = $NameParam;
-        $this->Surname = $SurnameParam;
-        $this->Bio = $BioParam;
-        $this->Avatar = $AvatarParam;
-        $this->Country = $CountryParam
+        $this->Title = $TitleParam;
+        $this->Rating = $RatingParam;
+        $this->Description = $DescriptionParam;
+        $this->Duration = $DurationParam;
+        $this->Distance = $DistanceParam;
+        $this->Country = $CountryParam;
         $this->Status = $StatusParam;
-        $this->Role = $RoleParam;
+        $this->Waypoints = $WaypointsParam;
+        $this->Comments = $CommentsParam;
     } 
 
+    /**
+    * @var int Itinerary's unique id
+    */
     public int $Id;
 
-    public string $Email;
+    /**
+    * @var string Itineray's title
+    */
+    public string $Title;
 
-    public string $Nickname;
+    /**
+    * @var string Itinerary's rating
+    */
+    public string $Rating;
 
-    public string $Name;
+    /**
+    * @var string Itinerary's description
+    */
+    public string $Description;
 
-    public string $Surname;
+    /**
+    * @var string Itinerary's duration
+    */
+    public string $Duration;
 
-    public string $Bio;
+    /**
+    * @var string Itinerary's distance
+    */
+    public string $Distance;
 
-    public string $Avatar;
-
+    /**
+    * @var string Itinerary's country 
+    */
     public string $Country;
 
+    /**
+    * @var int Itinerary's status
+    */
     public int $Status;
-
-    public int $Role;
-
+    /**
+    * @var array Array with all itinerary's waypoints
+    */
+    public array $Waypoints;
+    /**
+    * @var array Array with all itinerary's comments
+    */
+    public array $Comments;
 }
 ?>

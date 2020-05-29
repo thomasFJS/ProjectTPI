@@ -22,6 +22,9 @@ class FPhoto{
         $this->Image = $ImageParam;
     } 
 
-    public $Image;
+    /**
+     * @var string image encoded in base 64
+     */
+    public string $Image;
 }
 ?>
