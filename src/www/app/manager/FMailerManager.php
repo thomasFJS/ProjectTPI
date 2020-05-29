@@ -2,14 +2,14 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjectTPI.
-*     Page                :  mailerController.
-*     Brief               :  Controller for mailer.
+*     Page                :  FMailerManager.
+*     Brief               :  mailer's manager.
 *     Date                :  20.05.2020.
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/swiftmailer5/lib/swift_required.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
 //Class mailer
-class TMailerController{
+class FMailerManager{
 
     private static $instance; 
     private function __construct(){}

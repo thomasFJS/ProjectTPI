@@ -2,29 +2,29 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  countryController.
-*     Brief               :  country controller.
+*     Page                :  FCodeManager.
+*     Brief               :  code manager.
 *     Date                :  20.05.2020.
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/tCountry.php';
 /**
- * Class TDatabase
+ * Class FCodeManager
  */
-class TCountryController extends TDatabaseController{
+class FCodeManager extends TDatabaseController{
     /**
-     * @brief Class constructor, init all field from table `countries`
+     * @brief Class constructor, init all field from table `COUNTRIE`
      */
     function __construct(){
-        $this->tableName = "countries";
-        $this->fieldCode = "country_code";
-        $this->fieldName = "country_name";
+        $this->tableName = "COUNTRIES";
+        $this->fieldCode = "ISO2";
+        $this->fieldName = "NAME";
     }
     /**
      * @brief Get all country in the database
      * 
      */
-    public function getAllCountry() {
+    public static function getAllCountry() {
         $result = array();
         $query = <<<EX
             SELECT `{$this->fieldName}`, `{$this->fieldCode}`

@@ -2,15 +2,15 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  userController.
-*     Brief               :  user controller.
+*     Page                :  FUserManager.
+*     Brief               :  user manager.
 *     Date                :  04.09.2019.
 */
 
 //Requirements
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/controller/databaseController.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/controller/mailerController.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/tUser.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/databaseController.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FMailerManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php';
 
 /**
  * User's manager
@@ -19,7 +19,7 @@ class FUserManager extends FDatabaseManager{
 
     private static $instance;
     /**
-     * @brief Class constructor, init all field from table `users`
+     * @brief Class constructor, init all field from table `USERS`
      */
     function __construct() {
         $this->tableName = "USERS";
@@ -86,7 +86,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return FUser||null
      */
-    public function Login(array $args): ?TUser {
+    public static function Login(array $args): ?TUser {
         $args += [
             'userEmail' => null,
             'userNickname' => null,
@@ -115,19 +115,19 @@ class FUserManager extends FDatabaseManager{
             return false;
         }
 
-        $pwd = hash("sha256", $userPwd . $salt);
+        //$pwd = hash("sha256", $userPwd . $salt);
+
+        if(password_verify($userPwd, $this::GetHashPassword())){
 
         $query = <<<EX
             SELECT `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldCountry}`,`{$this->fieldBirthday}`, `{$this->fieldRole}`, `{$this->fieldLogo}`
             FROM `{$this->tableName}`
             WHERE `{$loginField}` = :connectValue
-            AND `{$this->fieldPassword}` = :userPwd
         EX;
 
         try {
             $req = $this::getDb()->prepare($query);
             $req->bindParam(':connectValue', $loginValue, PDO::PARAM_STR);
-            $req->bindParam(':userPwd', $pwd, PDO::PARAM_STR);
             $req->execute();
 
             $result = $req->fetch(PDO::FETCH_ASSOC);
@@ -135,8 +135,8 @@ class FUserManager extends FDatabaseManager{
             return $result !== false > 0 ? new TUser($result[$this->fieldNickname], $result[$this->fieldEmail],  $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole], $result[$this->fieldLogo]) : null;           
         } catch(PDOException $e) {
             echo "Error while login" . $e->getMessage();
-
             return null;
+        }
         }
     }
     /**
@@ -150,7 +150,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool register state 
      */
-    public function RegisterNewUser(string $userEmail, string $userNickname, string $userPwd, string $userCountry, string $userBirthday, string $userLogo) : bool {
+    public static function Register(string $userEmail, string $userNickname, string $userPwd, string $userCountry, string $userBirthday, string $userLogo) : bool {
         $query = <<<EX
             INSERT INTO `{$this->tableName}`({$this->fieldNickname}, {$this->fieldEmail}, {$this->fieldCountry}, {$this->fieldBirthday}, {$this->fieldActivation}, {$this->fieldSalt}, {$this->fieldPassword}, {$this->fieldRole}, {$this->fieldToken}, {$this->fieldLogo})
             VALUES(:userNickname, :userEmail, :userCountry, :userBirthday, :userActivation, :userSalt, :userPassword, :userRole, :token, :logo)
@@ -188,10 +188,36 @@ class FUserManager extends FDatabaseManager{
             return true;
         } catch(PDOException $e){
             $this::getDb()->rollBack();
-            echo 'Error while register a new user' .$e->getMessage();
-            
+            echo 'Error while register a new user' .$e->getMessage();          
             return false;
         }
+    }
+    /**
+     * @brief Get hash password 
+     * 
+     * @param int $idUser user's id
+     * 
+     * @return string hash password
+     */
+    public static function GetHashPassword(int $idUser) : string {
+        $query = <<<EX
+            SELECT `{$this->fieldPassword}` 
+            FROM `{$this->tableName}` 
+            WHERE ID = :idUser;
+        EX;
+        try{
+        $req = $this::getDb()->prepare($query);
+        $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $result ==! false ? $result : null;
+        }catch(PDOException $e){
+            echo 'Error while getting password' .$e->getMessage();
+            
+            return null;
+        }
+        
     }
     /**
      * @brief Check if user is admin or not
@@ -200,7 +226,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if admin, false if user
      */
-    public function IsAllowed(TUser $user) : bool {
+    public static function IsAllowed(TUser $user) : bool {
         return $user->Role == 2 ? true : false;
     }
     /**
@@ -208,7 +234,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if user's logged, else false
      */
-    public function IsLogged() : bool {
+    public static function IsLogged() : bool {
         return isset($_SESSION['isLogged']) ? true : false;
     }
     /**
@@ -228,7 +254,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if account's activation success, else false
      */
-    public function ActivateAccount(string $token) : bool{
+    public static function ActivateAccount(string $token) : bool{
         try{
             $query = <<<EX
                 UPDATE players 
@@ -253,7 +279,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if account's activated, else false
      */
-    public function VerifyActivation(string $nickname) : bool{
+    public static function VerifyActivation(string $nickname) : bool{
         $query = <<<EX
             SELECT activation
             FROM players

@@ -2,15 +2,15 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  sessionController.
-*     Brief               :  session controller.
+*     Page                :  FSessionManager.
+*     Brief               :  session manager.
 *     Date                :  21.05.2020.
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/tUser.php';
 /**
- * Class TSession
+ * Class FSessionManager
  */
-class TSessionController {
+class FSessionManager {
     /**
      * @brief Class constructor
      */
