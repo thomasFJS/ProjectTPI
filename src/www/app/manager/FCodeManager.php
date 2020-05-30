@@ -41,11 +41,11 @@ class FCodeManager extends TDatabaseController{
                 array_push($result, $country);
             }
 
-            return count($result) > 0 ? $result : null;           
+            return count($result) > 0 ? $result : FALSE;           
         } catch(PDOException $e) {
             echo "Can't read the database" . $e->getMessage();
 
-            return null;
+            return FALSE;
         }
     }  
 }

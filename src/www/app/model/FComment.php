@@ -16,11 +16,11 @@ class FComment{
     /**
      * @brief Class constructor, create an comment with specified details
      * 
-     * @param int $CommentParam comment's text
+     * @param string $CommentParam comment's text
      * @param string $PostedAtParam comment's date 
      * @param FUser $UserParam comment's user
      */
-    public function __construct(int $CommentParam = "", string $PostedAt = "", FUser $UserParam)
+    public function __construct(string $CommentParam = "", string $PostedAt = "", FUser $UserParam)
     {
         $this->Comment = $CommentParam;
         $this->PostedAt = $PostedAtParam;
@@ -32,7 +32,7 @@ class FComment{
     public string $Comment;
 
     /**
-     * @var string date and hour where the post was posted
+     * @var string date and hour where the comment was posted
      */
     public string $PostedAt;
 

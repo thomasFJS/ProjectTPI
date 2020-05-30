@@ -21,7 +21,7 @@ class FWaypoint{
      * @param string $LongitudeParam waypoints's longitude
      * @param string $LatitudeParam waypoints's latitude
      */
-    public function __construct(int $IndexParam = "", string $AddressParam = "", string $LongitudeParam = "", string $LatitudeParam = "")
+    public function __construct(int $IndexParam , string $AddressParam = "", string $LongitudeParam = "", string $LatitudeParam = "")
     {
         $this->Index = $IndexParam;
         $this->Address = $AddressParam;

@@ -8,7 +8,7 @@
 */
 
 //Requirements
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/databaseController.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FMailerManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php';
 
@@ -33,7 +33,7 @@ class FUserManager extends FDatabaseManager{
         $this->fieldBio = "BIO";
         $this->fieldAvatar = "AVATAR";        
         $this->fieldStatus = "STATUS_ID";     
-        $this->fieldRoles = "ROLES_ID";
+        $this->fieldRole = "ROLES_ID";
         $this->fieldPays = "COUNTRIES_ISO2";
     }
     /**
@@ -86,7 +86,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return FUser||FALSE
      */
-    public static function Login(array $args): ?TUser {
+    public function Login(array $args) {
         $args += [
             'userEmail' => null,
             'userNickname' => null,
@@ -102,11 +102,11 @@ class FUserManager extends FDatabaseManager{
         if($userEmail !== null){
             $loginValue = $userEmail;
             $loginField = $this->fieldEmail;
-            $salt = $this->GetSalt(['userEmail' => $userEmail]);    
+   
         } else if($userNickname !== null){
             $loginValue = $userNickname;
             $loginField = $this->fieldNickname;
-            $salt = $this->GetSalt(['userNickname' => $userNickname]);         
+        
         } else {
             return false;
         }
@@ -117,7 +117,7 @@ class FUserManager extends FDatabaseManager{
 
         //$pwd = hash("sha256", $userPwd . $salt);
 
-        if(password_verify($userPwd, $this::GetHashPassword())){
+        if(password_verify($userPwd, $this::GetHashPassword($userEmail))){
 
         $query = <<<EX
             SELECT `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldCountry}`,`{$this->fieldBirthday}`, `{$this->fieldRole}`, `{$this->fieldLogo}`
@@ -137,6 +137,9 @@ class FUserManager extends FDatabaseManager{
             return FALSE;
         }
         }
+        else{
+            return FALSE;
+        }
     }
     /**
      * @brief Register new user
@@ -149,9 +152,9 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool register state 
      */
-    public static function Register(string $userEmail, string $userNickname, string $userPwd) : bool {
+    public function Register(string $userEmail, string $userNickname, string $userPwd) : bool {
         $query = <<<EX
-            INSERT INTO `{$this->tableName}`({$this->fieldNickname}, {$this->fieldEmail}, {$this->fieldPassword}, {$this->fieldStatus}, {$this->fieldRole}, {$this->fieldToken})
+            INSERT INTO `{$this->tableName}`(`{$this->fieldNickname}`, `{$this->fieldEmail}`, `{$this->fieldPassword}`, `{$this->fieldStatus}`, `{$this->fieldRole}`, `{$this->fieldToken}`)
             VALUES(:userNickname, :userEmail, :userPassword, :userStatus, :userRole, :token)
         EX;
 
@@ -173,7 +176,7 @@ class FUserManager extends FDatabaseManager{
             $req->bindParam(':token', $token, \PDO::PARAM_STR);
             $req->execute();
 
-            TMailerController::sendMail("Account Activation", array($userEmail), TMailerController::getActivationMail($token));
+            FMailerManager::sendMail("Account Activation", array($userEmail), FMailerManager::getActivationMail($token));
             
         } catch(PDOException $e){     
             return FALSE;
@@ -188,23 +191,22 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return string hash password
      */
-    public static function GetHashPassword(int $idUser) : string {
+    public function GetHashPassword(string $userEmail) : string {
         $query = <<<EX
             SELECT `{$this->fieldPassword}` 
             FROM `{$this->tableName}` 
-            WHERE ID = :idUser;
+            WHERE EMAIL = :userEmail;
         EX;
         try{
         $req = $this::getDb()->prepare($query);
-        $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+        $req->bindParam(':userEmail', $userEmail, PDO::PARAM_STR);
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
-       
         }catch(PDOException $e){       
             return FALSE;
         }
         //Done
-        return $result ==! FALSE ? $result : FALSE;
+        return $result ==! FALSE ? $result['PASSWORD'] : FALSE;
     }
     /**
      * @brief Check if user is admin or not
@@ -213,7 +215,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if admin, false if user
      */
-    public static function IsAllowed(TUser $user) : bool {
+    public function IsAllowed(FUser $user) : bool {
         return $user->Role == 2 ? TRUE : FALSE;
     }
     /**
@@ -221,8 +223,8 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if user's logged, else false
      */
-    public static function IsLogged() : bool {
-        return isset($_SESSION['isLogged']) ? TRUE : FALSE;
+    public function IsLogged() : bool {
+        return isset($_SESSION['userLogged']) ? TRUE : FALSE;
     }
     /**
      * @brief Create the initial instance for the controller or get it
@@ -230,7 +232,7 @@ class FUserManager extends FDatabaseManager{
      */
     public static function getInstance(){
         if(!self::$instance){
-            self::$instance = new UserController();
+            self::$instance = new FUserManager();
         }
         return self::$instance;
     }
@@ -241,15 +243,17 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if account's activation success, else false
      */
-    public static function ActivateAccount(string $token) : bool{
+    public function ActivateAccount(string $token, string $userEmail) : bool{
         try{
             $query = <<<EX
-                UPDATE players 
-                SET activation = 1
-                WHERE email_token = :token
+                UPDATE `{$this->tableName}` 
+                SET `{$this->fieldStatus}`  = 2
+                WHERE `{$this->fieldToken}` = :token 
+                AND `{$this->fieldEmail}` = :userEmail
             EX;
             $req = $this::getDb()->prepare($query);
             $req->bindParam(':token', $token, \PDO::PARAM_STR);
+            $req->bindParam(':userEmail', $userEmail, \PDO::PARAM_STR);
             $req->execute();
 
             return TRUE;
@@ -266,7 +270,7 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if account's activated, else false
      */
-    public static function VerifyActivation(string $nickname) : bool{
+    public function VerifyActivation(string $nickname) : bool{
         $query = <<<EX
             SELECT activation
             FROM players

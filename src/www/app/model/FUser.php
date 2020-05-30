@@ -27,7 +27,7 @@ class FUser{
      * @param int $StatusParam user's status code
      * @param int $RoleParam user's role code
      */
-    public function __construct(int $IdParam = "", string $EmailParam = "", string $NicknameParam = "", string $NameParam = "", string $SurnameParam = "", string $BioParam = "", string $AvatarParam = "", string $CountryParam = "", int $StatusParam = "", int $RoleParam = "")
+    public function __construct(int $IdParam, string $EmailParam = "", string $NicknameParam = "", string $NameParam = "", string $SurnameParam = "", string $BioParam = "", string $AvatarParam = "", string $CountryParam = "", int $StatusParam , int $RoleParam )
     {
         $this->Id = $IdParam;
         $this->Email = $EmailParam;
@@ -44,51 +44,51 @@ class FUser{
     /**
      * @var int User's unique id
      */
-    public int $Id;
+    public $Id;
     /**
      * @var string User's email
      */
-    public string $Email;
+    public $Email;
 
     /**
      * @var string User's nickname
      */
-    public string $Nickname;
+    public $Nickname;
 
     /**
      * @var string User's name
      */
-    public string $Name;
+    public $Name;
 
     /**
      * @var string User's surname
      */
-    public string $Surname;
+    public $Surname;
 
     /**
      * @var string User's bio
      */
-    public string $Bio;
+    public $Bio;
 
     /**
      * @var string User's avatar encoded in base 64
      */
-    public string $Avatar;
+    public $Avatar;
 
     /**
      * @var string User's residence country
      */
-    public string $Country;
+    public $Country;
 
     /**
      * @var int User's account status code
      */
-    public int $Status;
+    public $Status;
 
     /**
      * @var int User's account role code
      */
-    public int $Role;
+    public $Role;
 
 }
 ?>

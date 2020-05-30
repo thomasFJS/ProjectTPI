@@ -38,7 +38,7 @@ class FMailerManager{
     public static function sendMail(string $subject, array $userEmail, string $body) : bool{       
 
             try {
-                $instance = $this::getInstance();
+                $instance = self::getInstance();
                 $mailer = Swift_Mailer::newInstance($instance);
                 $message = Swift_Message::newInstance();
                 $message->setSubject($subject);

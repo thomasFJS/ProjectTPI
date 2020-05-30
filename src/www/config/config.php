@@ -1,7 +1,7 @@
 <?php
 DEFINE('DB_DBTYPE', "mysql");
 DEFINE('DB_HOST', "127.0.0.1");
-DEFINE('DB_NAME', "dbGame");
+DEFINE('DB_NAME', "dbTravler");
 DEFINE('DB_USER', "admin");
 DEFINE('DB_PASS', "Super2012");
 

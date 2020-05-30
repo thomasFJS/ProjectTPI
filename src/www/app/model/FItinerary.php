@@ -26,8 +26,9 @@ class FItinerary{
      * @param string $StatusParam itinerary's status
      * @param Array<FWaypoint> $WaypointsParam Array with all itinerary's waypoints.
      * @param Array<FComment> $CommentsParam Array with all itinerary's comments.
+     * @param Array<FPhotos> $PhotosParam Array with all itinerary's photos.
      */
-    public function __construct(int $IdParam = "", string $TitleParam = "", string $RatingParam = "", string $DescriptionParam = "", string $DurationParam = "", string $DistanceParam = "", string $CountryParam = "", int $StatusParam = "", array $WaypointsParam, array $CommentsParam)
+    public function __construct(int $IdParam , string $TitleParam = "", string $RatingParam = "", string $DescriptionParam = "", string $DurationParam = "", string $DistanceParam = "", string $CountryParam = "", int $StatusParam = "", array $WaypointsParam, array $CommentsParam, array $PhotosParam)
     {
         $this->Id = $IdParam;
         $this->Title = $TitleParam;
@@ -39,6 +40,7 @@ class FItinerary{
         $this->Status = $StatusParam;
         $this->Waypoints = $WaypointsParam;
         $this->Comments = $CommentsParam;
+        $this->Photos = $PhotosParam;
     } 
 
     /**
@@ -88,5 +90,9 @@ class FItinerary{
     * @var array Array with all itinerary's comments
     */
     public array $Comments;
+    /**
+     * @var array Array with all itinerary's photos
+     */
+    public array $Photos;
 }
 ?>
