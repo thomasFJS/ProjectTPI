@@ -34,7 +34,7 @@ class FUserManager extends FDatabaseManager{
         $this->fieldAvatar = "AVATAR";        
         $this->fieldStatus = "STATUS_ID";     
         $this->fieldRole = "ROLES_ID";
-        $this->fieldPays = "COUNTRIES_ISO2";
+        $this->fieldCountry = "COUNTRIES_ISO2";
     }
     /**
      * @brief Get salt from field 
@@ -120,7 +120,7 @@ class FUserManager extends FDatabaseManager{
         if(password_verify($userPwd, $this::GetHashPassword($userEmail))){
 
         $query = <<<EX
-            SELECT `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldCountry}`,`{$this->fieldBirthday}`, `{$this->fieldRole}`, `{$this->fieldLogo}`
+            SELECT `{$this->fieldId}`, `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldName}`,`{$this->fieldSurname}`, `{$this->fieldBio}`, `{$this->fieldAvatar}`, `{$this->fieldCountry}`, `{$this->fieldStatus}`, `{$this->fieldRole}`
             FROM `{$this->tableName}`
             WHERE `{$loginField}` = :connectValue
         EX;
@@ -132,7 +132,7 @@ class FUserManager extends FDatabaseManager{
 
             $result = $req->fetch(PDO::FETCH_ASSOC);
 
-            return $result !== false > 0 ? new TUser($result[$this->fieldNickname], $result[$this->fieldEmail],  $result[$this->fieldCountry], $result[$this->fieldBirthday], $result[$this->fieldRole], $result[$this->fieldLogo]) : FALSE;           
+            return $result !== false > 0 ? new FUser($result[$this->fieldId], $result[$this->fieldEmail],  $result[$this->fieldNickname], $result[$this->fieldName], $result[$this->fieldSurname], $result[$this->fieldBio], $result[$this->fieldAvatar], $result[$this->fieldCountry], $result[$this->fieldStatus], $result[$this->fieldRole]) : FALSE;           
         } catch(PDOException $e) {
             return FALSE;
         }
@@ -230,7 +230,7 @@ class FUserManager extends FDatabaseManager{
      * @brief Create the initial instance for the controller or get it
      * @return $instance
      */
-    public static function getInstance(){
+    public static function GetInstance(){
         if(!self::$instance){
             self::$instance = new FUserManager();
         }
@@ -256,12 +256,11 @@ class FUserManager extends FDatabaseManager{
             $req->bindParam(':userEmail', $userEmail, \PDO::PARAM_STR);
             $req->execute();
 
-            return TRUE;
-        } catch(PDOException $e){
-            echo 'Error while activating a new user' .$e->getMessage();
-            
+        } catch(PDOException $e){           
             return FALSE;
         }
+        //Done
+        return TRUE;
     }
     /**
      * @brief Verify if account is activated
@@ -272,9 +271,9 @@ class FUserManager extends FDatabaseManager{
      */
     public function VerifyActivation(string $nickname) : bool{
         $query = <<<EX
-            SELECT activation
-            FROM players
-            WHERE nickname = :nickname
+            SELECT `{$this->fieldStatus}`
+            FROM `{$this->tableName}` 
+            WHERE `{$this->fieldNickname}` = :nickname
         EX;
 
         $req = $this::getDb()->prepare($query);
@@ -282,8 +281,34 @@ class FUserManager extends FDatabaseManager{
         $req->execute();
 
         $result = $req->fetch();
-        //return true if account's activated (1)
-        return $result[0] == 1 ? TRUE : FALSE;
+        //return true if account's activated (2)
+        return $result[0] == 2 ? TRUE : FALSE;
+    }
+    /**
+     * @brief Get user by id
+     * 
+     * @param int $idUser user's unique id
+     * 
+     * @return FUser The user with the id
+     */
+    public function GetById(int $idUser){
+        $query = <<<EX
+            SELECT `{$this->fieldId}`, `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldName}`,`{$this->fieldSurname}`, `{$this->fieldBio}`, `{$this->fieldAvatar}`, `{$this->fieldCountry}`, `{$this->fieldStatus}`, `{$this->fieldRole}`
+            FROM `{$this->tableName}`
+            WHERE `{$this->fieldId}` = :idUser
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $req->execute();
+
+            $result = $req->fetch(PDO::FETCH_ASSOC);  
+            return $result != false > 0 ? new FUser($result[$this->fieldId], $result[$this->fieldEmail],  $result[$this->fieldNickname], $result[$this->fieldName], $result[$this->fieldSurname], $result[$this->fieldBio], $result[$this->fieldAvatar], $result[$this->fieldCountry], $result[$this->fieldStatus], $result[$this->fieldRole]) : FALSE;            
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        
     }
 }
 ?>

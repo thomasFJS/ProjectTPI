@@ -27,11 +27,11 @@ class FCountry{
     /**
      * @var string Country's name
      */
-    public string $Name;
+    public $Name;
 
     /**
      * @var string Country's iso2 code
      */
-    public string $Code;
+    public $Code;
 }
 ?>

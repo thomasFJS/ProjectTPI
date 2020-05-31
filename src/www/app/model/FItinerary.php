@@ -46,53 +46,53 @@ class FItinerary{
     /**
     * @var int Itinerary's unique id
     */
-    public int $Id;
+    public $Id;
 
     /**
     * @var string Itineray's title
     */
-    public string $Title;
+    public $Title;
 
     /**
     * @var string Itinerary's rating
     */
-    public string $Rating;
+    public $Rating;
 
     /**
     * @var string Itinerary's description
     */
-    public string $Description;
+    public $Description;
 
     /**
     * @var string Itinerary's duration
     */
-    public string $Duration;
+    public $Duration;
 
     /**
     * @var string Itinerary's distance
     */
-    public string $Distance;
+    public $Distance;
 
     /**
     * @var string Itinerary's country 
     */
-    public string $Country;
+    public $Country;
 
     /**
     * @var int Itinerary's status
     */
-    public int $Status;
+    public $Status;
     /**
     * @var array Array with all itinerary's waypoints
     */
-    public array $Waypoints;
+    public $Waypoints;
     /**
     * @var array Array with all itinerary's comments
     */
-    public array $Comments;
+    public $Comments;
     /**
      * @var array Array with all itinerary's photos
      */
-    public array $Photos;
+    public $Photos;
 }
 ?>

@@ -32,22 +32,22 @@ class FWaypoint{
     /**
      * @var int Waypoint's index in the itinerary
      */
-    public int $Index;
+    public $Index;
 
     /**
      * @var string Waypoint's address 
      */
-    public string $Address;
+    public $Address;
 
     /**
      * @var string Waypoint's longitude 
      */
-    public string $Longitude;
+    public $Longitude;
 
     /**
      * @var string Waypoint's latitude
      */
-    public string $Latitude;
+    public $Latitude;
 
 }
 ?>

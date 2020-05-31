@@ -25,6 +25,6 @@ class FPhoto{
     /**
      * @var string image encoded in base 64
      */
-    public string $Image;
+    public $Image;
 }
 ?>

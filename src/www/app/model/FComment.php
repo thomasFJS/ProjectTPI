@@ -29,17 +29,17 @@ class FComment{
     /**
      * @var string comment's text
      */
-    public string $Comment;
+    public $Comment;
 
     /**
      * @var string date and hour where the comment was posted
      */
-    public string $PostedAt;
+    public $PostedAt;
 
     /**
      * @var FUser comment's owner
      */
-    public FUser $User;
+    public $User;
 
 }
 ?>

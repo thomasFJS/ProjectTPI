@@ -27,7 +27,7 @@ class FUser{
      * @param int $StatusParam user's status code
      * @param int $RoleParam user's role code
      */
-    public function __construct(int $IdParam, string $EmailParam = "", string $NicknameParam = "", string $NameParam = "", string $SurnameParam = "", string $BioParam = "", string $AvatarParam = "", string $CountryParam = "", int $StatusParam , int $RoleParam )
+    public function __construct(int $IdParam, string $EmailParam = "", string $NicknameParam = "", $NameParam = "", $SurnameParam = "", $BioParam = "", $AvatarParam = "", $CountryParam = "", int $StatusParam , int $RoleParam )
     {
         $this->Id = $IdParam;
         $this->Email = $EmailParam;
