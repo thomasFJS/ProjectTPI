@@ -69,6 +69,38 @@ class FWaypointManager extends FDatabaseManager{
         }
         return count($result) > 0 ? $result : FALSE;
     }
+    /**
+     * @brief Create new waypoints for itinerary
+     * 
+     * @param array Array<FWaypoint> with all waypoints to add
+     * @param int $idItinerary itinerary's id
+     * 
+     * @return bool true if insert's done else false.
+     */
+    public function Create(array $waypoints, $idItinerary){
+        $query = <<<EX
+            INSERT INTO `{$this->tableName}` (`{$this->fieldIndex}`, `{$this->fieldAddress}`, `{$this->fieldLongitude}`, `{$this->fieldLatitude}`, `{$this->fieldItinerary}`)
+            VALUES(:index, :address, :longitude, :latitude, :idItinerary)
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            for($i = 0;$i<count($waypoints);$i++)
+            {
+                $req->bindParam(':index', $waypoints[$i]->Index, PDO::PARAM_INT);
+                $req->bindParam(':address', $waypoints[$i]->Address, PDO::PARAM_STR);
+                $req->bindParam(':longitude', $waypoints[$i]->Longitude, PDO::PARAM_STR);
+                $req->bindParam(':latitude', $waypoints[$i]->Latitude, PDO::PARAM_STR);
+                $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+                $req->execute();
+            }
+            
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        //Done
+        return TRUE;
+    }
 
 }
 ?>

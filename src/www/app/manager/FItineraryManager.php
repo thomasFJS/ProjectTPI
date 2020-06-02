@@ -74,13 +74,35 @@ class FItineraryManager extends FDatabaseManager{
         return count($result) > 0 ? $result : FALSE;
     }
     /**
-     * @brief Create itinerary
+     * @brief Create new itinerary
+     * 
+     * @param string $title Itinerary's title
+     * @param string $description Itinerary's description
+     * @param string $duration Itinerary's duration
+     * @param double $distance Itinerary's distance
+     * @param string $country Code iso2 for itinerary's started land
+     * @param array $waypoints Array<FWaypoint> array with all itinerary's waypoints
+     * @param array $photos Array<FPhoto> array with all itinerary's photos
+     * @param int $idUser owner's id
      */
-    public function Create($title, $description, $duration, $distance, $country,$waypoints, $photos){
+    public function Create($title, $description, $duration, $distance, $country,$waypoints, $photos, $idUser){
         $query = <<<EX
             INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`,`{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
-            VALUES(:title, :rating, :description, :duration, :distance, :country)
+            VALUES(:title, :rating, :description, :duration, :distance, :country, :status, :idUser)
         EX;
+
+        try{
+            $this::beginTransaction();
+            $req = $this::getDb()->prepare($query);
+            $req->execute();
+            FWaypointManager::GetInstance()->Create($waypoints, $this::lastInsertId());
+            FPhotoManager::GetInstance()->Create($photos, $this::lastInsertId());
+            $this::commit();
+        }catch(PDOException $e){
+            $this::rollBack();
+            return FALSE;
+        }
+        return TRUE;
     }
 }
 ?>

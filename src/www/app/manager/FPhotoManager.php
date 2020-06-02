@@ -66,6 +66,27 @@ class FWaypointManager extends FDatabaseManager{
         }
         return count($result) > 0 ? $result : FALSE;
     }
+    public function Create(array $photos, int $itineraryId) {
+        $query = <<<EX
+            INSERT INTO `{$this->tableName}` (`{$this->fieldImage}`, `{$this->fieldItinerary}`)
+            VALUES(:image, :idItinerary)
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            for($i = 0;$i<count($photos);$i++)
+            {
+                $req->bindParam(':image', $photos[$i]->Image, PDO::PARAM_INT);
+                $req->bindParam(':idItinerary', $itineraryId, PDO::PARAM_STR);
+                $req->execute();
+            }
+        
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        //Done
+        return TRUE;
+    }
 
 }
 ?>

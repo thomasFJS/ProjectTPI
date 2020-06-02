@@ -6,7 +6,7 @@
 *     Brief               :  session manager.
 *     Date                :  21.05.2020.
 */
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/tUser.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php';
 /**
  * Class FSessionManager
  */

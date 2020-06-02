@@ -1,23 +1,17 @@
-<div class="container-fluid" style="background-color: #867fce; margin-bottom: 3%;">
-    <nav class="container navbar navbar-expand-lg navbar-light">
-        <div class="navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-light" href=".\index.php">Accueil</a>
-                </li>
-            </ul>
-            <span class="navbar-text">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href=""><img src="<?php echo TSessionController::getUserLogged()->Logo ?>" alt="" width="50px"></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href=".\profil.php">Profil</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href=".\logout.php">Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </span>
-        </div>
-    </nav>
-</div>
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+  <div class="container"><a class="navbar-brand js-scroll-trigger" href=".\index.php">TRAVLER</a>
+    <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\createItinerary.php">CREATE ITINERARY</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\myItinerary.php">MY ITINERARY</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\profil.php">PROFILE</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\register.php">LOGOUT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>

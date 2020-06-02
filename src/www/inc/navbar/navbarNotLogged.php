@@ -1,21 +1,13 @@
-<div class="container-fluid" style="background-color: #867fce; margin-bottom: 3%;">
-  <nav class="container navbar navbar-expand-lg navbar-light">
-    <div class="navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link text-light" href=".\index.php">Home</a>
-        </li>
-      </ul>
-      <span class="navbar-text">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link text-light" href=".\login.php">Login</a>
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+  <div class="container"><a class="navbar-brand js-scroll-trigger" href=".\index.php">TRAVLER</a>
+    <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\login.php">LOGIN</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href=".\register.php">Register</a>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\register.php">REGISTER</a>
           </li>
         </ul>
-      </span>
+      </div>
     </div>
-  </nav>
-</div>
+</nav>
