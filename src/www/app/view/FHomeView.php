@@ -16,13 +16,13 @@ class FHomeView{
      */
     function __construct(){}
     /**
-     * @brief Display all itinerary
+     * @brief Display all itineraries
      * 
-     * @param array $itineraries all itinerary to display
+     * @param array $itineraries all itineraries to display
      * 
      * @return string code html to display 
      */
-    public static function DisplayItinerary(array $itineraries) : string{
+    public static function DisplayItineraries(array $itineraries) : string{
         $result = '';
         foreach($itineraries as $itinerary){
             $result .= <<<EX

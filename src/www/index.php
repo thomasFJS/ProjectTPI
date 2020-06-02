@@ -29,6 +29,11 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Fonts CSS-->
     <link rel="stylesheet" href="./assets/css/heading.css">
     <link rel="stylesheet" href="./assets/css/body.css">
+    <!-- Maquest CSS and JS Load-->
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>  
+    <!-- Display maps on itineraries card with mapquest-->
+    <script src="./assets/js/home.js"></script>
 </head>
 <body id="page-top">
 <?php

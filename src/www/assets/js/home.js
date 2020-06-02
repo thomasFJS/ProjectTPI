@@ -1,27 +1,37 @@
-window.onload = function() {
+/**
+ *     Author              :  Fujise Thomas.
+ *     Project             :  ProjetTPI.
+ *     Page                :  Home.js
+ *     Brief               :  Display maps on itinerary card on home page.
+ *     Date                :  02.06.2020.
+ */
+
+$(document).ready(function(){
     L.mapquest.key = 'xTHtqDgrfGDrRKxzBKyFtDdkqRS4Uu8V';
-
-    
-
-    L.mapquest.directions().route({
-      start: 'Chemin des Curiades, Bernex, 1233',
-      end: 'Chemin Gérard-De-Ternier, 1213, Lancy',
-      waypoints: [ '46.196281, 6.151338 ', 'Rue de l\'encyclopedie, 1201, Genève']
-    });
-  }
-  $(document).ready(function(){
     /* call the php that has the php array which is json_encoded */
     $.getJSON('./app/api/getItineraries.php', function(data) {
-            /* data will hold the php array as a javascript object */
-            $.each(data, function(key, val) {
-                var maps['map' + val.Id.ToStri] = L.mapquest.map('map' + '', {
-                    center: [46.204391, 6.143158],
-                    layers: L.mapquest.tileLayer('map'),
-                    zoom: 13
-              
-                  });
-                $('ul').append('<li id="' + key + '">' + val.first_name + ' ' + val.last_name + ' ' + val.email + ' ' + val.age + '</li>');
+        var maps = [];
+        var mapInit = {};
+        var waypointsArray = [];
+        /* data will hold the php array as a javascript object */
+        $.each(data, function(key, val) {
+            maps['map' + val.Id] = L.mapquest.map('map' + val.Id, {
+                center: [val.waypoints.Latitude, val.waypoints.Longitude],
+                layers: L.mapquest.tileLayer('map' + val.Id),
+                zoom: 13
             });
+            mapInit = {     
+                start: val.waypoints[0].Address,
+                end: val.waypoints[val.waypoints.length - 1].Address            
+            };
+            /*Add waypoints in array */
+            for(let i = 0; i< val.waypoints.length ; i++){
+                waypointsArray.push(val.waypoints[i].Latitude + ', ' + val.waypoints[i].Longitude);
+            }
+            mapInit.push({waypoints: waypointsArray});
+            L.mapquest.directions().route(mapInit);
+            //$('ul').append('<li id="' + key + '">' + val.first_name + ' ' + val.last_name + ' ' + val.email + ' ' + val.age + '</li>');
+        });
     });
 
 });
