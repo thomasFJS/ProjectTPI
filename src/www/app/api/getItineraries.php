@@ -7,7 +7,7 @@
 *     Date                :  02.06.2020.
 */
 /* Requirements */
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/app/manager/FItineraryManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 
 /* Set document type to text/javascript */
 header("Content-type: text/javascript");

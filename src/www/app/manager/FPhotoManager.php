@@ -9,12 +9,12 @@
 
 //Requirements
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FWaypoint.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FPhoto.php';
 
 /**
  * Photo's manager
  */
-class FWaypointManager extends FDatabaseManager{
+class FPhotoManager extends FDatabaseManager{
 
     private static $instance;
     /**
@@ -32,7 +32,7 @@ class FWaypointManager extends FDatabaseManager{
      */
     public static function GetInstance(){
         if(!self::$instance){
-            self::$instance = new FWaypointManager();
+            self::$instance = new FPhotoManager();
         }
         return self::$instance;
     }

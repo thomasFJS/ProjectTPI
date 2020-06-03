@@ -28,7 +28,7 @@ class FItinerary{
      * @param Array<FComment> $CommentsParam Array with all itinerary's comments.
      * @param Array<FPhotos> $PhotosParam Array with all itinerary's photos.
      */
-    public function __construct(int $IdParam , string $TitleParam = "", string $RatingParam = "", string $DescriptionParam = "", string $DurationParam = "", string $DistanceParam = "", string $CountryParam = "", int $StatusParam = "", array $WaypointsParam, array $CommentsParam, array $PhotosParam)
+    public function __construct(int $IdParam , string $TitleParam = "", string $RatingParam = "", string $DescriptionParam = "", string $DurationParam = "", string $DistanceParam = "", string $CountryParam = "", int $StatusParam , array $WaypointsParam, $CommentsParam, $PhotosParam)
     {
         $this->Id = $IdParam;
         $this->Title = $TitleParam;

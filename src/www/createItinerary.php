@@ -2,13 +2,16 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjectTPI.
-*     Page                :  Login.
-*     Brief               :  Login page.
-*     Date                :  02.06.2020.
+*     Page                :  CreateItinerary.
+*     Brief               :  Page for create an itinerary.
+*     Date                :  03.06.2020.
 */
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserManager.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php';
+/*Requirements  */
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FCodeManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSessionManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/view/FHomeView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -21,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Login</title>
+    <title>Create your itinerary</title>
     <!-- Font Awesome icons (free version)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -29,12 +32,17 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Fonts CSS-->
     <link rel="stylesheet" href="./assets/css/heading.css">
     <link rel="stylesheet" href="./assets/css/body.css">
+    <!-- Maquest CSS and JS Load-->
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>  
+    
 </head>
-<body>
+<body id="page-top">
 <?php
+    
     //Show the good navbar depends if logged and if user is admin
     if (FUserManager::getInstance()->isLogged()) {
-        if (FUserManager::getInstance()->isAllowed($_SESSION['userLogged'])) {
+        if (FUserManager::getInstance()->isAllowed(FSessionManager::getUserLogged())) {
             include "./inc/navbar/navbarAdmin.php";
         }
         else {
@@ -44,38 +52,66 @@ if (session_status() == PHP_SESSION_NONE) {
     else {
         include "./inc/navbar/navbarNotLogged.php";
     }
+    
 ?>
 <section class="page-section mb-0" id="formLogin">
     <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
             <div class="card">
-                <?php if (isset($erreur["login"])): ?>
-                    <div class="card-header bg-danger text-light">Wrong email or password</div>
-                <?php else: ?>
-                    <div class="card-header">Login</div>
-                <?php endif; ?>
+                <div class="card-header">Create your itinerary</div>
                 <div class="card-body">
                     <form name="login">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="username">Username :</label>                                       
-                                        <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
-                                        <p id="errorLogin" class="errormsg">Wrong username or password</p>
-                                        <p id="errorActivation" class="errormsg">Account not activate</p>
-                                </div>
+                                    <label for="title">Title :</label>                                       
+                                        <input type="text" class="form-control" id="title" placeholder="Title" name="title" required>
+                                        <p id="errorTitle" class="errormsg">Title already used</p>
+                                </div>                               
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col">
-                                    <label for="password">Password :</label>
-                                        <input type="password" class="form-control" id="password" placeholder="******" name="password" required>
-                                        <p id="errorParam" class="errormsg">Error with the server</p>
+                                    <label for="startCountry">Country :</label>
+                                    <select name="startcountry" id="startCountry" size="1" class="custom-select">
+                                    <?php 
+                                        $countryManager = new FCodeManager();
+                                        foreach ($countryManager::GetInstance()->getAllCountry() as $country) {
+                                            echo "<option id=". $country->Code ."> " . $country->Name . "</option>";
+                                        }
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="description">Description :</label>                                       
+                                    <textarea class="form-control" id="description" rows="3"></textarea>
+                                </div>                               
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="md-form md-outline">
+                            <label for="duration">Duration :</label>
+                            <input type="time" id="duration" class="form-control" placeholder="Select time">                    
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="mapItinerary">Place your itinerary :</label>
+                                    <div id="mapItinerary" class="img-fluid rounderd mb-5" style="width: 100%; height: 630px;"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">&nbsp;</label>
-                            <button type="submit"  id="login" class="form-control btn btn-outline-primary" name="formLogin">Sign in</button>
-                            <a href="./inscription.php">Not register yet ?</a>
+                            <button type="submit"  id="placeItinerary" class="form-control btn btn-outline-primary"  name="placeItinerary" >Continue</button>
+                            <button type="submit" id="cancel"class="form-control btn btn-outline-danger">Cancel</button>                           
                         </div>
                     </div>
                 </form>
@@ -121,10 +157,7 @@ Chemin Gérard-De-Ternier 10
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="./assets/js/script.js"></script>
-<!-- Ajax call to send forms field -->
-<script src="./assets/js/login.js"></script>
+<!-- Display maps on itineraries card with mapquest-->
+<script src="./assets/js/createItinerary.js"></script>
 </body>
 </html>
-
-
-

@@ -15,7 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FComment.p
 /**
  * Comment's manager
  */
-class FWaypointManager extends FDatabaseManager{
+class FCommentManager extends FDatabaseManager{
 
     private static $instance;
     /**
@@ -34,7 +34,7 @@ class FWaypointManager extends FDatabaseManager{
      */
     public static function GetInstance(){
         if(!self::$instance){
-            self::$instance = new FWaypointManager();
+            self::$instance = new FCommentManager();
         }
         return self::$instance;
     }
@@ -49,7 +49,7 @@ class FWaypointManager extends FDatabaseManager{
         $result = array();
 
         $query = <<<EX
-            SELECT `{$this->fieldComment}`,`{$this->fieldDate}`,`{$this->fiedlUser}`
+            SELECT `{$this->fieldComment}`,`{$this->fieldDate}`,`{$this->fieldUser}`
             FROM `{$this->tableName}`
             WHERE `{$this->fieldItinerary}` = :itineraryId
             ORDER BY `{$this->fieldDate}`

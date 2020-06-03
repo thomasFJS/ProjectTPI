@@ -117,7 +117,7 @@ class FUserManager extends FDatabaseManager{
 
         //$pwd = hash("sha256", $userPwd . $salt);
 
-        if(password_verify($userPwd, $this::GetHashPassword($userEmail))){
+        if(password_verify($userPwd, $this::GetHashPassword($loginValue))){
 
         $query = <<<EX
             SELECT `{$this->fieldId}`, `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldName}`,`{$this->fieldSurname}`, `{$this->fieldBio}`, `{$this->fieldAvatar}`, `{$this->fieldCountry}`, `{$this->fieldStatus}`, `{$this->fieldRole}`
@@ -191,15 +191,17 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return string hash password
      */
-    public function GetHashPassword(string $userEmail) : string {
+    public function GetHashPassword(string $loginValue) : string {
         $query = <<<EX
             SELECT `{$this->fieldPassword}` 
             FROM `{$this->tableName}` 
-            WHERE EMAIL = :userEmail;
+            WHERE EMAIL = :userEmail 
+            OR NICKNAME = :userNickname;
         EX;
         try{
         $req = $this::getDb()->prepare($query);
-        $req->bindParam(':userEmail', $userEmail, PDO::PARAM_STR);
+        $req->bindParam(':userEmail', $loginValue, PDO::PARAM_STR);
+        $req->bindParam(':userNickname', $loginValue, PDO::PARAM_STR);
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
         }catch(PDOException $e){       

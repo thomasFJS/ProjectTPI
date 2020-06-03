@@ -22,7 +22,7 @@ class FSessionManager {
      * 
      * @return bool true if the user is set, else false;
      */
-    public static function SetUserLogged(TUser $user) : bool{
+    public static function SetUserLogged(FUser $user) : bool{
         if($user !== null)
         {
             $_SESSION['userLogged'] = $user;
@@ -37,7 +37,7 @@ class FSessionManager {
      * 
      * @return TUser $_SESSION['userLogged] the user 
      */
-    public static function GetUserLogged() : ?TUser{
+    public static function GetUserLogged() : ?FUser{
         return $_SESSION['userLogged'];
     }
     /**

@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItinera
 //=========================================
 
 //Check GetAll function
-$allItinerary = FItinerary::GetInstance()->GetAll();
+$allItinerary = FItineraryManager::GetInstance()->GetAll();
 if($allItinerary != FALSE){
     echo "GetAll  :   Work !";
     var_dump($allItinerary);
