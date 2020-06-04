@@ -2,7 +2,7 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  getItineraries.
+*     Page                :  getAllItineraries.
 *     Brief               :  Api to get all itineraries store in database.
 *     Date                :  02.06.2020.
 */

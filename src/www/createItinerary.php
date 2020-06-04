@@ -10,11 +10,15 @@
 /*Requirements  */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FCodeManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSessionManager.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/view/FHomeView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+//If user isn't logged in
+if(FSessionManager::getUserLogged() == null){
+    header("Location: index.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -61,7 +65,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="card">
                 <div class="card-header">Create your itinerary</div>
                 <div class="card-body">
-                    <form name="login">
+                    <form enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
@@ -96,9 +100,17 @@ if (session_status() == PHP_SESSION_NONE) {
                         </div>
                         <div class="form-group">
                         <div class="md-form md-outline">
-                            <label for="duration">Duration :</label>
+                            <label for="duration">Duration (Hours:Minutes):</label>
                             <input type="time" id="duration" class="form-control" placeholder="Select time">                    
                         </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="distance">Distance (KM) :</label>
+                                    <input class="form-control" id="distance" type="number" value="100" data-decimals="1" min="1" max="999" step="0.1"/> 
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -109,8 +121,12 @@ if (session_status() == PHP_SESSION_NONE) {
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="itineraryImages">Images :</label>
+                            <input type="file" class="form-control-file" name="itineraryImages" id="itineraryImages" multiple>
+                        </div>
+                        <div class="form-group">
                             <label for="">&nbsp;</label>
-                            <button type="submit"  id="placeItinerary" class="form-control btn btn-outline-primary"  name="placeItinerary" >Continue</button>
+                            <button type="submit"  id="createItinerary" class="form-control btn btn-outline-primary"  name="createItinerary" >Continue</button>
                             <button type="submit" id="cancel"class="form-control btn btn-outline-danger">Cancel</button>                           
                         </div>
                     </div>

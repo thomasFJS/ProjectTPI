@@ -1,0 +1,3 @@
+<?php
+DEFINE('ITINERARY_STATUS_DEFAULT', 2);
+?>

@@ -5,7 +5,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\createItinerary.php">CREATE ITINERARY</a>
           </li>
-          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\myItinerary.php">MY ITINERARY</a>
+          <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\myItineraries.php">MY ITINERARY</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href=".\profil.php">PROFILE</a>
           </li>

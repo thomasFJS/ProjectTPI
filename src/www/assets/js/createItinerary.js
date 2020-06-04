@@ -1,9 +1,10 @@
 $(document).ready(() => {
     InitMap();
     $('.errormsg').hide();
-    $('#placeItinerary').click(CheckItinerary);   
+    $('#createItinerary').click(CheckItinerary);   
 });
-
+/* @var array Array with all waypoints's info */
+var waypoints = [];
 /**
  * @brief Check if field are good
  * 
@@ -15,9 +16,32 @@ function CheckItinerary(event) {
     }
     // init
     let title = $("#title").val();
-    let country = $("#startCountry option:selected").text();
+    let country = $("#startCountry option:selected").attr("id");
     let description = $("#description").val();
     let duration = $("#duration").val();
+    let distance = $("#distance").val();
+    let itineraryImages = $("#itineraryImages").prop('files').length > 0 ? $('#itineraryImages').prop('files')[0] : null;
+    
+    let fWaypointsArray = [];
+    //Array with fWaypoint format 
+    for(let i = 0; i<=waypoints.length-1;i++){
+      fWaypointsArray.push({
+        "Index" : i+1, 
+        "Address" : waypoints[i].street + ", "+ waypoints[i].adminArea5 + ", " + waypoints[i].adminArea3 + " " + waypoints[i].postalCode + " " + waypoints[i].adminArea1, 
+        "Longitude" : waypoints[i].latLng.lng,
+        "Latitude" : waypoints[i].latLng.lat
+      });
+    }
+    //Create data to send
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("country", country);
+    formData.append("description", description);
+    formData.append("duration", duration);
+    formData.append("distance", distance);
+    formData.append("media[]", itineraryImages);
+    formData.append("waypoints", JSON.stringify(fWaypointsArray));
+    
 
     if (title.length == 0) {
         $("#title").css("border-color", "red");
@@ -42,11 +66,68 @@ function CheckItinerary(event) {
     } else {
         $("#duration").css("border-color", "");
     }
-    InitMap();
+
+    if(distance.length == 0){
+      $("#distance").css("border-color", "red");
+      $("#distance").focus();
+      return;
+    } else{
+      $("#distance").css("border-color", "");
+    }
+
+    if(waypoints.length < 2){
+      $("#mapItinerary").css("border-color", "red");
+      alert("Veuillez placer votre itinéraire");
+      return;
+    } else{
+      $("#mapItinerary").css("border-color", "");
+    }
+    
+    $.ajax({
+      method: 'POST',
+      url: './app/api/createItinerary.php',
+      data: formData,
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+
+      success: function(data){
+          switch(data.ReturnCode){
+              case 0 :
+                  window.location = "./myItineraries.php";
+                  break;
+              case 1 :
+                  $('#errorParam').show().delay(3000).fadeOut(1000);                   
+                  break;
+              case 2: 
+                  $('#errorLogin').show().delay(3000).fadeOut(1000);
+              break;
+              case 3:
+                  $('#errorActivation').show().delay(3000).fadeOut(1000);
+                  break;
+              default:
+                  alert("-");
+                  break;
+          }
+      },
+
+      error: function (jqXHR){
+          error = "Error :";
+          switch(jqXHR.status){
+              case 200: 
+                  error = error + jqXHR.status + "invalid json";
+              break;
+              case 404:
+                  error = error + jqXHR.status + "Can't find login.php";
+              break;
+          }
+          alert(error);
+      }
+  });
 }
 function InitMap(){
     L.mapquest.key = 'xTHtqDgrfGDrRKxzBKyFtDdkqRS4Uu8V';
-    var waypoints = [];
+    
     var map = L.mapquest.map('mapItinerary', {
         center: [46.165320, 6.072530],
         layers: L.mapquest.tileLayer('map'),
@@ -68,6 +149,7 @@ function InitMap(){
         }
       }).addTo(map);
 
+      //When marker moove
       map.on('moveend', function(event) {
         let marker = event.target;
         for (let prop in marker._layers) {
@@ -88,10 +170,4 @@ function InitMap(){
         }
       });
     
-}
-function eventRaised(event)
-{
-    var lat = event.ll.getLatitude();
-    var lng = event.ll.getLongitude();
-    alert(lat+' '+lng);
 }

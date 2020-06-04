@@ -10,7 +10,7 @@
 /**
  * Represents home page view.
  */
-class FHomeView{
+class FItineraryView{
     /**
      * @brief Class constructor
      */

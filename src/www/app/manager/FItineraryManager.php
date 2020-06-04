@@ -14,6 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FItinerary
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FWaypointsManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FCommentManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FPhotoManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/constants/constants.php';
 /**
  * Itinerary's manager
  */
@@ -74,6 +75,34 @@ class FItineraryManager extends FDatabaseManager{
         }
         return count($result) > 0 ? $result : FALSE;
     }
+        /**
+     * @brief Get a FItinerary object for the itinerary with the id
+     * 
+     * @param int Itinerary's id
+     * 
+     * @return FItinerary Object FItinerary 
+     */
+    public function GetById(int $idItinerary){
+        $query = <<<EX
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`
+            FROM `{$this->tableName}`
+            WHERE `{$this->fieldId}` = :idItinerary
+        EX;
+        $itinerary = "";
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->execute();
+            
+            while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
+                $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
+                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]));               
+            }
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        return $itinerary != "" ? $itinerary : FALSE;
+    }
     /**
      * @brief Create new itinerary
      * 
@@ -86,21 +115,34 @@ class FItineraryManager extends FDatabaseManager{
      * @param array $photos Array<FPhoto> array with all itinerary's photos
      * @param int $idUser owner's id
      */
-    public function Create($title, $description, $duration, $distance, $country,$waypoints, $photos, $idUser){
+    public function Create($title, $description, $duration, $distance, $country,$waypoints, $idUser, $photos = []){
         $query = <<<EX
-            INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`,`{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
-            VALUES(:title, :rating, :description, :duration, :distance, :country, :status, :idUser)
+            INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`, `{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
+            VALUES(:title, :description, :duration, :distance, :country, :status, :idUser)
         EX;
 
         try{
-            $this::beginTransaction();
+            //Set itinerary's default status
+            $status = ITINERARY_STATUS_DEFAULT;
+
+            $this::getDb()->beginTransaction();
             $req = $this::getDb()->prepare($query);
+            $req->bindParam(':title', $title, PDO::PARAM_STR);
+            $req->bindParam(':description', $description, PDO::PARAM_STR);
+            $req->bindParam(':duration', $duration, PDO::PARAM_STR);
+            $req->bindParam(':distance', $distance, PDO::PARAM_STR);
+            $req->bindParam(':country', $country, PDO::PARAM_STR);
+            $req->bindParam(':status', $status, PDO::PARAM_STR);
+            $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             $req->execute();
-            FWaypointManager::GetInstance()->Create($waypoints, $this::lastInsertId());
-            FPhotoManager::GetInstance()->Create($photos, $this::lastInsertId());
-            $this::commit();
+            if(!empty($photos)){
+                FPhotoManager::GetInstance()->Create($photos, $this::getDb()->lastInsertId());
+            }
+            FWaypointManager::GetInstance()->Create($waypoints, $this::getDb()->lastInsertId());
+            
+            $this::getDb()->commit();
         }catch(PDOException $e){
-            $this::rollBack();
+            $this::getDb()->rollBack();
             return FALSE;
         }
         return TRUE;

@@ -14,7 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 //If user isn't logged in
-if(TSessionController::getUserLogged() == null){
+if(FSessionManager::getUserLogged() == null){
     header("Location: index.php");
     exit();
 }
