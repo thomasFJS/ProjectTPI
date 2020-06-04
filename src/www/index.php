@@ -88,7 +88,7 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 </section>
 <!-- Portfolio Modal-->
-<?php echo FItineraryView::DisplayModalItineraries(FItineraryManager::GetInstance()->GetAll());?>
+<?php //echo FItineraryView::DisplayModalItineraries(FItineraryManager::GetInstance()->GetAll());?>
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
         <!-- About Section Heading-->

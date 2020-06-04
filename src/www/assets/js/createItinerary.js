@@ -1,16 +1,19 @@
 $(document).ready(() => {
     InitMap();
     $('.errormsg').hide();
-    $('#createItinerary').click(CheckItinerary);   
+    $('#createItinerary').click(CreateItinerary);   
+    $('#cancel').click(Cancel);   
 });
 /* @var array Array with all waypoints's info */
 var waypoints = [];
 /**
- * @brief Check if field are good
+ * @brief Create an itinerary on form submit
  * 
  * @param {*} event 
+ * 
+ * @return void
  */
-function CheckItinerary(event) {
+function CreateItinerary(event) {
     if (event) {
         event.preventDefault();
     }
@@ -97,13 +100,13 @@ function CheckItinerary(event) {
                   window.location = "./myItineraries.php";
                   break;
               case 1 :
-                  $('#errorParam').show().delay(3000).fadeOut(1000);                   
+                  $('#errorTitle').show().delay(3000).fadeOut(1000);                   
                   break;
               case 2: 
-                  $('#errorLogin').show().delay(3000).fadeOut(1000);
+                  $('#errorCreate').show().delay(3000).fadeOut(1000);
               break;
               case 3:
-                  $('#errorActivation').show().delay(3000).fadeOut(1000);
+                  $('#errorDistance').show().delay(3000).fadeOut(1000);
                   break;
               default:
                   alert("-");
@@ -125,6 +128,11 @@ function CheckItinerary(event) {
       }
   });
 }
+/**
+ * @brief Init the map where the user can place his itinerary
+ * 
+ * @return void
+ */
 function InitMap(){
     L.mapquest.key = 'xTHtqDgrfGDrRKxzBKyFtDdkqRS4Uu8V';
     
@@ -170,4 +178,17 @@ function InitMap(){
         }
       });
     
+}
+/**
+ * @brief Cancel the form 
+ * 
+ * @param {*} event 
+ * 
+ * @return void
+ */
+function Cancel(event){
+  if (event) {
+    event.preventDefault();
+  }
+  window.location = "./index.php";
 }

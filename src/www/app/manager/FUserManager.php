@@ -312,5 +312,18 @@ class FUserManager extends FDatabaseManager{
         }
         
     }
+    /**
+     * @brief Update user's infos
+     * 
+     * @param int $IdUser user's id
+     * @param string $nickname user's nickname
+     * @param string $name user's name
+     * @param string $surname user's surname
+     * @param string $description user's description
+     * @param string $country user's residence country code
+     */
+    public function UpdateInfos($idUser, $nickname, $name, $surname, $description, $country, $avatar){
+
+    }
 }
 ?>

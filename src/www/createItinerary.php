@@ -58,7 +58,7 @@ if(FSessionManager::getUserLogged() == null){
     }
     
 ?>
-<section class="page-section mb-0" id="formLogin">
+<section class="page-section mb-0" id="createItinerary">
     <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
@@ -109,6 +109,7 @@ if(FSessionManager::getUserLogged() == null){
                                 <div class="col">
                                     <label for="distance">Distance (KM) :</label>
                                     <input class="form-control" id="distance" type="number" value="100" data-decimals="1" min="1" max="999" step="0.1"/> 
+                                    <p id="errorDistance" class="errormsg">Distance not valid</p>
                                 </div>
                             </div>
                         </div>
@@ -117,6 +118,7 @@ if(FSessionManager::getUserLogged() == null){
                                 <div class="col">
                                     <label for="mapItinerary">Place your itinerary :</label>
                                     <div id="mapItinerary" class="img-fluid rounderd mb-5" style="width: 100%; height: 630px;"></div>
+                                        
                                 </div>
                             </div>
                         </div>
@@ -126,8 +128,9 @@ if(FSessionManager::getUserLogged() == null){
                         </div>
                         <div class="form-group">
                             <label for="">&nbsp;</label>
-                            <button type="submit"  id="createItinerary" class="form-control btn btn-outline-primary"  name="createItinerary" >Continue</button>
-                            <button type="submit" id="cancel"class="form-control btn btn-outline-danger">Cancel</button>                           
+                            <button type="submit"  id="createItinerary" class="form-control btn btn-outline-primary"  name="createItinerary" >Create</button>
+                            <button type="button" id="cancel"class="form-control btn btn-outline-danger">Cancel</button>                           
+                            <p id="errorCreate" class="errormsg">Itinerary creation fail</p>
                         </div>
                     </div>
                 </form>
@@ -138,6 +141,7 @@ if(FSessionManager::getUserLogged() == null){
 </div>
     </div>
     </section>
+
     <footer class="footer text-center">
     <div class="container">
         <div class="row">
@@ -167,6 +171,7 @@ Chemin Gérard-De-Ternier 10
 <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
 <div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
 <!-- Bootstrap core JS-->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <!-- Third party plugin JS-->

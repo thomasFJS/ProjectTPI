@@ -91,6 +91,7 @@ class FItineraryManager extends FDatabaseManager{
         $itinerary = "";
         try{
             $req = $this::getDb()->prepare($query);
+            $req->bindParam(":idItinerary", $idItinerary, PDO::PARAM_INT);
             $req->execute();
             
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
