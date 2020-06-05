@@ -83,12 +83,10 @@ if (session_status() == PHP_SESSION_NONE) {
         <!-- Portfolio Grid Items-->
         <div class="row justify-content-center">
             <!-- Portfolio Items-->
-            <?php echo FItineraryView::DisplayItineraries(FItineraryManager::GetInstance()->GetAll());?>
+            <?php echo FItineraryView::DisplayItineraries(FItineraryManager::GetInstance()->GetAllByUserId(FSessionManager::getUserLogged()->Id));?>
         </div>
     </div>
 </section>
-<!-- Portfolio Modal-->
-<?php echo FItineraryView::DisplayModalItineraries(FItineraryManager::GetInstance()->GetAll());?>
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
         <!-- About Section Heading-->

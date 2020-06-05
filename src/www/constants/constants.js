@@ -1,0 +1,23 @@
+//Return code
+
+//Register
+const REGISTER_DONE = 0;
+const REGISTER_FAIL = 1;
+const REGISTER_DIFFERENT_PASSWORD = 2;
+const REGISTER_PASSWORD_DONT_MATCH_REQUIREMENTS = 3;
+//Login
+const LOGIN_DONE = 10;
+const LOGIN_ACCOUNT_NOT_ACTIVATE = 11;
+const LOGIN_FAIL = 12;
+//Update Info
+const INFOS_UPDATED = 30;
+const INFOS_UPDATED_FAIL = 31;
+//Create itinerary
+const ITINERARY_CREATE = 40;
+const ITINERARY_CREATE_FAIL = 41;
+const ITINERARY_DISTANCE_NOT_VALID = 42;
+
+
+//Error
+const INVALID_JSON = 200;
+const FILE_NOT_FOUND = 404;

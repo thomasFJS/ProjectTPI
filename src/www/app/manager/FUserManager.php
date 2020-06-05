@@ -11,6 +11,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FMailerManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/constants/constants.php';
 
 /**
  * User's manager
@@ -154,8 +155,8 @@ class FUserManager extends FDatabaseManager{
      */
     public function Register(string $userEmail, string $userNickname, string $userPwd) : bool {
         $query = <<<EX
-            INSERT INTO `{$this->tableName}`(`{$this->fieldNickname}`, `{$this->fieldEmail}`, `{$this->fieldPassword}`, `{$this->fieldStatus}`, `{$this->fieldRole}`, `{$this->fieldToken}`)
-            VALUES(:userNickname, :userEmail, :userPassword, :userStatus, :userRole, :token)
+            INSERT INTO `{$this->tableName}`(`{$this->fieldNickname}`, `{$this->fieldEmail}`, `{$this->fieldPassword}`, `{$this->fieldAvatar}`, `{$this->fieldStatus}`, `{$this->fieldRole}`, `{$this->fieldToken}`)
+            VALUES(:userNickname, :userEmail, :userPassword, :userAvatar, :userStatus, :userRole, :token)
         EX;
 
         $userPwd = password_hash($userPwd, PASSWORD_DEFAULT);
@@ -166,17 +167,20 @@ class FUserManager extends FDatabaseManager{
         //role 1 = user
         $userRole = 1;
 
+        $defaultAvatar = DEFAULT_USER_LOGO;
+
         try {
             $req = $this::getDb()->prepare($query);
             $req->bindParam(':userNickname', $userNickname, PDO::PARAM_STR);
             $req->bindParam(':userEmail', $userEmail, PDO::PARAM_STR);            
             $req->bindParam(':userPassword', $userPwd, PDO::PARAM_STR);
+            $req->bindParam(':userAvatar', $defaultAvatar, PDO::PARAM_STR);
             $req->bindParam(':userStatus', $userStatus, PDO::PARAM_INT);
             $req->bindParam(':userRole', $userRole, PDO::PARAM_INT);
             $req->bindParam(':token', $token, \PDO::PARAM_STR);
             $req->execute();
 
-            FMailerManager::sendMail("Account Activation", array($userEmail), FMailerManager::getActivationMail($token));
+            FMailerManager::sendMail("Account Activation", array($userEmail), FMailerManager::getActivationMail($token,$userEmail));
             
         } catch(PDOException $e){     
             return FALSE;
@@ -319,11 +323,34 @@ class FUserManager extends FDatabaseManager{
      * @param string $nickname user's nickname
      * @param string $name user's name
      * @param string $surname user's surname
-     * @param string $description user's description
+     * @param string $bio user's bio
      * @param string $country user's residence country code
      */
-    public function UpdateInfos($idUser, $nickname, $name, $surname, $description, $country, $avatar){
+    public function UpdateInfos($idUser, $nickname, $name, $surname, $bio, $country, $avatar){
+        $query = <<<EX
+            UPDATE `{$this->tableName}`
+            SET `{$this->fieldNickname}` = :nickname, `{$this->fieldName}` = :name, `{$this->fieldSurname}` = :surname, `{$this->fieldBio}` = :bio, `{$this->fieldCountry}` = :country, `{$this->fieldAvatar}` = :avatar
+            WHERE `{$this->fieldId}` = :idUser
+        EX;
 
+        try{
+            if(empty($avatar)){
+                $avatar = DEFAULT_USER_LOGO;
+            }
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $req->bindParam(':name', $name, PDO::PARAM_STR);
+            $req->bindParam(':surname', $surname, PDO::PARAM_STR);
+            $req->bindParam(':bio', $bio, PDO::PARAM_STR);
+            $req->bindParam(':country', $country, PDO::PARAM_STR);
+            $req->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+            $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $req->execute();          
+        } catch(PDOException $e){
+            return FALSE;
+        }
+        return TRUE;
     }
+
 }
 ?>

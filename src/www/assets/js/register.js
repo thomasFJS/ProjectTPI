@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    $('.errormsg').hide();
     $('#registerUser').click(register);
 });
 
@@ -67,17 +68,17 @@ function register(event) {
 
         success: function(data){
             switch(data.ReturnCode){
-                case 0 :
+                case REGISTER_DONE :
                     window.location = "./login.php";
                     break;
-                case 1 :
+                case REGISTER_FAIL :
                     $('#errorParam').show().delay(3000).fadeOut(1000);                   
                     break;
-                case 2: 
-                    $('#errorLogin').show().delay(3000).fadeOut(1000);
-                break;
-                case 3:
-                    $('#errorActivation').show().delay(3000).fadeOut(1000);
+                case REGISTER_DIFFERENT_PASSWORD:
+                    $('#errorDifferentPassword').show().delay(3000).fadeOut(1000);
+                    break;
+                case REGISTER_PASSWORD_DONT_MATCH_REQUIREMENTS:
+                    $('#errorPasswordMatch').show().delay(3000).fadeOut(1000);
                     break;
                 default:
                     alert("-");
@@ -88,11 +89,11 @@ function register(event) {
         error: function (jqXHR){
             error = "Error :";
             switch(jqXHR.status){
-                case 200: 
+                case INVALID_JSON: 
                     error = error + jqXHR.status + "invalid json";
                 break;
-                case 404:
-                    error = error + jqXHR.status + "Can't find login.php";
+                case FILE_NOT_FOUND:
+                    error = error + jqXHR.status + "Can't find register.php";
                 break;
             }
             alert(error);

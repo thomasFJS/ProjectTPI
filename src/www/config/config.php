@@ -8,6 +8,6 @@ DEFINE('DB_PASS', "Super2012");
 define('EMAIL_SERVER', "smtp.gmail.com");
 define('EMAIL_PORT', 465);
 define('EMAIL_TRANS', "ssl");
-define('EMAIL_USERNAME', "thomasfujise13@gmail.com");
-define('EMAIL_PASSWORD', "mermailmegalo");
+define('EMAIL_USERNAME', "travler.infos@gmail.com");
+define('EMAIL_PASSWORD', "Super2012");
 ?>

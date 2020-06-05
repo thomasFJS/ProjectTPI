@@ -70,7 +70,7 @@ $userLogged = FSessionManager::getUserLogged();
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="Nickname">Nickname :</label>                                       
+                                    <label for="nickname">Nickname :</label>                                       
                                         <input type="text" class="form-control" id="nickname" placeholder="Nickname" name="nickname" value="<?= $userLogged->Nickname?>" required>
                                         <p id="errorNickname" class="errormsg">Nickname already exist</p>
                                     </div>
@@ -80,27 +80,27 @@ $userLogged = FSessionManager::getUserLogged();
                                 <div class="row">
                                     <div class="col">
                                         <label for="name">Name :</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?= $userLogged->Name?>" required>                                  
+                                        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?= $userLogged->Name?>">                                  
                                     </div>
                                     <div class="col">
                                         <label for="surname">Surname :</label>
-                                        <input type="text" class="form-control" id="surname" placeholder="Surame" name="surname" value="<?= $userLogged->Surname?>" required>                                  
+                                        <input type="text" class="form-control" id="surname" placeholder="Surame" name="surname" value="<?= $userLogged->Surname?>">                                  
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
-                                    <label for="description">Description :</label>                                       
-                                    <textarea class="form-control" id="description" rows="3"></textarea>
+                                    <label for="userBio">Bio :</label>                                       
+                                    <textarea class="form-control" id="userBio" rows="3" value="<?= $userLogged->Bio?>"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="startCountry">Country :</label>
-                                    <select name="startcountry" id="startCountry" size="1" class="custom-select">
+                                    <label for="userCountry">Country :</label>
+                                    <select name="userCountry" id="userCountry" size="1" class="custom-select">
                                     <?php 
                                         $countryManager = new FCodeManager();
                                         foreach ($countryManager::GetInstance()->getAllCountry() as $country) {
@@ -117,17 +117,25 @@ $userLogged = FSessionManager::getUserLogged();
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="itineraryImages">Avatar :</label>
-                            <input type="file" class="form-control-file" name="itineraryImages" id="itineraryImages" multiple>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="avatar">Avatar :</label>
+                                    <img src="<?=$userLogged->Avatar?>" alt="Your avatar" width="50px" height="50px" />
+                                    
+                                    <input type="file" class="form-control-file" name="avatar" id="avatar">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <div class="row">                             
+                            <div class="row">
+                            <p id="errorUpdate" class="errormsg">Update fail, Please try again</p>                        
                                 <div class="col">
-                                    <button type="submit" id="cancel"class="form-control btn btn-outline-danger" >Cancel</button>     
+                                    <button type="button" id="cancel" class="form-control btn btn-outline-danger" >Cancel</button>     
                                 </div>
                                 <div class="col">
                                     <button type="submit"  id="save" class="form-control btn btn-outline-primary" name="formProfil">Save infos</button>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -174,7 +182,9 @@ Chemin Gérard-De-Ternier 10
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="./assets/js/script.js"></script>
+<!-- Include constants-->
+<script src="./constants/constants.js"></script>
 <!-- Display maps on itineraries card with mapquest-->
-<script src="./assets/js/home.js"></script>
+<script src="./assets/js/profil.js"></script>
 </body>
 </html>

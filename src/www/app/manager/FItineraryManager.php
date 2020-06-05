@@ -55,7 +55,7 @@ class FItineraryManager extends FDatabaseManager{
         $result = array();
 
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
             FROM `{$this->tableName}`
             ORDER BY `{$this->fieldRating}`
         EX;
@@ -67,7 +67,7 @@ class FItineraryManager extends FDatabaseManager{
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
                 $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
-                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]));
+                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
                 array_push($result, $itinerary);
             }
         }catch(PDOException $e){
@@ -75,7 +75,37 @@ class FItineraryManager extends FDatabaseManager{
         }
         return count($result) > 0 ? $result : FALSE;
     }
-        /**
+    /**
+     * @brief Get all itinerary from an user
+     * 
+     * @return array Array of FItinerary with all itinerary
+     */
+    public function GetAllByUserId(int $idUser){
+        $result = array();
+
+        $query = <<<EX
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}` 
+            FROM `{$this->tableName}`
+            WHERE `{$this->fieldUser}` = :idUser
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(":idUser", $idUser, PDO::PARAM_INT);
+            $req->execute();
+
+            while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
+                $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
+                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
+                array_push($result, $itinerary);
+            }
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        return count($result) > 0 ? $result : FALSE;
+    }
+    /**
      * @brief Get a FItinerary object for the itinerary with the id
      * 
      * @param int Itinerary's id
@@ -84,7 +114,7 @@ class FItineraryManager extends FDatabaseManager{
      */
     public function GetById(int $idItinerary){
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
             FROM `{$this->tableName}`
             WHERE `{$this->fieldId}` = :idItinerary
         EX;
@@ -97,7 +127,7 @@ class FItineraryManager extends FDatabaseManager{
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
                 $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
-                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]));               
+                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);               
             }
         }catch(PDOException $e){
             return FALSE;
@@ -147,6 +177,77 @@ class FItineraryManager extends FDatabaseManager{
             return FALSE;
         }
         return TRUE;
+    }
+    /**
+     * @brief Update itinerary's details
+     * 
+     * @param int $IdUser owner's id
+     * @param int $idItinerary itinerary's id
+     * @param string $title itinerary's title
+     * @param string $country itinerary's country
+     * @param string $description itinerary's description
+     * @param string $duration itinerary's duration
+     * @param string $distance itinerary's distance
+     * @param array $waypoints Array<FWaypoint> array with all itinerary's waypoints
+     * @param array $photos Array<FPhoto> array with all itinerary's photos
+     */
+    public function Update($idUser,$idItinerary, $title, $description, $duration, $distance, $country,$waypoints, $photos = []){
+        $query = <<<EX
+            UPDATE `{$this->tableName}`
+            SET `{$this->fieldTitle}` = :title, `{$this->fieldDescription}` = :description, `{$this->fieldDuration}` = :duration, `{$this->fieldDistance}` = :distance, `{$this->fieldCountry}` = :country
+            WHERE `{$this->fieldId}` = :idItinerary 
+            AND `{$this->fieldUser}` = :idUser
+        EX;
+
+        try{
+            $this::getDb()->beginTransaction();
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':title', $title, PDO::PARAM_STR);
+            $req->bindParam(':description', $name, PDO::PARAM_STR);
+            $req->bindParam(':distance', $surname, PDO::PARAM_STR);
+            $req->bindParam(':duration', $bio, PDO::PARAM_STR);
+            $req->bindParam(':country', $country, PDO::PARAM_STR);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $req->execute(); 
+            if(!empty($photos)){
+                FPhotoManager::GetInstance()->Create($photos, $idItinerary);
+            }
+            $this::getDb()->commit();         
+        } catch(PDOException $e){
+            $this::getDb()->rollBack();
+            return FALSE;
+        }
+        return TRUE;
+    }
+    /**
+     * @brief Get the itinerary by his title (title is unique)
+     * 
+     * @param string $title title of the itinerary
+     * 
+     * @return FItinerary The itinerary
+     */
+    public function GetByTitle($title){
+        $query = <<<EX
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
+            FROM `{$this->tableName}`
+            WHERE `{$this->fieldtitle}` = :title
+        EX;
+        $itinerary = "";
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(":title", $title, PDO::PARAM_STR);
+            $req->execute();
+            
+            while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
+                $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
+                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);               
+            }
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        return $itinerary != "" ? $itinerary : FALSE;
     }
 }
 ?>

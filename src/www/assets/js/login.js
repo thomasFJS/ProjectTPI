@@ -41,18 +41,15 @@ function login(event) {
 
         success: function(data){
             switch(data.ReturnCode){
-                case 0 :
+                case LOGIN_DONE :
                     window.location = "./index.php";
                     break;
-                case 1 :
-                    $('#errorParam').show().delay(3000).fadeOut(1000);                   
+                case LOGIN_ACCOUNT_NOT_ACTIVATE :
+                    $('#errorActivation').show().delay(3000).fadeOut(1000);                   
                     break;
-                case 2: 
+                case LOGIN_FAIL : 
                     $('#errorLogin').show().delay(3000).fadeOut(1000);
                 break;
-                case 3:
-                    $('#errorActivation').show().delay(3000).fadeOut(1000);
-                    break;
                 default:
                     alert("-");
                     break;
@@ -62,10 +59,10 @@ function login(event) {
         error: function (jqXHR){
             error = "Error :";
             switch(jqXHR.status){
-                case 200: 
+                case INVALID_JSON: 
                     error = error + jqXHR.status + "invalid json";
                 break;
-                case 404:
+                case FILE_NOT_FOUND:
                     error = error + jqXHR.status + "Can't find login.php";
                 break;
             }

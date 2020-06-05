@@ -9,6 +9,8 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FCodeManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSessionManager.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -32,9 +34,10 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 <body>
 <?php
-    //Affiche une navbar selon si on est log ou non.
-    if (isset($_SESSION['isLogged'])) {
-        if (isAllowed("administrateur")) {
+    
+    //Show the good navbar depends if logged and if user is admin
+    if (FUserManager::getInstance()->isLogged()) {
+        if (FUserManager::getInstance()->isAllowed(FSessionManager::getUserLogged())) {
             include "./inc/navbar/navbarAdmin.php";
         }
         else {
@@ -43,7 +46,9 @@ if (session_status() == PHP_SESSION_NONE) {
     } 
     else {
         include "./inc/navbar/navbarNotLogged.php";
-    }?>
+    }
+    
+?>
   <section class="page-section mb-0" id="formRegister">
     <div class="container">
     <div class="row justify-content-center mt-4">
@@ -56,12 +61,8 @@ if (session_status() == PHP_SESSION_NONE) {
                             <div class="row">
                                 <div class="col">
                                     <label for="nickname">Nickname :</label>
-                                    <?php if (isset($erreur["nickname"])): ?>
-                                        <input type="text" class="form-control is-invalid" id="nicknameUser" placeholder="Error nickname" name="nicknameUser" required>
-                                        <div class="invalid-feedback">Please enter a valid nickname</div>
-                                    <?php else: ?>
-                                        <input type="text" class="form-control" id="nicknameUser" placeholder="Nickname" name="nicknameUser" required value="<?php if(isset($nicknameUser)){echo $nicknameUser;}?>">
-                                    <?php endif; ?>
+                                    <input type="text" class="form-control" id="nicknameUser" placeholder="Nickname" name="nicknameUser" required>
+                                    <p id="errorNickname" class="errormsg">This nickname has been already registered</p>
                                 </div>
                             </div>                       
                         </div>
@@ -69,12 +70,8 @@ if (session_status() == PHP_SESSION_NONE) {
                             <div class="row">
                                 <div class="col">
                                     <label for="emailUser">Email :</label>
-                                    <?php if (isset($erreur["email"])): ?>
-                                        <input type="email" class="form-control is-invalid" id="emailUser" placeholder="Email" name="emailUser" required>
-                                        <div class="invalid-feedback"><?= $erreur["email"] ?></div>
-                                    <?php else: ?>
-                                        <input type="email" class="form-control" id="emailUser" placeholder="Email" name="emailUser" required value="<?php if(isset($emailUser)){echo $emailUser;}?>">
-                                    <?php endif; ?>
+                                    <input type="email" class="form-control" id="emailUser" placeholder="Email" name="emailUser" required>
+                                    <p id="errorEmail" class="errormsg">This email has been already registered</p>
                                 </div>
                             </div>
                         </div>
@@ -82,24 +79,16 @@ if (session_status() == PHP_SESSION_NONE) {
                             <div class="row">
                                 <div class="col">
                                     <label for="password">Password :</label>
-                                    <?php if (isset($erreur["password"])): ?>
-                                        <input type="password" class="form-control is-invalid" id="password" placeholder="******" name="password" required>
-                                        <div class="invalid-feedback"><?=  $erreur["password"] ?></div>
-                                    <?php else: ?>
-                                        <input type="password" class="form-control" id="password" placeholder="******" name="password" required>
-                                    <?php endif; ?>
+                                    <input type="password" class="form-control" id="password" placeholder="******" name="password" required>
                                 </div>
                                 <div class="col">
                                     <label for="verifyPassword">Confirm Password :</label>
-                                    <?php if (isset($erreur["password"])): ?>
-                                        <input type="password" class="form-control is-invalid" id="verifyPassword" placeholder="******" name="verifyPassword" required>
-                                        <div class="invalid-feedback"><?=  $erreur["password"] ?></div>
-                                    <?php else: ?>
-                                        <input type="password" class="form-control" id="verifyPassword" placeholder="******" name="verifyPassword" required>
-                                    <?php endif; ?>
+                                    <input type="password" class="form-control" id="verifyPassword" placeholder="******" name="verifyPassword" required>
                                 </div>
                             </div>
-
+                            <p id="errorParam" class="errormsg">Register fail, please try again</p>
+                            <p id="errorDifferentPassword" class="errormsg">Both password don't match</p>
+                            <p id="errorPasswordMatch" class="errormsg">Your password don't match the requirements</p>
                         </div>
   
                         <div class="form-group">
@@ -151,6 +140,8 @@ Chemin Gérard-De-Ternier 10
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="./assets/js/script.js"></script>
+<!-- Include constants-->
+<script src="./constants/constants.js"></script>
 <!-- Ajax call to send forms field -->
 <script src="./assets/js/register.js"></script>
 </body>

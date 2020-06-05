@@ -58,7 +58,7 @@ if(FSessionManager::getUserLogged() == null){
     }
     
 ?>
-<section class="page-section mb-0" id="createItinerary">
+<section class="page-section mb-0">
     <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
@@ -178,6 +178,8 @@ Chemin Gérard-De-Ternier 10
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="./assets/js/script.js"></script>
+<!-- Include constants-->
+<script src="./constants/constants.js"></script>
 <!-- Display maps on itineraries card with mapquest-->
 <script src="./assets/js/createItinerary.js"></script>
 </body>

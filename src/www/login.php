@@ -50,11 +50,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
             <div class="card">
-                <?php if (isset($erreur["login"])): ?>
-                    <div class="card-header bg-danger text-light">Wrong email or password</div>
-                <?php else: ?>
-                    <div class="card-header">Login</div>
-                <?php endif; ?>
+                <div class="card-header">Login</div>
                 <div class="card-body">
                     <form name="login">
                         <div class="form-group">
@@ -121,6 +117,8 @@ Chemin Gérard-De-Ternier 10
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="./assets/js/script.js"></script>
+<!-- Include constants-->
+<script src="./constants/constants.js"></script>
 <!-- Ajax call to send forms field -->
 <script src="./assets/js/login.js"></script>
 </body>

@@ -22,25 +22,45 @@ class FItineraryView{
      * 
      * @return string code html to display 
      */
-    public static function DisplayItineraries(array $itineraries) : string{
+    public static function DisplayItineraries($itineraries) : string{
         $result = '';
-        for($i = 0;$i<count($itineraries);$i++){
+        if($itineraries == FALSE)
+        {
             $result .= <<<EX
-            <div class="col-md-6 col-lg-4 mb-5">
-            <div class="portfolio-item mx-auto card" data-toggle="modal" data-target="#portfolioModal{$itineraries[$i]->Id}">
-                <div id="map{$itineraries[$i]->Id}" class="card-img-top" style="width: 100%; height: 200px;"></div>
-                <div class="card-body">                       
-                    <h5 class="card-title">{$itineraries[$i]->Title}</h5>
-                    <p class="card-text">{$itineraries[$i]->Description}</p>
-                    <a href="#" id="info{$itineraries[$i]->Id}" class="btn btn-primary">More infos</a>
-                </div>
-            </div>
-            </div>
+            <div class="lead font-weight-bold">You don't create itinerary yet</div>
             EX;
+        }
+        else{
+            for($i = 0;$i<count($itineraries);$i++){
+                $result .= <<<EX
+                <div class="col-md-6 col-lg-4 mb-5">
+                <div class="portfolio-item mx-auto card" data-toggle="modal" data-target="#portfolioModal{$itineraries[$i]->Id}">
+                    <div id="map{$itineraries[$i]->Id}" class="card-img-top" style="width: 100%; height: 200px;"></div>
+                    <div class="card-body">                       
+                        <a href="./itineraryDetails.php?id={$itineraries[$i]->Id}" ><h5 class="card-title">{$itineraries[$i]->Title}</h5></a>
+                        <p class="card-text">{$itineraries[$i]->Description}</p>
+                        <a href="#" id="info{$itineraries[$i]->Id}" class="btn btn-primary">More infos</a>
+                    </div>
+                </div>
+                </div>
+                EX;
+            }
         }
         return $result;
     }
-
+    public static function DisplayPhotosItineraries($photos){
+        $result = '';
+        if($photos != FALSE){
+            for($i = 0;$i<count($photos);$i++){
+                $result .= <<<EX
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{$photos[$i]->Image}" alt="Photo from itinerary">
+                    </div>
+                EX;
+            }
+        }
+        return $result;
+    }
     public static function DisplayModalItineraries(array $itineraries) : string{
         $result = '';
         for($i = 0; $i<count($itineraries);$i++){

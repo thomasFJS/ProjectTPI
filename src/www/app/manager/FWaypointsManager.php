@@ -102,5 +102,6 @@ class FWaypointManager extends FDatabaseManager{
         return TRUE;
     }
 
+
 }
 ?>

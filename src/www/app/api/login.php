@@ -27,18 +27,18 @@ if(strlen($username) > 0 && strlen($password) > 0) {
         $userLogged = FUserManager::GetInstance()->Login(['userNickname' => $username, 'userPwd' => $password]);
     }
 
-    if($userLogged !== null) {
+    if($userLogged !== false) {
         if(!FUserManager::GetInstance()->VerifyActivation($userLogged->Nickname)){
-            echo '{ "ReturnCode": 3, "Message": "Account not activate."}';
+            echo '{ "ReturnCode": 11, "Message": "Account not activate."}';
             exit();
         }
         FSessionManager::setUserLogged($userLogged);
         $_SESSION['isLogged'] = true;
 
-        echo '{ "ReturnCode": 0, "Message": "Login done"}';
+        echo '{ "ReturnCode": 10, "Message": "Login done"}';
         exit();
     }
 
-    echo '{ "ReturnCode": 2, "Message": "Wrong username or password"}';
+    echo '{ "ReturnCode": 12, "Message": "Wrong username or password"}';
 }
 ?>

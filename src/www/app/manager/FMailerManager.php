@@ -61,12 +61,17 @@ class FMailerManager{
      * 
      * @return string activation mail body
      */
-    public static function getActivationMail(string $token) : string{
+    public static function getActivationMail(string $token, string $userEmail) : string{
         $body = <<<EOT
         <html> 
             <head></head>
             <body>
-                <p>Veuillez cliquer sur le lien suivant : <a href="localhost/ProjectTPI/src/www/verified.php?token={$token}">Valider</a></p>
+                <p>Hello,</p>
+                </br>
+                <p>Thank's for the interest you had for our website, please click on the following link to finalize your account activation : <a href="localhost/ProjectTPI/src/www/verified.php?token={$token}&email={$userEmail}">Activate</a></p>
+                </br>
+                <p>Sincerely,</p>
+                <p>Team Travler</p>
             </body>
         </html>
         EOT;   

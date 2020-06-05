@@ -34,13 +34,13 @@ if (strlen($nickname) > 2 && strlen($email) > 0 && strlen($password) > 0 && strl
                 echo '{ "ReturnCode": 0, "Message": "Register done"}';
                 exit();
             }
-            echo '{ "ReturnCode": 3, "Message": "Register fail"}';
+            echo '{ "ReturnCode": 1, "Message": "Register fail"}';
             exit();
         }       
-        echo '{ "ReturnCode": 4, "Message": "Different passwords"}';
+        echo '{ "ReturnCode": 2, "Message": "Different passwords"}';
         exit();
     }
-    echo '{ "ReturnCode": 5, "Message": "Password dont match requirements"}';
+    echo '{ "ReturnCode": 3, "Message": "Password dont match requirements"}';
     exit();
 }
 

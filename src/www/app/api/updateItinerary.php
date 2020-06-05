@@ -2,9 +2,9 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  createItinerary.
-*     Brief               :  api to create itinerary.
-*     Date                :  04.06.2020.
+*     Page                :  updateItinerary.
+*     Brief               :  api to update an itinerary.
+*     Date                :  05.06.2020.
 */
 
 //requirements
@@ -22,7 +22,10 @@ $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
 $duration = filter_input(INPUT_POST, "duration", FILTER_SANITIZE_STRING);
 $distance = filter_input(INPUT_POST, "distance", FILTER_VALIDATE_FLOAT);
 $waypoints = json_decode($_POST['waypoints']);
+
+
 $idUser = FSessionManager::GetUserLogged()->Id;
+$idItinerary = FItineraryManager::GetInstance()->GetByTitle($title)->Id;
 
 if(isset($_FILES["media"])){
     $photos = $_FILES["media"];
@@ -34,11 +37,11 @@ if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) {
     if($distance < 999 || $distance > 1) {     
     // if user add photos to his itinerary
     if(!isset($photos) || !is_uploaded_file($userLogo['tmp_name'][0])){
-        if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance, $country, $waypoints,$idUser)) { 
-            echo '{ "ReturnCode": 40, "Message": "Create itinerary done"}';
+        if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country)) { 
+            echo '{ "ReturnCode": 50, "Message": "Itinerary updated"}';
             exit();
         }
-        echo '{ "ReturnCode": 41, "Message": "Create itinerary fail"}';
+        echo '{ "ReturnCode": 51, "Message": "Itinerary update fail"}';
         exit();
     }
     else{
@@ -50,15 +53,15 @@ if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) {
             $mime = $finfo->file($userLogo['tmp_name'][i]);
             array_push($srcPhotos, 'data:'.$mime.';base64,'.base64_encode($data)); 
         }             
-        if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance, $country, $waypoints,$idUser, $srcPhotos)) { 
-            echo '{ "ReturnCode": 40, "Message": "Create itinerary done"}';
+        if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country, $srcPhotos)) { 
+            echo '{ "ReturnCode": 50, "Message": "Itinerary updated"}';
             exit();
         }
-        echo '{ "ReturnCode": 41, "Message": "Create itinerary fail"}';
+        echo '{ "ReturnCode": 51, "Message": "Itinerary update fail"}';
         exit();
     }
     }
-    echo '{ "ReturnCode": 42, "Message": "Distance not valid"}';
+    echo '{ "ReturnCode": 52, "Message": "Distance not valid"}';
     exit();
 }
 

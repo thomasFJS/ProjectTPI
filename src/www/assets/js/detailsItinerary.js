@@ -1,26 +1,23 @@
 $(document).ready(() => {
-    InitMap();
+    $('#save').click(SaveItinerary);
+    $('#cancel').click(Cancel);
     $('.errormsg').hide();
-    $('#createItinerary').click(CreateItinerary);   
-    $('#cancel').click(Cancel);   
 });
 /* @var array Array with all waypoints's info */
 var waypoints = [];
 /**
- * @brief Create an itinerary on form submit
+ * @brief Save itinerary's details change
  * 
  * @param {*} event 
- * 
- * @return void
  */
-function CreateItinerary(event) {
+function SaveItinerary(event) {
     if (event) {
         event.preventDefault();
     }
     // init
     let title = $("#title").val();
-    let country = $("#startCountry option:selected").attr("id");
     let description = $("#description").val();
+    let country = $("#itineraryCountry option:selected").attr("id");  
     let duration = $("#duration").val();
     let distance = $("#distance").val();
     let itineraryImages = $("#itineraryImages").prop('files').length > 0 ? $('#itineraryImages').prop('files')[0] : null;
@@ -88,7 +85,7 @@ function CreateItinerary(event) {
     
     $.ajax({
       method: 'POST',
-      url: './app/api/createItinerary.php',
+      url: './app/api/updateItinerary.php',
       data: formData,
       dataType: 'json',
       contentType: false,
@@ -126,57 +123,6 @@ function CreateItinerary(event) {
   });
 }
 /**
- * @brief Init the map where the user can place his itinerary
- * 
- * @return void
- */
-function InitMap(){
-    L.mapquest.key = 'xTHtqDgrfGDrRKxzBKyFtDdkqRS4Uu8V';
-    
-    var map = L.mapquest.map('mapItinerary', {
-        center: [46.165320, 6.072530],
-        layers: L.mapquest.tileLayer('map'),
-        zoom: 13,
-        zoomControl: false
-      });
-      
-      L.control.zoom({
-        position: 'topright'
-      }).addTo(map);
-
-      L.mapquest.directionsControl({
-        routeSummary: {
-          enabled: false
-        },
-        narrativeControl: {
-          enabled: true,
-          compactResults: false
-        }
-      }).addTo(map);
-
-      //When marker moove
-      map.on('moveend', function(event) {
-        let marker = event.target;
-        for (let prop in marker._layers) {
-          if (!marker._layers.hasOwnProperty(prop)) continue;
-            
-          //console.log(marker._layers[prop].locations);
-          if(marker._layers[prop].locations != undefined){
-              for(let i = 0;i<marker._layers[prop].locations.length;i++){
-                waypoints[i] = marker._layers[prop].locations[i];
-              }
-              console.log(waypoints);
-          }
-          // locationIndex- I am assuming 0 for start marker and 1 for end marker.
-          if (marker._layers[prop].locationIndex === 1) {
-            let latLong = marker._layers[prop]._latlng;
-            //console.log(latLong)
-          }
-        }
-      });
-    
-}
-/**
  * @brief Cancel the form 
  * 
  * @param {*} event 
@@ -184,8 +130,8 @@ function InitMap(){
  * @return void
  */
 function Cancel(event){
-  if (event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
+    window.location = "./index.php";
   }
-  window.location = "./index.php";
-}

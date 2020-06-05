@@ -1,11 +1,14 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/controller/userController.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserManager.php';
 
 $token = $_GET['token'];
-if(UserController::getInstance()->ActivateAccount($token)){    
-    echo "Votre compte a bien été activé";
+$email = $_GET['email'];
+if(FUserManager::getInstance()->ActivateAccount($token, $email)){    
+    echo "Your account has been activated";
+    //Go on index.php after 3s
+    header( "Refresh:3; url=./index.php", true, 303);
 }
 else{
-    echo "Votre lien n'est pas correct";
+    echo "Your link doesn't work";
 }
 ?>

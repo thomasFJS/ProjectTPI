@@ -4,7 +4,7 @@
 *     Project             :  ProjetTPI.
 *     Page                :  FCodeManager.
 *     Brief               :  code manager.
-*     Date                :  20.05.2020.
+*     Date                :  03.06.2020.
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FCountry.php';
