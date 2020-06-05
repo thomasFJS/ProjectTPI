@@ -20,7 +20,7 @@ class FComment{
      * @param string $PostedAtParam comment's date 
      * @param FUser $UserParam comment's user
      */
-    public function __construct(string $CommentParam = "", string $PostedAt = "", FUser $UserParam)
+    public function __construct(string $CommentParam = "", string $PostedAtParam = "", FUser $UserParam)
     {
         $this->Comment = $CommentParam;
         $this->PostedAt = $PostedAtParam;

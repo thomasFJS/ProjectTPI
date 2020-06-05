@@ -6,6 +6,8 @@ $(document).ready(() => {
 });
 /* @var array Array with all waypoints's info */
 var waypoints = [];
+
+var formData;
 /**
  * @brief Create an itinerary on form submit
  * 
@@ -36,7 +38,7 @@ function CreateItinerary(event) {
       });
     }
     //Create data to send
-    let formData = new FormData();
+    formData = new FormData();
     formData.append("title", title);
     formData.append("country", country);
     formData.append("description", description);
@@ -86,45 +88,68 @@ function CreateItinerary(event) {
       $("#mapItinerary").css("border-color", "");
     }
     
-    $.ajax({
-      method: 'POST',
-      url: './app/api/createItinerary.php',
-      data: formData,
-      dataType: 'json',
-      contentType: false,
-      processData: false,
-
-      success: function(data){
-          switch(data.ReturnCode){
-              case ITINERARY_CREATE:
-                  window.location = "./myItineraries.php";
-                  break;
-              case ITINERARY_CREATE_FAIL: 
-                  $('#errorCreate').show().delay(3000).fadeOut(1000);
-              break;
-              case ITINERARY_DISTANCE_NOT_VALID:
-                  $('#errorDistance').show().delay(3000).fadeOut(1000);
-                  break;
-              default:
-                  alert("-");
-                  break;
-          }
-      },
-
-      error: function (jqXHR){
-          error = "Error :";
-          switch(jqXHR.status){
-              case INVALID_JSON: 
-                  error = error + jqXHR.status + "invalid json";
-              break;
-              case FILE_NOT_FOUND:
-                  error = error + jqXHR.status + "Can't find createItinerary.php";
-              break;
-          }
-          alert(error);
-      }
-  });
+    const cnv = document.querySelector('#canvasPreview');
+    const ctx = cnv.getContext('2d');
+    const dv = document.querySelector('#mapItinerary');
+    const html = dv.innerHTML;
+    render_html_to_canvas(html, ctx, 0, 0, 800, 630);
+    
+    setTimeout(ajaxCreateItinerary(formData), 2000);
 }
+/**
+ * @brief Ajax call to send all the formData 
+ * 
+ * @param {*} formData Form data with all field value
+ * 
+ * @return void
+ */
+function ajaxCreateItinerary(formData)
+{
+  const cnv = document.querySelector('#canvasPreview');
+  var dataURL = cnv.toDataURL();
+  formData.append("itineraryPreview", dataURL);
+
+  $.ajax({
+    method: 'POST',
+    url: './app/api/createItinerary.php',
+    data: formData,
+    dataType: 'json',
+    contentType: false,
+    processData: false,
+
+    success: function(data){
+        switch(data.ReturnCode){
+            case ITINERARY_CREATE :
+                window.location = "./myItineraries.php";
+                break;
+            case ITINERARY_CREATE_FAIL: 
+                $('#errorCreate').show().delay(3000).fadeOut(1000);
+            break;
+            case ITINERARY_DISTANCE_NOT_VALID:
+                $('#errorDistance').show().delay(3000).fadeOut(1000);
+                break;
+            default:
+                alert("-");
+                break;
+        }
+    },
+
+    error: function (jqXHR){
+        error = "Error :";
+        switch(jqXHR.status){
+            case INVALID_JSON : 
+                error = error + jqXHR.status + "invalid json";
+            break;
+            case FILE_NOT_FOUND :
+                error = error + jqXHR.status + "Can't find login.php";
+            break;
+        }
+        alert(error);
+    }
+});
+
+}
+
 /**
  * @brief Init the map where the user can place his itinerary
  * 

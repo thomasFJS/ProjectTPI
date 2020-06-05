@@ -32,6 +32,7 @@ class FItineraryManager extends FDatabaseManager{
         $this->fieldDescription = "DESCRIPTION";
         $this->fieldDuration = "DURATION";
         $this->fieldDistance = "DISTANCE";
+        $this->fieldPreview = "PREVIEW";
         $this->fieldCountry = "COUNTRIES_ISO2";
         $this->fieldStatus = "STATUS_ID";
         $this->fieldUser = "USERS_ID";        
@@ -55,7 +56,7 @@ class FItineraryManager extends FDatabaseManager{
         $result = array();
 
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`, `{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
             FROM `{$this->tableName}`
             ORDER BY `{$this->fieldRating}`
         EX;
@@ -65,7 +66,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
 
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview], 
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
                 array_push($result, $itinerary);
@@ -84,7 +85,7 @@ class FItineraryManager extends FDatabaseManager{
         $result = array();
 
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}` 
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}` 
             FROM `{$this->tableName}`
             WHERE `{$this->fieldUser}` = :idUser
         EX;
@@ -95,7 +96,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
 
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview],
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
                 array_push($result, $itinerary);
@@ -114,7 +115,7 @@ class FItineraryManager extends FDatabaseManager{
      */
     public function GetById(int $idItinerary){
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
             FROM `{$this->tableName}`
             WHERE `{$this->fieldId}` = :idItinerary
         EX;
@@ -125,7 +126,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
             
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview],
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);               
             }
@@ -141,15 +142,16 @@ class FItineraryManager extends FDatabaseManager{
      * @param string $description Itinerary's description
      * @param string $duration Itinerary's duration
      * @param double $distance Itinerary's distance
+     * @param string $preview Itinerary's preview
      * @param string $country Code iso2 for itinerary's started land
      * @param array $waypoints Array<FWaypoint> array with all itinerary's waypoints
      * @param array $photos Array<FPhoto> array with all itinerary's photos
      * @param int $idUser owner's id
      */
-    public function Create($title, $description, $duration, $distance, $country,$waypoints, $idUser, $photos = []){
+    public function Create($title, $description, $duration, $distance, $preview, $country,$waypoints, $idUser, $photos = []){
         $query = <<<EX
-            INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`, `{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
-            VALUES(:title, :description, :duration, :distance, :country, :status, :idUser)
+            INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`, `{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
+            VALUES(:title, :description, :duration, :distance, :preview, :country, :status, :idUser)
         EX;
 
         try{
@@ -162,6 +164,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->bindParam(':description', $description, PDO::PARAM_STR);
             $req->bindParam(':duration', $duration, PDO::PARAM_STR);
             $req->bindParam(':distance', $distance, PDO::PARAM_STR);
+            $req->bindParam(':preview', $preview, PDO::PARAM_STR);
             $req->bindParam(':country', $country, PDO::PARAM_STR);
             $req->bindParam(':status', $status, PDO::PARAM_STR);
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
@@ -191,10 +194,10 @@ class FItineraryManager extends FDatabaseManager{
      * @param array $waypoints Array<FWaypoint> array with all itinerary's waypoints
      * @param array $photos Array<FPhoto> array with all itinerary's photos
      */
-    public function Update($idUser,$idItinerary, $title, $description, $duration, $distance, $country,$waypoints, $photos = []){
+    public function Update($idUser,$idItinerary, $title, $description, $duration, $distance,$preview, $country,$waypoints, $photos = []){
         $query = <<<EX
             UPDATE `{$this->tableName}`
-            SET `{$this->fieldTitle}` = :title, `{$this->fieldDescription}` = :description, `{$this->fieldDuration}` = :duration, `{$this->fieldDistance}` = :distance, `{$this->fieldCountry}` = :country
+            SET `{$this->fieldTitle}` = :title, `{$this->fieldDescription}` = :description, `{$this->fieldDuration}` = :duration, `{$this->fieldDistance}` = :distance,`{$this->fieldPreview}` = :preview, `{$this->fieldCountry}` = :country
             WHERE `{$this->fieldId}` = :idItinerary 
             AND `{$this->fieldUser}` = :idUser
         EX;
@@ -203,9 +206,10 @@ class FItineraryManager extends FDatabaseManager{
             $this::getDb()->beginTransaction();
             $req = $this::getDb()->prepare($query);
             $req->bindParam(':title', $title, PDO::PARAM_STR);
-            $req->bindParam(':description', $name, PDO::PARAM_STR);
-            $req->bindParam(':distance', $surname, PDO::PARAM_STR);
-            $req->bindParam(':duration', $bio, PDO::PARAM_STR);
+            $req->bindParam(':description', $description, PDO::PARAM_STR);
+            $req->bindParam(':distance', $distance, PDO::PARAM_STR);
+            $req->bindParam(':duration', $duration, PDO::PARAM_STR);
+            $req->bindParam(':preview', $preview, PDO::PARAM_STR);
             $req->bindParam(':country', $country, PDO::PARAM_STR);
             $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
@@ -229,9 +233,9 @@ class FItineraryManager extends FDatabaseManager{
      */
     public function GetByTitle($title){
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
             FROM `{$this->tableName}`
-            WHERE `{$this->fieldtitle}` = :title
+            WHERE `{$this->fieldTitle}` = :title
         EX;
         $itinerary = "";
         try{
@@ -240,7 +244,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
             
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview],
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);               
             }

@@ -35,7 +35,7 @@ class FItineraryView{
                 $result .= <<<EX
                 <div class="col-md-6 col-lg-4 mb-5">
                 <div class="portfolio-item mx-auto card" data-toggle="modal" data-target="#portfolioModal{$itineraries[$i]->Id}">
-                    <div id="map{$itineraries[$i]->Id}" class="card-img-top" style="width: 100%; height: 200px;"></div>
+                    <img id="map{$itineraries[$i]->Id}" class="card-img-top" style="width: 100%; height: 200px;">
                     <div class="card-body">                       
                         <a href="./itineraryDetails.php?id={$itineraries[$i]->Id}" ><h5 class="card-title">{$itineraries[$i]->Title}</h5></a>
                         <p class="card-text">{$itineraries[$i]->Description}</p>

@@ -21,6 +21,7 @@ $country = filter_input(INPUT_POST, "country", FILTER_SANITIZE_STRING);
 $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
 $duration = filter_input(INPUT_POST, "duration", FILTER_SANITIZE_STRING);
 $distance = filter_input(INPUT_POST, "distance", FILTER_VALIDATE_FLOAT);
+$preview = filter_input(INPUT_POST, "itineraryPreview", FILTER_SANITIZE_STRING);
 $waypoints = json_decode($_POST['waypoints']);
 $idUser = FSessionManager::GetUserLogged()->Id;
 
@@ -28,13 +29,13 @@ if(isset($_FILES["media"])){
     $photos = $_FILES["media"];
 }
 //Array for all images uploaded encoded in base 64
-$srcPhotos = []
+$srcPhotos = [];
 // if all field aren't empty
 if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) { 
     if($distance < 999 || $distance > 1) {     
     // if user add photos to his itinerary
     if(!isset($photos) || !is_uploaded_file($userLogo['tmp_name'][0])){
-        if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance, $country, $waypoints,$idUser)) { 
+        if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance,$preview, $country, $waypoints,$idUser)) { 
             echo '{ "ReturnCode": 40, "Message": "Create itinerary done"}';
             exit();
         }
@@ -50,7 +51,7 @@ if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) {
             $mime = $finfo->file($userLogo['tmp_name'][i]);
             array_push($srcPhotos, 'data:'.$mime.';base64,'.base64_encode($data)); 
         }             
-        if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance, $country, $waypoints,$idUser, $srcPhotos)) { 
+        if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance,$preview, $country, $waypoints,$idUser, $srcPhotos)) { 
             echo '{ "ReturnCode": 40, "Message": "Create itinerary done"}';
             exit();
         }

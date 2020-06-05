@@ -69,6 +69,34 @@ class FCommentManager extends FDatabaseManager{
         }
         return count($result) > 0 ? $result : FALSE;
     }
+    /**
+     * @brief Add a comment to an itinerary
+     * 
+     * @param int $idItinerary itinerary's id
+     * @param int $idUser user's id
+     * @param string $comment the comment the user post
+     * 
+     * @return bool true if insert success, else false
+     */
+    public function AddToItinerary(int $idItinerary, int $idUser, string $comment){
+        $query = <<<EX
+            INSERT INTO `{$this->tableName}` (`{$this->fieldComment}`,`{$this->fieldDate}`,`{$this->fieldUser}`,`{$this->fieldItinerary}`)
+            VALUES (:comment, :date, :idUser, :idItinerary)
+        EX;
+        try{
+            $date = date("Y-m-d H:i:s");
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':comment', $comment, PDO::PARAM_STR);
+            $req->bindParam(':date', $date, PDO::PARAM_STR);
+            $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->execute();
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        //Done
+        return TRUE;
+    }
 
 }
 ?>

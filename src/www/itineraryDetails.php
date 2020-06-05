@@ -63,12 +63,16 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
             <div class="card">
               <div class="card-header">Itinerary details</div>
                 <div class="card-body">
-                    <form name="profil">
+                    <form name="itinerary">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="title">Title :</label>                                       
+                                    <label for="title">Title :</label>   
+                                    <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) :?>                                    
                                         <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="<?= $itinerary->Title?>" required>
+                                    <?php else :?>
+                                        <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="<?= $itinerary->Title?>" required readonly>
+                                    <?php endif;?>    
                                         <p id="errorTitle" class="errormsg">Title already exist</p>
                                     </div>
                                 </div>
@@ -77,7 +81,11 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                 <div class="row">
                                     <div class="col">
                                         <label for="description">Description :</label>
+                                    <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) :?>   
                                         <textarea class="form-control" id="userBio" rows="3"><?= $itinerary->Description?></textarea>                                  
+                                    <?php else :?>
+                                        <textarea class="form-control" id="userBio" rows="3" readonly><?= $itinerary->Description?></textarea>     
+                                    <?php endif; ?>
                                     </div>                                   
                                 </div>
                             </div>
@@ -85,8 +93,12 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                             <div class="row">
                                 <div class="col">
                                     <label for="itineraryCountry">Country :</label>
-                                    <select name="itineraryCountry" id="itineraryCountry" size="1" class="custom-select">
-                                    <?php 
+                                    <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) :?>   
+                                        <select name="itineraryCountry" id="itineraryCountry" size="1" class="custom-select">
+                                    <?php else :?>
+                                        <select name="itineraryCountry" id="itineraryCountry" size="1" class="custom-select" disabled>
+                                    <?php endif;
+
                                         $countryManager = new FCodeManager();
                                         foreach ($countryManager::GetInstance()->getAllCountry() as $country) {
                                             if($itinerary->Country == $country->Code){
@@ -101,7 +113,11 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                 </div>
                                 <div class="col">
                                     <label for="distance">Distance (KM) :</label>
+                                <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) :?>
                                     <input class="form-control" id="distance" type="number" value="<?= $itinerary->Distance?>" data-decimals="1" min="1" max="999" step="0.1"/> 
+                                <?php else :?>
+                                    <input class="form-control" id="distance" type="number" value="<?= $itinerary->Distance?>" data-decimals="1" min="1" max="999" step="0.1" readonly/> 
+                                <?php endif; ?>
                                     <p id="errorDistance" class="errormsg">Distance not valid</p>
                                 </div>
                             </div>
@@ -111,7 +127,11 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                 <div class="col">
                                     <div class="md-form md-outline">
                                         <label for="duration">Duration (Hours:Minutes):</label>
+                                    <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) :?>
                                         <input type="time" id="duration" class="form-control" placeholder="Select time" value="<?= $itinerary->Duration ?>">                    
+                                    <?php else :?>
+                                        <input type="time" id="duration" class="form-control" placeholder="Select time" value="<?= $itinerary->Duration ?>" readonly> 
+                                    <?php endif;?>
                                     </div>
                                 </div>
                                 <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) : ?>
@@ -154,7 +174,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                     <button type="button" id="cancel" class="form-control btn btn-outline-danger" >Cancel</button>     
                                 </div>
                                 <div class="col">
-                                    <button type="submit"  id="save" class="form-control btn btn-outline-primary" name="formProfil">Save itinerary</button>
+                                    <button type="submit"  id="save" class="form-control btn btn-outline-primary" name="save">Save itinerary</button>
                                 </div>
                             </div>
                         </div>
@@ -165,8 +185,11 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                     <label for="rating">Rating (0-10) :</label>
                                     <input class="form-control" id="rating" type="number" value="<?= $itinerary->Rating?>" data-decimals="0" min="1" max="10" step="1"/> 
                                 </div>
-                                <div class="col">
-                                    
+                                
+                            </div>
+                            <div class="row">
+                            <div class="col">
+                                    <button type="submit"  id="rate" class="form-control btn btn-outline-primary" name="rate">Rate</button>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +202,34 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
 </div>
 </div>
     </div>
+    <div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">Comment this itinerary</div>
+                <div class="card-body">
+                    <form name="comment">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                     <label for="comment">Post your comment :</label>
+                                     <textarea class="form-control" id="comment" placeholder="Write a comment here ..." rows="2"></textarea>   
+                                     <p id="errorComment" class="errormsg">Your comment wasn't posted, Please try again</p>
+                                </div>                               
+                            </div>
+                            <div class="row">
+                            <div class="col">
+                                <button type="submit"  id="sendComment" class="form-control btn btn-outline-primary" name="btnComment">Comment</button>
+                            </div>
+                            </div>
+                        </div>     
+                    </form>       
+                </div>
+            </div> 
+        </div>
+    </div>
     </section>
+
     <footer class="footer text-center">
     <div class="container">
         <div class="row">
@@ -215,6 +265,8 @@ Chemin Gérard-De-Ternier 10
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="./assets/js/script.js"></script>
+<!-- Include JS -->
+<script src="./constants/constants.js"></script>
 <!-- Ajax call to send forms field -->
 <script src="./assets/js/detailsItinerary.js"></script>
 </body>

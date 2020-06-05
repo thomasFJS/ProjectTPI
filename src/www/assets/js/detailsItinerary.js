@@ -1,10 +1,13 @@
 $(document).ready(() => {
     $('#save').click(SaveItinerary);
+    $('#sendComment').click(AddComment);
     $('#cancel').click(Cancel);
     $('.errormsg').hide();
 });
 /* @var array Array with all waypoints's info */
 var waypoints = [];
+
+var formData;
 /**
  * @brief Save itinerary's details change
  * 
@@ -33,7 +36,7 @@ function SaveItinerary(event) {
       });
     }
     //Create data to send
-    let formData = new FormData();
+    formData = new FormData();
     formData.append("title", title);
     formData.append("country", country);
     formData.append("description", description);
@@ -121,6 +124,68 @@ function SaveItinerary(event) {
           alert(error);
       }
   });
+}
+/**
+ * @brief Add a comment to an itinerary
+ * 
+ * @param {*} event 
+ */
+function AddComment(event) {
+    if (event) {
+        event.preventDefault();
+    }
+    //Send title to use php function "GetByTitle" after because title's unique
+    let title = $("#title").val();
+
+    let comment = $("#comment").val();
+
+    formData = new FormData();
+    formData.append("title", title);
+    formData.append("comment", comment);
+
+    if (comment.length == 0) {
+        $("#comment").css("border-color", "red");
+        $("#comment").focus();
+        return;
+    } else {
+        $("#comment").css("border-color", "");
+    }
+
+    $.ajax({
+        method: 'POST',
+        url: './app/api/addComment.php',
+        data: formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+  
+        success: function(data){
+            switch(data.ReturnCode){
+                case COMMENT_ADDED:
+                    window.location = "./myItineraries.php";
+                    break;
+                case COMMENT_ADD_FAIL: 
+                    $('#errorComment').show().delay(3000).fadeOut(1000);
+                break;
+                default:
+                    alert("-");
+                    break;
+            }
+        },
+  
+        error: function (jqXHR){
+            error = "Error :";
+            switch(jqXHR.status){
+                case INVALID_JSON: 
+                    error = error + jqXHR.status + "invalid json";
+                break;
+                case FILE_NOT_FOUND:
+                    error = error + jqXHR.status + "Can't find createItinerary.php";
+                break;
+            }
+            alert(error);
+        }
+    });
 }
 /**
  * @brief Cancel the form 
