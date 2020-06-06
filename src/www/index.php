@@ -12,9 +12,16 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserMan
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSessionManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/view/FItineraryView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FCodeManager.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+if(FSessionManager::GetItineraryFilter() != false){
+    $itineraries = FItineraryManager::GetInstance()->GetAllWithFilter(FSessionManager::GetItineraryFilter());
+}
+else{
+    $itineraries = FItineraryManager::GetInstance()->GetAll();
 }
 ?>
 <!DOCTYPE html>
@@ -80,15 +87,65 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
         </div>
+        <div class="container">
+            <form name="itineraryFilter">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label for="countryFilter">Country :</label>
+                            <select name="countryFilter" id="countryFilter" size="1" class="custom-select">
+                             <option id="None" selected>None</option>
+                             <?php 
+                                $countryManager = new FCodeManager();
+                                foreach ($countryManager::GetInstance()->getAllCountry() as $country) {
+                                    echo "<option id=". $country->Code ."> " . $country->Name . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col">
+                        <label for="rateFilter">Rate Min:</label>
+                        <select name="rateFilter" id="rateFilter" size="1" class="custom-select">
+                             <?php 
+                                for ($i = 0;$i<=10;$i++) {
+                                    echo '<option id="'.$i.'">' . $i . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <label for="distanceMinFilter">Distance Min (KM) :</label>
+                                <input class="form-control" id="distanceMinFilter" type="number" value="0" data-decimals="0" min="1" max="999" step="1"/> 
+                            </div>
+                            <div class="row">
+                                <label for="distanceMaxFilter">Distance Max (KM) :</label>
+                                <input class="form-control" id="distanceMaxFilter" type="number" value="0" data-decimals="0" min="1" max="999" step="1"/> 
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <label for="durationMinFilter">Duration Min (H) :</label>
+                                <input type="time" id="durationMinFilter" class="form-control" placeholder="Select time">                       
+                            </div>
+                            <div class="row">
+                            <label for="durationMaxFilter">Duration Max (H) :</label>
+                                <input type="time" id="durationMaxFilter" class="form-control" placeholder="Select time"> 
+                            </div>
+                        </div>
+                        <button type="submit"  id="itineraryFilter" class="form-control btn btn-outline-primary"  name="itineraryFilter" >Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <!-- Portfolio Grid Items-->
         <div class="row justify-content-center">
             <!-- Portfolio Items-->
-            <?php echo FItineraryView::DisplayItineraries(FItineraryManager::GetInstance()->GetAll());?>
+            <?php echo FItineraryView::DisplayItineraries($itineraries);?>
         </div>
     </div>
 </section>
-<!-- Portfolio Modal-->
-<?php //echo FItineraryView::DisplayModalItineraries(FItineraryManager::GetInstance()->GetAll());?>
+
 <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
         <!-- About Section Heading-->
@@ -177,6 +234,7 @@ Chemin Gérard-De-Ternier 10
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Core theme JS-->
 <script src="./assets/js/script.js"></script>
+<!-- Include -->
 <!-- Display maps on itineraries card with mapquest-->
 <script src="./assets/js/home.js"></script>
 </body>

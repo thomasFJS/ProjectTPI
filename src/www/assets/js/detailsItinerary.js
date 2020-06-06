@@ -20,6 +20,7 @@ function SaveItinerary(event) {
         event.preventDefault();
     }
     // init
+    let itineraryId = $("#itineraryId").val();
     let title = $("#title").val();
     let description = $("#description").val();
     let country = $("#itineraryCountry option:selected").attr("id");  
@@ -39,13 +40,14 @@ function SaveItinerary(event) {
     }
     //Create data to send
     formData = new FormData();
+    formData.append("itineraryId", itineraryId);
     formData.append("title", title);
     formData.append("country", country);
     formData.append("description", description);
     formData.append("duration", duration);
     formData.append("distance", distance);
     formData.append("media[]", itineraryImages);
-    formData.append("waypoints", JSON.stringify(fWaypointsArray));
+    //formData.append("waypoints", JSON.stringify(fWaypointsArray));
     
 
     if (title.length == 0) {
@@ -79,14 +81,14 @@ function SaveItinerary(event) {
     } else{
       $("#distance").css("border-color", "");
     }
-
+    /*
     if(waypoints.length < 2){
       $("#mapItinerary").css("border-color", "red");
       alert("Veuillez placer votre itinéraire");
       return;
     } else{
       $("#mapItinerary").css("border-color", "");
-    }
+    }*/
     
     $.ajax({
       method: 'POST',
@@ -98,11 +100,11 @@ function SaveItinerary(event) {
 
       success: function(data){
           switch(data.ReturnCode){
-              case ITINERARY_CREATE:
+              case ITINERARY_UPDATE:
                   window.location = "./myItineraries.php";
                   break;
-              case ITINERARY_CREATE_FAIL: 
-                  $('#errorCreate').show().delay(3000).fadeOut(1000);
+              case ITINERARY_UPDATE_FAIL: 
+                  $('#errorUpdate').show().delay(3000).fadeOut(1000);
               break;
               case ITINERARY_DISTANCE_NOT_VALID:
                   $('#errorDistance').show().delay(3000).fadeOut(1000);
@@ -257,6 +259,81 @@ function AddRate(event) {
             alert(error);
         }
     });
+}
+/**
+ * @brief Init the map where the user can modify his itinerary
+ * 
+ * @return void
+ */
+function InitMap(){
+    L.mapquest.key = 'xTHtqDgrfGDrRKxzBKyFtDdkqRS4Uu8V';
+    
+    $.getJSON('./app/api/getItineraryByTitle.php?title=', function(data) {
+    
+        var mapInit = [];
+        var waypointsArray = [];
+        /* data will hold the php array as a javascript object */
+       $.each(data, function(key, val) {
+        var map = L.mapquest.map('mapItinerary', {
+            center: [val.Waypoints[0].Latitude, val.Waypoints[0].Longitude],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 13,
+            zoomControl: false
+          });
+          mapInit.push({     
+            start: val.Waypoints[key].Address,
+            end: val.Waypoints[val.Waypoints.length - 1].Address                                                          
+          });
+          /*Add waypoints in array */
+          for(let i = 1; i< val.Waypoints.length-1 ; i++){
+            waypointsArray.push(val.Waypoints[i].Latitude + ', ' + val.Waypoints[i].Longitude);
+            }
+        if(waypointsArray.length > 0){
+            mapInit[0].waypoints = waypointsArray;
+        }
+          L.control.zoom({
+            position: 'topright'
+          }).addTo(map);
+    
+          L.mapquest.directionsControl({
+            routeSummary: {
+              enabled: false
+            },
+            narrativeControl: {
+              enabled: false,
+              compactResults: false
+            }
+          }).addTo(map);
+          console.log(mapInit[0]);
+            //console.log(L.mapquest.directions().route(mapInit[0]));           
+            L.mapquest.directions().route(mapInit[0]);
+            waypointsArray = [];
+            mapInit = [];
+    
+          //When marker moove
+          map.on('moveend', function(event) {
+            let marker = event.target;
+            for (let prop in marker._layers) {
+              if (!marker._layers.hasOwnProperty(prop)) continue;
+                
+              //console.log(marker._layers[prop].locations);
+              if(marker._layers[prop].locations != undefined){
+                  for(let i = 0;i<marker._layers[prop].locations.length;i++){
+                    waypoints[i] = marker._layers[prop].locations[i];
+                  }
+                  console.log(waypoints);
+              }
+              // locationIndex- I am assuming 0 for start marker and 1 for end marker.
+              if (marker._layers[prop].locationIndex === 1) {
+                let latLong = marker._layers[prop]._latlng;
+                //console.log(latLong)
+              }
+            }
+          });
+        });
+    });
+    
+    
 }
 /**
  * @brief Cancel the form 

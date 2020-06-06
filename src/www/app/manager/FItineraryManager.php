@@ -58,11 +58,145 @@ class FItineraryManager extends FDatabaseManager{
         $query = <<<EX
             SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`, `{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
             FROM `{$this->tableName}`
-            ORDER BY `{$this->fieldRating}`
+            ORDER BY `{$this->fieldRating}` DESC
         EX;
 
         try{
             $req = $this::getDb()->prepare($query);
+            $req->execute();
+
+            while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview], 
+                $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
+                FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
+                array_push($result, $itinerary);
+            }
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        return count($result) > 0 ? $result : FALSE;
+    }
+    /**
+     * @brief Get all itinerary with a filter
+     * 
+     * @param array array with all filters to apply
+     * 
+     * @return array Array of FItinerary with all itinerary filtered
+     */
+    public function GetAllWithFilter(array $filters){
+        $filters += [
+            'country' => null, 
+            'rateMin' => null,
+            'durationMin' => null,
+            'durationMax' => null,
+            'distanceMin' => null,
+            'distanceMax' => null
+        ];
+        //Extract the key of the array has variables
+        extract($filters);
+
+        $result = array();
+        
+        $filtersValue = [];
+        $filtersParam = [];
+        
+        $firstCondition = false;
+        $query = <<<EX
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`, `{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
+            FROM `{$this->tableName}` 
+            WHERE            
+        EX;
+        if($country !== null){
+           $query .= <<<EX
+            `{$this->fieldCountry}` = :country
+           EX;
+           array_push($filtersParam, ":country");
+           array_push($filtersValue, $country);
+           $firstCondition =true;
+        }
+        if($rateMin !== null){
+            if($firstCondition){
+                $query .= <<<EX
+                    AND `{$this->fieldRating}` >= :rating
+                EX;
+            }
+            else{
+                $query .= <<<EX
+                    `{$this->fieldRating}` >= :rating
+                EX;
+                $firstCondition = true;
+            }
+            array_push($filtersParam, ":rating");
+            array_push($filtersValue, $rateMin);
+        }
+        if($durationMin !== null){
+            if($firstCondition){
+                $query .= <<<EX
+                    AND `{$this->fieldDuration}` >= :durationMin
+                EX;
+            }
+            else{
+                $query .= <<<EX
+                    `{$this->fieldDuration}` >= :durationMin
+                EX;
+                $firstCondition = true;
+            }
+            array_push($filtersParam, ":durationMin");
+            array_push($filtersValue, $durationMin);
+        }
+        if($durationMax !== null){
+            if($firstCondition){
+                $query .= <<<EX
+                    AND `{$this->fieldDuration}` >= :durationMax
+                EX;
+            }
+            else{
+                $query .= <<<EX
+                    `{$this->fieldDuration}` >= :durationMax
+                EX;
+                $firstCondition = true;
+            }
+            array_push($filtersParam, ":durationMax");
+            array_push($filtersValue, $durationMax);
+        }
+        if($distanceMin !== null){
+            if($firstCondition){
+                $query .= <<<EX
+                    AND `{$this->fieldDistance}` >= :distanceMin
+                EX;
+            }
+            else{
+                $query .= <<<EX
+                    `{$this->fieldDistance}` >= :distanceMin
+                EX;
+                $firstCondition = true;
+            }
+            array_push($filtersParam, ":distanceMin");
+            array_push($filtersValue, $distanceMin);
+        }
+        if($distanceMax !== null){
+            if($firstCondition){
+                $query .= <<<EX
+                    AND `{$this->fieldDistance}` <= :distanceMax
+                EX;
+            }
+            else{
+                $query .= <<<EX
+                    `{$this->fieldDistance}` <= :distanceMax
+                EX;
+                $firstCondition = true;
+            }
+            array_push($filtersParam, ":distanceMax");
+            array_push($filtersValue, $distanceMax);
+        }
+        $query .= <<<EX
+            ORDER BY `{$this->fieldRating}` DESC   
+        EX;
+        try{
+            $req = $this::getDb()->prepare($query);
+            for($i = 0;$i<count($filtersValue);$i++){
+                $req->bindParam($filtersParam[$i], $filtersValue[$i], PDO::PARAM_STR);
+            }
             $req->execute();
 
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
@@ -194,10 +328,10 @@ class FItineraryManager extends FDatabaseManager{
      * @param array $waypoints Array<FWaypoint> array with all itinerary's waypoints
      * @param array $photos Array<FPhoto> array with all itinerary's photos
      */
-    public function Update($idUser,$idItinerary, $title, $description, $duration, $distance,$preview, $country,$waypoints, $photos = []){
+    public function Update($idUser,$idItinerary, $title, $description, $duration, $distance, $country, $photos = []){
         $query = <<<EX
             UPDATE `{$this->tableName}`
-            SET `{$this->fieldTitle}` = :title, `{$this->fieldDescription}` = :description, `{$this->fieldDuration}` = :duration, `{$this->fieldDistance}` = :distance,`{$this->fieldPreview}` = :preview, `{$this->fieldCountry}` = :country
+            SET `{$this->fieldTitle}` = :title, `{$this->fieldDescription}` = :description, `{$this->fieldDuration}` = :duration, `{$this->fieldDistance}` = :distance, `{$this->fieldCountry}` = :country
             WHERE `{$this->fieldId}` = :idItinerary 
             AND `{$this->fieldUser}` = :idUser
         EX;
@@ -209,7 +343,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->bindParam(':description', $description, PDO::PARAM_STR);
             $req->bindParam(':distance', $distance, PDO::PARAM_STR);
             $req->bindParam(':duration', $duration, PDO::PARAM_STR);
-            $req->bindParam(':preview', $preview, PDO::PARAM_STR);
+            //$req->bindParam(':preview', $preview, PDO::PARAM_STR);
             $req->bindParam(':country', $country, PDO::PARAM_STR);
             $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
@@ -223,6 +357,32 @@ class FItineraryManager extends FDatabaseManager{
             return FALSE;
         }
         return TRUE;
+    }
+    /**
+     * @brief Update the rating of an itinerary
+     * 
+     * @param float new avg rating
+     * @param int itinerary's id
+     * 
+     * @return bool true if update succes, else false
+     */
+    public function UpdateRating($newRating, $idItinerary){
+        $query = <<<EX
+            UPDATE `{$this->tableName}`
+            SET `{$this->fieldRating}` = :rating
+            WHERE `{$this->fieldId}` = :idItinerary 
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':rating', $newRating, PDO::PARAM_STR);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->execute(); 
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        return TRUE;
+        
     }
     /**
      * @brief Get the itinerary by his title (title is unique)
@@ -251,7 +411,7 @@ class FItineraryManager extends FDatabaseManager{
         }catch(PDOException $e){
             return FALSE;
         }
-        return $itinerary != "" ? $itinerary : FALSE;
+         return $itinerary != "" ? $itinerary : FALSE;
     }
 }
 ?>

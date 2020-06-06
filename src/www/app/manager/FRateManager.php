@@ -8,6 +8,7 @@
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 /**
  * Class FCodeManager
  */
@@ -87,7 +88,8 @@ class FRateManager extends FDatabaseManager{
             $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             $req->execute();
-          
+            
+            FItineraryManager::GetInstance()->UpdateRating(str_replace(',', '.', $this::GetAvgByItinerary($idItinerary)),$idItinerary);
         }catch(PDOException $e){
             return FALSE;
         }

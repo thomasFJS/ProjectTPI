@@ -16,32 +16,33 @@ if(session_status() == PHP_SESSION_NONE){
 }
 
 //Init
+$id = filter_input(INPUT_POST, "itineraryId", FILTER_SANITIZE_NUMBER_INT);
 $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
 $country = filter_input(INPUT_POST, "country", FILTER_SANITIZE_STRING);
 $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
 $duration = filter_input(INPUT_POST, "duration", FILTER_SANITIZE_STRING);
 $distance = filter_input(INPUT_POST, "distance", FILTER_VALIDATE_FLOAT);
-$waypoints = json_decode($_POST['waypoints']);
+//$waypoints = json_decode($_POST['waypoints']);
 
 
 $idUser = FSessionManager::GetUserLogged()->Id;
-$idItinerary = FItineraryManager::GetInstance()->GetByTitle($title)->Id;
+$idItinerary = FItineraryManager::GetInstance()->GetById($id)->Id;
 
 if(isset($_FILES["media"])){
     $photos = $_FILES["media"];
 }
 //Array for all images uploaded encoded in base 64
-$srcPhotos = []
+$srcPhotos = [];
 // if all field aren't empty
 if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) { 
     if($distance < 999 || $distance > 1) {     
     // if user add photos to his itinerary
     if(!isset($photos) || !is_uploaded_file($userLogo['tmp_name'][0])){
         if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country)) { 
-            echo '{ "ReturnCode": 50, "Message": "Itinerary updated"}';
+            echo '{ "ReturnCode": 70, "Message": "Itinerary updated"}';
             exit();
         }
-        echo '{ "ReturnCode": 51, "Message": "Itinerary update fail"}';
+        echo '{ "ReturnCode": 71, "Message": "Itinerary update fail"}';
         exit();
     }
     else{
@@ -54,14 +55,14 @@ if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) {
             array_push($srcPhotos, 'data:'.$mime.';base64,'.base64_encode($data)); 
         }             
         if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country, $srcPhotos)) { 
-            echo '{ "ReturnCode": 50, "Message": "Itinerary updated"}';
+            echo '{ "ReturnCode": 70, "Message": "Itinerary updated"}';
             exit();
         }
-        echo '{ "ReturnCode": 51, "Message": "Itinerary update fail"}';
+        echo '{ "ReturnCode": 71, "Message": "Itinerary update fail"}';
         exit();
     }
     }
-    echo '{ "ReturnCode": 52, "Message": "Distance not valid"}';
+    echo '{ "ReturnCode": 42, "Message": "Distance not valid"}';
     exit();
 }
 

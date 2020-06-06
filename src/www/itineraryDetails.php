@@ -40,6 +40,10 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
     <!-- Fonts CSS-->
     <link rel="stylesheet" href="./assets/css/heading.css">
     <link rel="stylesheet" href="./assets/css/body.css">
+    <!-- Mapquest CSS and JS-->
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>  
+    
 </head>
 <body>
 <?php
@@ -63,6 +67,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
         <div class="col-md-12">
             <div class="card">
               <div class="card-header">Itinerary details</div>
+              <input id="itineraryId" type="hidden" value="<?= $itinerary->Id; ?>"/>
                 <div class="card-body">
                     <form name="itinerary">
                         <div class="form-group">
@@ -83,9 +88,9 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                     <div class="col">
                                         <label for="description">Description :</label>
                                     <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) :?>   
-                                        <textarea class="form-control" id="userBio" rows="3"><?= $itinerary->Description?></textarea>                                  
+                                        <textarea class="form-control" id="description" rows="3"><?= $itinerary->Description?></textarea>                                  
                                     <?php else :?>
-                                        <textarea class="form-control" id="userBio" rows="3" readonly><?= $itinerary->Description?></textarea>     
+                                        <textarea class="form-control" id="description" rows="3" readonly><?= $itinerary->Description?></textarea>     
                                     <?php endif; ?>
                                     </div>                                   
                                 </div>
@@ -163,7 +168,6 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                 <div class="col">
                                     <label for="mapItinerary">The itinerary :</label>
                                     <div id="mapItinerary" class="img-fluid rounderd mb-5" style="width: 100%; height: 630px;"></div>
-                                        
                                 </div>
                             </div>
                         </div>
@@ -187,7 +191,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                 </div>
                             </div>
                         </div>
-                        <?php elseif(!FRateManager::GetInstance()->HasAlreadyRate($itinerary->Id, FSessionManager::GetUserLogged()->Id)) : ?>
+                        <?php elseif(!FRateManager::GetInstance()->HasAlreadyRate($itinerary->Id, FSessionManager::GetUserLogged()->Id) && FSessionManager::GetUserLogged()->Id != 0) : ?>
                         <div class="form-group">
                             <form name="rating">
                             <div class="row">
@@ -207,8 +211,10 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                             </div>
                         </form>
                         </div>
-                        <?php else : ?>
-                        <div class="lead font-weight-bold">You already rate this itinerary</div>
+                        <?php elseif(FSessionManager::GetUserLogged()->Id == 0) : ?>
+                        <div class="lead font-weight-bold">Create an account to rate this itinerary</div>
+                        <?php else :?>
+                            <div class="lead font-weight-bold">You already rate this itinerary</div>
                         <?php endif;?>
                     </div>
                 </form>
@@ -230,14 +236,20 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                             <div class="row">
                                 <div class="col">
                                      <label for="comment">Post your comment :</label>
+                                     <?php if(FSessionManager::GetUserLogged()->Id == 0) :?>
+                                        <textarea class="form-control" id="comment" placeholder="Create an account to comment this itinerary" rows="2" disabled></textarea>
+                                    <?php else :?>
                                      <textarea class="form-control" id="comment" placeholder="Write a comment here ..." rows="2"></textarea>   
+                                    <?php endif;?>
                                      <p id="errorComment" class="errormsg">Your comment wasn't posted, Please try again</p>
                                      <p id="CommentAdded" class="succesmsg">Your comment has been added</p>
                                     </div>                               
                             </div>
                             <div class="row">
                             <div class="col">
+                                <?php if(FSessionManager::GetUserLogged()->Id != 0) :?>
                                 <button type="submit"  id="sendComment" class="form-control btn btn-outline-primary" name="btnComment">Comment</button>
+                                <?php endif;?>
                             </div>
                             </div>
                         </div>     

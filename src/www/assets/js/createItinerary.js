@@ -159,7 +159,7 @@ function ajaxCreateItinerary(formData)
  */
 function InitMap(){
     L.mapquest.key = 'xTHtqDgrfGDrRKxzBKyFtDdkqRS4Uu8V';
-    
+
     var map = L.mapquest.map('mapItinerary', {
         center: [46.165320, 6.072530],
         layers: L.mapquest.tileLayer('map'),
@@ -176,7 +176,7 @@ function InitMap(){
           enabled: false
         },
         narrativeControl: {
-          enabled: true,
+          enabled: false,
           compactResults: false
         }
       }).addTo(map);

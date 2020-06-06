@@ -33,12 +33,18 @@ class FSessionManager {
         }       
     }
     /**
-     * @brief Get the user logged in session
+     * @brief Get the user logged in session or if user isn't logged,get a FUser object for unregistered user
      * 
      * @return TUser $_SESSION['userLogged] the user 
      */
     public static function GetUserLogged() : ?FUser{
-        return $_SESSION['userLogged'];
+        if(isset($_SESSION['userLogged'])){
+            return $_SESSION['userLogged'];
+        }else{
+            //Id 0 for visitor account
+            return new FUser(0, "John@Doe.com", "Visitor", "John", "Doe", "", "","","2","1");
+        }
+        
     }
     /**
      * @brief Clear session 
@@ -52,6 +58,34 @@ class FSessionManager {
         session_destroy();
 
         return session_destroy() ? true : false;
+    }
+    /**
+     * @brief Set a filter for itinerary display
+     * 
+     * @param array All the filter to apply
+     * 
+     * @return bool true if filter's set, else false
+     */
+    public static function SetItineraryFilter(array $filters){
+        if($filters != null){
+            $_SESSION['filters'] = $filters;
+            return TRUE;
+        }
+        else{
+            return FALSE;
+        }
+    }
+    /**
+     * @brief Get the filter for itinerary display
+     * 
+     * @return array All the filter to apply
+     */
+    public static function GetItineraryFilter(){
+        if(isset($_SESSION['filters'])){
+            return $_SESSION['filters'];
+        }else{
+            return FALSE;
+        }
     }
 }
 ?>
