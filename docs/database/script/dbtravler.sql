@@ -18,27 +18,24 @@ CREATE SCHEMA IF NOT EXISTS `dbtravler` DEFAULT CHARACTER SET utf8mb4 COLLATE ut
 USE `dbtravler` ;
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`ROLES`
+-- Table `dbtravler`.`countries`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`ROLES` (
-  `ID` INT NOT NULL,
-  `ROLE` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
-  UNIQUE INDEX `ROLE_UNIQUE` (`ROLE` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `dbtravler`.`countries` (
+  `ISO2` VARCHAR(2) NOT NULL,
+  `NAME` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`ISO2`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`STATUS`
+-- Table `dbtravler`.`status`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`STATUS` (
+CREATE TABLE IF NOT EXISTS `dbtravler`.`status` (
   `ID` INT NOT NULL,
   `STATUS` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
   UNIQUE INDEX `STATUS_UNIQUE` (`STATUS` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -46,23 +43,22 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`COUNTRIES`
+-- Table `dbtravler`.`roles`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`COUNTRIES` (
-  `ISO2` VARCHAR(2) NOT NULL,
-  `NAME` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`ISO2`),
-  UNIQUE INDEX `ISO2_UNIQUE` (`ISO2` ASC) VISIBLE,
-  UNIQUE INDEX `NAME_UNIQUE` (`NAME` ASC) VISIBLE)
+CREATE TABLE IF NOT EXISTS `dbtravler`.`roles` (
+  `ID` INT NOT NULL,
+  `ROLE` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE INDEX `ROLE_UNIQUE` (`ROLE` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`USERS`
+-- Table `dbtravler`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`USERS` (
+CREATE TABLE IF NOT EXISTS `dbtravler`.`users` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `EMAIL` VARCHAR(45) NOT NULL,
   `NICKNAME` VARCHAR(45) NOT NULL,
@@ -70,146 +66,136 @@ CREATE TABLE IF NOT EXISTS `dbtravler`.`USERS` (
   `TOKEN` VARCHAR(64) NOT NULL,
   `NAME` VARCHAR(45) NULL DEFAULT NULL,
   `SURNAME` VARCHAR(45) NULL DEFAULT NULL,
-  `BIO` VARCHAR(255) NULL DEFAULT NULL,
-  `AVATAR` LONGTEXT NULL DEFAULT NULL,
+  `BIO` MEDIUMTEXT NULL DEFAULT NULL,
+  `AVATAR` LONGTEXT NOT NULL,
   `STATUS_ID` INT NOT NULL,
   `ROLES_ID` INT NOT NULL,
-  `COUNTRIES_ISO2` VARCHAR(2) NOT NULL,
+  `COUNTRIES_ISO2` VARCHAR(2) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `UNIQUE` (`EMAIL` ASC, `NICKNAME` ASC) VISIBLE,
+  UNIQUE INDEX `EMAIL_UNIQUE` (`EMAIL` ASC) VISIBLE,
+  UNIQUE INDEX `NICKNAME_UNIQUE` (`NICKNAME` ASC) VISIBLE,
   INDEX `STATUS_ID` (`STATUS_ID` ASC) VISIBLE,
   INDEX `ROLES_ID` (`ROLES_ID` ASC) VISIBLE,
   INDEX `fk_USERS_COUNTRIES1_idx` (`COUNTRIES_ISO2` ASC) VISIBLE,
-  CONSTRAINT `fk_USERS_ROLES1`
-    FOREIGN KEY (`ROLES_ID`)
-    REFERENCES `dbtravler`.`ROLES` (`ID`),
-  CONSTRAINT `fk_USERS_STATUS1`
-    FOREIGN KEY (`STATUS_ID`)
-    REFERENCES `dbtravler`.`STATUS` (`ID`),
   CONSTRAINT `fk_USERS_COUNTRIES1`
     FOREIGN KEY (`COUNTRIES_ISO2`)
-    REFERENCES `dbtravler`.`COUNTRIES` (`ISO2`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `dbtravler`.`countries` (`ISO2`),
+  CONSTRAINT `fk_USERS_ROLES1`
+    FOREIGN KEY (`ROLES_ID`)
+    REFERENCES `dbtravler`.`roles` (`ID`),
+  CONSTRAINT `fk_USERS_STATUS1`
+    FOREIGN KEY (`STATUS_ID`)
+    REFERENCES `dbtravler`.`status` (`ID`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 39
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`ITINERARY`
+-- Table `dbtravler`.`itinerary`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`ITINERARY` (
+CREATE TABLE IF NOT EXISTS `dbtravler`.`itinerary` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `TITLE` VARCHAR(45) NOT NULL,
-  `RATING` INT NOT NULL,
-  `DESCRIPTION` VARCHAR(255) NOT NULL,
+  `RATING` DOUBLE(2,1) NULL DEFAULT NULL,
+  `DESCRIPTION` MEDIUMTEXT NOT NULL,
   `DURATION` TIME NOT NULL,
-  `DISTANCE` DECIMAL(4,2) NOT NULL,
+  `DISTANCE` DECIMAL(6,2) NOT NULL,
+  `PREVIEW` LONGTEXT NOT NULL,
   `COUNTRIES_ISO2` VARCHAR(2) NOT NULL,
   `STATUS_ID` INT NOT NULL,
   `USERS_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE INDEX `TITLE_UNIQUE` (`TITLE` ASC) VISIBLE,
   INDEX `COUNTRIES_ISO2` (`COUNTRIES_ISO2` ASC) VISIBLE,
   INDEX `STATUS_ID` (`STATUS_ID` ASC) VISIBLE,
   INDEX `USER_ID` (`USERS_ID` ASC) VISIBLE,
-  UNIQUE INDEX `TITLE_UNIQUE` (`TITLE` ASC) VISIBLE,
-  PRIMARY KEY (`ID`),
   CONSTRAINT `fk_ITINERARY_COUNTRIES`
     FOREIGN KEY (`COUNTRIES_ISO2`)
-    REFERENCES `dbtravler`.`COUNTRIES` (`ISO2`),
+    REFERENCES `dbtravler`.`countries` (`ISO2`),
   CONSTRAINT `fk_ITINERARY_STATUS1`
     FOREIGN KEY (`STATUS_ID`)
-    REFERENCES `dbtravler`.`STATUS` (`ID`),
+    REFERENCES `dbtravler`.`status` (`ID`),
   CONSTRAINT `fk_ITINERARY_USERS1`
     FOREIGN KEY (`USERS_ID`)
-    REFERENCES `dbtravler`.`USERS` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `dbtravler`.`users` (`ID`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 16
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`COMMENTS`
+-- Table `dbtravler`.`comments`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`COMMENTS` (
-  `COMMENT` VARCHAR(45) NOT NULL,
-  `DATE` TIMESTAMP NOT NULL,
+CREATE TABLE IF NOT EXISTS `dbtravler`.`comments` (
+  `COMMENT` MEDIUMTEXT NOT NULL,
+  `COMMENT_DATE` TIMESTAMP NOT NULL,
   `USERS_ID` INT NOT NULL,
   `ITINERARY_ID` INT NOT NULL,
   PRIMARY KEY (`USERS_ID`, `ITINERARY_ID`),
+  UNIQUE INDEX `UNIQUE` (`COMMENT_DATE` ASC, `USERS_ID` ASC) INVISIBLE,
   INDEX `fk_COMMENTS_USERS1_idx` (`USERS_ID` ASC) VISIBLE,
   INDEX `fk_COMMENTS_ITINERARY1_idx` (`ITINERARY_ID` ASC) VISIBLE,
-  UNIQUE INDEX `UNIQUE` (`DATE` ASC, `USERS_ID` ASC) INVISIBLE,
-  CONSTRAINT `fk_COMMENTS_USERS1`
-    FOREIGN KEY (`USERS_ID`)
-    REFERENCES `dbtravler`.`USERS` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMMENTS_ITINERARY1`
     FOREIGN KEY (`ITINERARY_ID`)
-    REFERENCES `dbtravler`.`ITINERARY` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `dbtravler`.`itinerary` (`ID`),
+  CONSTRAINT `fk_COMMENTS_USERS1`
+    FOREIGN KEY (`USERS_ID`)
+    REFERENCES `dbtravler`.`users` (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`PHOTOS`
+-- Table `dbtravler`.`photos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`PHOTOS` (
+CREATE TABLE IF NOT EXISTS `dbtravler`.`photos` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `IMAGE` LONGTEXT NOT NULL,
   `ITINERARY_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
   INDEX `fk_PHOTOS_ITINERARY1_idx` (`ITINERARY_ID` ASC) VISIBLE,
   CONSTRAINT `fk_PHOTOS_ITINERARY1`
     FOREIGN KEY (`ITINERARY_ID`)
-    REFERENCES `dbtravler`.`ITINERARY` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `dbtravler`.`itinerary` (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`RATING`
+-- Table `dbtravler`.`rating`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`RATING` (
+CREATE TABLE IF NOT EXISTS `dbtravler`.`rating` (
   `RATE` INT NOT NULL,
   `ITINERARY_ID` INT NOT NULL,
   `USERS_ID` INT NOT NULL,
   PRIMARY KEY (`USERS_ID`, `ITINERARY_ID`),
+  UNIQUE INDEX `UNIQUE` (`ITINERARY_ID` ASC, `USERS_ID` ASC) INVISIBLE,
   INDEX `fk_RATING_ITINERARY1_idx` (`ITINERARY_ID` ASC) VISIBLE,
   INDEX `fk_RATING_USERS1_idx` (`USERS_ID` ASC) VISIBLE,
-  UNIQUE INDEX `UNIQUE` (`ITINERARY_ID` ASC, `USERS_ID` ASC) INVISIBLE,
   CONSTRAINT `fk_RATING_ITINERARY1`
     FOREIGN KEY (`ITINERARY_ID`)
-    REFERENCES `dbtravler`.`ITINERARY` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `dbtravler`.`itinerary` (`ID`),
   CONSTRAINT `fk_RATING_USERS1`
     FOREIGN KEY (`USERS_ID`)
-    REFERENCES `dbtravler`.`USERS` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `dbtravler`.`users` (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `dbtravler`.`WAYPOINTS`
+-- Table `dbtravler`.`waypoints`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dbtravler`.`WAYPOINTS` (
+CREATE TABLE IF NOT EXISTS `dbtravler`.`waypoints` (
   `ITINERARY_ID` INT NOT NULL,
   `INDEX` INT NOT NULL,
-  `ADDRESS` VARCHAR(45) NOT NULL,
+  `ADDRESS` VARCHAR(100) NOT NULL,
   `LONGITUDE` DECIMAL(9,6) NOT NULL,
   `LATITUDE` DECIMAL(9,6) NOT NULL,
   PRIMARY KEY (`INDEX`, `ITINERARY_ID`),
@@ -217,9 +203,7 @@ CREATE TABLE IF NOT EXISTS `dbtravler`.`WAYPOINTS` (
   INDEX `fk_WAYPOINTS_ITINERARY1_idx` (`ITINERARY_ID` ASC) VISIBLE,
   CONSTRAINT `fk_WAYPOINTS_ITINERARY1`
     FOREIGN KEY (`ITINERARY_ID`)
-    REFERENCES `dbtravler`.`ITINERARY` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `dbtravler`.`itinerary` (`ID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

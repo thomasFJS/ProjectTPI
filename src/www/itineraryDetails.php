@@ -261,6 +261,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
         </div>
     </div>
 </div>
+    </div>
     <footer class="footer text-center">
     <div class="container">
         <div class="row">

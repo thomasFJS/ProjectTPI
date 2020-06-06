@@ -92,6 +92,7 @@ function CreateItinerary(event) {
     const ctx = cnv.getContext('2d');
     const dv = document.querySelector('#mapItinerary');
     const html = dv.innerHTML;
+    //Get pos map
     var map = document.getElementById("mapItinerary").getBoundingClientRect();
     render_html_to_canvas(html, ctx, map.x, map.y, 800, 630);
     
