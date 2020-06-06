@@ -11,6 +11,8 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FComment.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FMailerManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 
 /**
  * Comment's manager
@@ -70,7 +72,7 @@ class FCommentManager extends FDatabaseManager{
         return count($result) > 0 ? $result : FALSE;
     }
     /**
-     * @brief Add a comment to an itinerary
+     * @brief Add a comment to an itinerary and send mail to owner
      * 
      * @param int $idItinerary itinerary's id
      * @param int $idUser user's id
@@ -91,6 +93,8 @@ class FCommentManager extends FDatabaseManager{
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
             $req->execute();
+          
+            FMailerManager::sendMail("Comment added on your itinerary", array(FUserManager::GetInstance()->GetById(FItineraryManager::GetInstance()->GetById($idItinerary)->User)->Email), FMailerManager::getCommentAddMail($comment,FUserManager::GetInstance()->GetById($idUser)->Nickname,FItineraryManager::GetInstance()->GetById($idItinerary)->Title));
         }catch(PDOException $e){
             return FALSE;
         }

@@ -92,9 +92,10 @@ function CreateItinerary(event) {
     const ctx = cnv.getContext('2d');
     const dv = document.querySelector('#mapItinerary');
     const html = dv.innerHTML;
-    render_html_to_canvas(html, ctx, 0, 0, 800, 630);
+    var map = document.getElementById("mapItinerary").getBoundingClientRect();
+    render_html_to_canvas(html, ctx, map.x, map.y, 800, 630);
     
-    setTimeout(ajaxCreateItinerary(formData), 2000);
+    setTimeout(ajaxCreateItinerary, 5000, formData);
 }
 /**
  * @brief Ajax call to send all the formData 

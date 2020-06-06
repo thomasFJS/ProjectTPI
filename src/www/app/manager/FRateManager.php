@@ -67,5 +67,84 @@ class FRateManager extends FDatabaseManager{
             return FALSE;
         }
     }
+    /**
+     * @brief Add a rate to an itinerary
+     * 
+     * @param int $idItinerary itinerary's id
+     * @param int $idUser user's id
+     * @param string $rate the rate the user enter
+     * 
+     * @return bool true if insert success, else false
+     */
+    public function AddToItinerary(int $idItinerary, int $idUser, string $rate){
+        $query = <<<EX
+            INSERT INTO `{$this->tableName}` (`{$this->fieldRate}`,`{$this->fieldItinerary}`,`{$this->fieldUser}`)
+            VALUES (:rate, :idItinerary, :idUser)
+        EX;
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':rate', $rate, PDO::PARAM_INT);   
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $req->execute();
+          
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        //Done
+        return TRUE;
+    }
+    /**
+     * @brief Get the average rate of an itinerary
+     * 
+     * @param int $idItinerary itinerary's id
+     * 
+     * @return double the average
+     */
+    public function GetAvgByItinerary(int $idItinerary){
+        $query = <<<EX
+            SELECT AVG(`{$this->fieldRate}`)
+            FROM `{$this->tableName}`
+            WHERE `{$this->fieldItinerary}` = :idItinerary
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->execute();
+            
+            $result = number_format($req->fetch(PDO::FETCH_ASSOC)['AVG(`'.$this->fieldRate.'`)'],2,',','');
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        //Done
+        return $result;
+    }
+    /**
+     * @brief Get the number of rate on an itinerary
+     * 
+     * @param int $idItinerary itinerary's id
+     * 
+     * @return int the number
+     */
+    public function GetNbByItinerary(int $idItinerary){
+        $query = <<<EX
+            SELECT `{$this->fieldRate}`
+            FROM `{$this->tableName}`
+            WHERE `{$this->fieldItinerary}` = :idItinerary
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->execute();
+            
+            $result = $req->rowCount();
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        //Done
+        return $result;
+    }
 }
 ?>

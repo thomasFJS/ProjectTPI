@@ -19,7 +19,10 @@ const ITINERARY_DISTANCE_NOT_VALID = 42;
 //Add comment
 const COMMENT_ADDED = 50;
 const COMMENT_ADD_FAIL = 51;
-
+//Add rate
+const RATE_ADDED = 60;
+const RATE_ADD_FAIL = 61;
+const RATE_NOT_VALID = 62;
 
 //Error
 const INVALID_JSON = 200;

@@ -1,8 +1,10 @@
 $(document).ready(() => {
     $('#save').click(SaveItinerary);
     $('#sendComment').click(AddComment);
+    $('#rate').click(AddRate);
     $('#cancel').click(Cancel);
     $('.errormsg').hide();
+    $('.succesmsg').hide();
 });
 /* @var array Array with all waypoints's info */
 var waypoints = [];
@@ -129,6 +131,8 @@ function SaveItinerary(event) {
  * @brief Add a comment to an itinerary
  * 
  * @param {*} event 
+ * 
+ * @return void
  */
 function AddComment(event) {
     if (event) {
@@ -162,11 +166,78 @@ function AddComment(event) {
         success: function(data){
             switch(data.ReturnCode){
                 case COMMENT_ADDED:
-                    window.location = "./myItineraries.php";
+                    $('#CommentAdded').show().delay(3000).fadeOut(1000);
                     break;
                 case COMMENT_ADD_FAIL: 
                     $('#errorComment').show().delay(3000).fadeOut(1000);
                 break;
+                default:
+                    alert("-");
+                    break;
+            }
+        },
+  
+        error: function (jqXHR){
+            error = "Error :";
+            switch(jqXHR.status){
+                case INVALID_JSON: 
+                    error = error + jqXHR.status + "invalid json";
+                break;
+                case FILE_NOT_FOUND:
+                    error = error + jqXHR.status + "Can't find createItinerary.php";
+                break;
+            }
+            alert(error);
+        }
+    });
+}
+/**
+ * @brief Add a rate to an itinerary
+ * 
+ * @param {*} event 
+ * 
+ * @return void
+ */
+function AddRate(event) {
+    if (event) {
+        event.preventDefault();
+    }
+     //Send title to use php function "GetByTitle" after because title's unique
+    let title = $("#title").val();
+
+    let rate = $("#rating").val();
+
+    formData = new FormData();
+    formData.append("title", title);
+    formData.append("rate", rate);
+
+    if (rate.length == 0) {
+        $("#comment").css("border-color", "red");
+        $("#comment").focus();
+        return;
+    } else {
+        $("#comment").css("border-color", "");
+    }
+
+    $.ajax({
+        method: 'POST',
+        url: './app/api/addRate.php',
+        data: formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+  
+        success: function(data){
+            switch(data.ReturnCode){
+                case RATE_ADDED:
+                    $('#RateAdded').show().delay(3000).fadeOut(1000);
+                    break;
+                case RATE_ADD_FAIL: 
+                    $('#errorRate').show().delay(3000).fadeOut(1000);
+                break;
+                case RATE_NOT_VALID:
+                    $('#errorRateValid').show().delay(3000).fadeOut(1000);
+                    break;
                 default:
                     alert("-");
                     break;

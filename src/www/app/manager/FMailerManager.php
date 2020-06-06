@@ -77,6 +77,31 @@ class FMailerManager{
         EOT;   
         return $body;  
     } 
+    /**
+     * @brief Get the mail body for owner when a user comment his itinerary
+     * 
+     * @param string $comment the comment the user posted 
+     * 
+     * @return string  mail body
+     */
+    public static function getCommentAddMail(string $comment, string $nicknameUser, string $itineraryTitle) : string{
+        $body = <<<EOT
+        <html> 
+            <head></head>
+            <body>
+                <p>Hello,</p>
+                </br>
+                <p>The user <b>{$nicknameUser}</b> comment your itinerary <b>{$itineraryTitle}</b> with the following comment : <i>{$comment}</i>.</p>
+                <p>Feel free to check it by yourself on your itinerary page</p>
+                </br>
+                <p>Sincerely,</p>
+                <p>Team Travler</p>
+            </body>
+        </html>
+        EOT;   
+        return $body;  
+    } 
+
 
 }
 

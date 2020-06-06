@@ -6,6 +6,8 @@
 *     Brief               :  home view.
 *     Date                :  02.06.2020.
 */
+//Requirements
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserManager.php';
 
 /**
  * Represents home page view.
@@ -48,6 +50,13 @@ class FItineraryView{
         }
         return $result;
     }
+    /**
+     * @brief Display all photos uploaded for a itinerary
+     * 
+     * @param array $photos All the photos to display
+     * 
+     * @return string code html to display
+     */
     public static function DisplayPhotosItineraries($photos){
         $result = '';
         if($photos != FALSE){
@@ -56,6 +65,23 @@ class FItineraryView{
                     <div class="carousel-item">
                         <img class="d-block w-100" src="{$photos[$i]->Image}" alt="Photo from itinerary">
                     </div>
+                EX;
+            }
+        }
+        return $result;
+    }
+    public static function DisplayCommentsItineraries($comments){
+        $result = '';
+        if($comments != FALSE){
+            for($i = 0;$i<count($comments);$i++){    
+                $result .= <<<EX
+                    <div class="d-flex flex-row comment-row m-t-0">
+                        <div class="p-2"><img src="{$comments[$i]->User->Avatar}" alt="user" width="50" class="rounded-circle"></div>
+                        <div class="comment-text w-100">
+                            <h6 class="font-medium">{$comments[$i]->User->Nickname}</h6> <span class="m-b-15 d-block">{$comments[$i]->Comment}</span>
+                            <div class="comment-footer"> <span class="text-muted float-right">{$comments[$i]->PostedAt}</span> 
+                        </div>
+                    </div> 
                 EX;
             }
         }

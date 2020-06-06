@@ -11,6 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserMan
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSessionManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FCodeManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FPhotoManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FCommentManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/view/FItineraryView.php';
@@ -31,7 +32,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Login</title>
+    <title>Itinerary details</title>
     <!-- Font Awesome icons (free version)-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -56,7 +57,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
     }
 ?>
 
-<section class="page-section mb-0" id="formLogin">
+<section class="page-section mb-0" id="itineraryDetails">
     <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
@@ -166,6 +167,14 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                            <div class="col">
+                            <label for="rateAvg">Average Rate :</p>
+                            <p id="rateAvg"><?= FRateManager::GetInstance()->GetAvgByItinerary($itinerary->Id); ?>(<?= FRateManager::GetInstance()->GetNbByItinerary($itinerary->Id);?>)</p>
+                            </div>
+                        </div>
+                        </div>
                         <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) : ?>
                         <div class="form-group">
                             <div class="row">
@@ -180,10 +189,14 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                         </div>
                         <?php elseif(!FRateManager::GetInstance()->HasAlreadyRate($itinerary->Id, FSessionManager::GetUserLogged()->Id)) : ?>
                         <div class="form-group">
+                            <form name="rating">
                             <div class="row">
                                 <div class="col">
                                     <label for="rating">Rating (0-10) :</label>
-                                    <input class="form-control" id="rating" type="number" value="<?= $itinerary->Rating?>" data-decimals="0" min="1" max="10" step="1"/> 
+                                    <input class="form-control" id="rating" type="number" value="" data-decimals="0" min="1" max="10" step="1"/> 
+                                    <p id="errorRate" class="errormsg">Error trying to add your rate, Please try again later</p>
+                                    <p id="errorRateValid" class="errormsg">The rate you enter isn't valid, Please enter a valid rate (0-10)</p>
+                                    <p id="RateAdded" class="succesmsg">Your rate has been added</p>
                                 </div>
                                 
                             </div>
@@ -192,8 +205,11 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                     <button type="submit"  id="rate" class="form-control btn btn-outline-primary" name="rate">Rate</button>
                                 </div>
                             </div>
+                        </form>
                         </div>
-                        <?php endif; ?>
+                        <?php else : ?>
+                        <div class="lead font-weight-bold">You already rate this itinerary</div>
+                        <?php endif;?>
                     </div>
                 </form>
             </div>
@@ -202,6 +218,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
 </div>
 </div>
     </div>
+    <?php if($itinerary->User != FSessionManager::GetUserLogged()->Id) : ?>
     <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
@@ -215,7 +232,8 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                      <label for="comment">Post your comment :</label>
                                      <textarea class="form-control" id="comment" placeholder="Write a comment here ..." rows="2"></textarea>   
                                      <p id="errorComment" class="errormsg">Your comment wasn't posted, Please try again</p>
-                                </div>                               
+                                     <p id="CommentAdded" class="succesmsg">Your comment has been added</p>
+                                    </div>                               
                             </div>
                             <div class="row">
                             <div class="col">
@@ -228,8 +246,21 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
             </div> 
         </div>
     </div>
-    </section>
-
+    <?php endif;?>
+    </section> 
+    <div class="row d-flex justify-content-center mt-100 mb-100">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Latest Comments</h4>
+            </div>
+            <div class="comment-widgets">
+                <!-- Comments Row -->
+                <?= FItineraryView::DisplayCommentsItineraries(FCommentManager::GetInstance()->GetAllById($itinerary->Id)); ?>
+            </div> 
+        </div>
+    </div>
+</div>
     <footer class="footer text-center">
     <div class="container">
         <div class="row">
