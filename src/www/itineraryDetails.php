@@ -179,7 +179,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                             </div>
                             <div class="col">
                                 <?php if(FSessionManager::GetUserLogged()->Role == 2) :?>    
-                                    <a href="#" class="btn btn-danger" data-type="delete" data-target="#modalDisable" data-toggle="modal">Disable</a>  
+                                    <a href="#" class="btn btn-danger" data-type="disable" data-target="#modalConfirm" data-toggle="modal">Disable</a>  
                                 <?php endif; ?>
                             </div>
                             </div>
@@ -193,6 +193,9 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                                 </div>
                                 <div class="col">
                                     <button type="submit"  id="save" class="form-control btn btn-outline-primary" name="save">Save itinerary</button>
+                                </div>
+                                <div class="col">
+                                    <a href="#" class="btn btn-danger" data-type="delete" data-target="#modalConfirm" data-toggle="modal">Delete</a>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +232,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
 </div>
 </div>
     </div>
-    <div class="modal fade" id="modalDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -244,7 +247,7 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
             <div class="modal-footer">
                 <form action="" method="post">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <input id="btnModal" class="btn btn-success" type="submit" name="" value="Disable">
+                    <input id="btnModal" class="btn btn-success" type="submit" name="" value="Confirm">
                     <input id="hiddenModal" type="hidden" name="" value="">
                 </form>
             </div>

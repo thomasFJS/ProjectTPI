@@ -115,11 +115,19 @@ public static function DisplayItineraries($itineraries) : string{
         $result = '';
         if($photos != FALSE){
             for($i = 0;$i<count($photos);$i++){
-                $result .= <<<EX
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="{$photos[$i]->Image}" alt="Photo from itinerary">
+                if($i > 0){
+                    $result .= <<<EX
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" height="450px" src="{$photos[$i]->Image}" alt="Photo from itinerary">
                     </div>
                 EX;
+                }else{
+                    $result .= <<<EX
+                        <div class="carousel-item">
+                            <img class="d-block w-100" width="400px" height="450px" src="{$photos[$i]->Image}" alt="Photo from itinerary">
+                        </div>
+                    EX;
+                }
             }
         }
         return $result;

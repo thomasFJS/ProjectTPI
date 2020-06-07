@@ -2,8 +2,8 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  disableItinerary.
-*     Brief               :  api to disable the itinerary.
+*     Page                :  deleteItinerary.
+*     Brief               :  api to disable the account.
 *     Date                :  04.06.2020.
 */
 
@@ -15,13 +15,12 @@ if(session_status() == PHP_SESSION_NONE){
 }
 
 $idItinerary = filter_input(INPUT_POST, "itineraryId", FILTER_SANITIZE_STRING);
-$title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
 
-if(FItineraryManager::GetInstance()->Disable($idItinerary, $title)){
-    echo '{ "ReturnCode": 90, "Message": "Itinerary disabled"}';
+if(FItineraryManager::GetInstance()->Delete($idItinerary)){
+    echo '{ "ReturnCode": 100, "Message": "Itinerary deleted"}';
     exit();
 }else{
-    echo '{ "ReturnCode": 91, "Message": "Disable itinerary fail"}';
+    echo '{ "ReturnCode": 101, "Message": "Itinerary delete fail"}';
     exit();
 }
 

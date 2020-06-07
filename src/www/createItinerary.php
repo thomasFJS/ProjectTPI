@@ -182,7 +182,6 @@ Chemin Gérard-De-Ternier 10
 <script src="./assets/js/script.js"></script>
 <!-- Include JS-->
 <script src="./constants/constants.js"></script>
-<script src="./assets/js/canvas.js"></script>
 <!-- Display maps on itineraries card with mapquest-->
 <script src="./assets/js/createItinerary.js"></script>
 </body>

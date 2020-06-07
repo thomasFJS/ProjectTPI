@@ -6,18 +6,24 @@ $(document).ready(() => {
     $('#cancel').click(Cancel);
     $('.errormsg').hide();
     $('.succesmsg').hide();
-    $('#btnModal').click(DisableItinerary);
-    // Set modal settings
-    $('#modalDisable').on('show.bs.modal', function (event) {
+    //$('#btnModalDisable').click(DisableItinerary);
+    // Set modal for confirmation 
+    $('#modalConfirm').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)         
         var type = button.data('type')
-        $('#modalDisable').modal('show')
-        if (type == "delete") {
-            var nickname = button.data('nickname') 
+        $('#modalConfirm').modal('show')
+        if (type == "disable") {
             var modal = $(this)
             modal.find('.modal-title').text('Are you sure you want to disable this itinerary')
             modal.find('.modal-body').text('Disable the itinerary : ' + $("#title").val())
+            $('#btnModal').attr('name', 'disableItinerary');
+            $('input[name ="disableItinerary"]').click(DisableItinerary);
+        }else if(type == "delete"){
+            var modal = $(this)
+            modal.find('.modal-title').text('Are you sure you want to delete this itinerary')
+            modal.find('.modal-body').text('Delete the itinerary : ' + $("#title").val())
             $('#btnModal').attr('name', 'deleteItinerary');
+            $('input[name ="deleteItinerary"]').click(DeleteItinerary);
         }
     });
 });
@@ -348,7 +354,7 @@ function InitMap(){
                   for(let i = 0;i<marker._layers[prop].locations.length;i++){
                     waypoints[i] = marker._layers[prop].locations[i];
                   }
-                  console.log(waypoints);
+                  
               }
               // locationIndex- I am assuming 0 for start marker and 1 for end marker.
               if (marker._layers[prop].locationIndex === 1) {
@@ -417,6 +423,63 @@ function DisableItinerary(event){
             alert(error);
         }
     });
+}
+/**
+ * @brief Delete the itinerary
+ * 
+ * @param {*} event 
+ * 
+ * @return void
+ */
+function DeleteItinerary(event){
+    if (event){
+        event.preventDefault();
+    }
+
+    let idItinerary = $("#itineraryId").val();
+
+    //Create data to send
+    formData = new FormData();
+    formData.append("itineraryId", idItinerary);
+
+    
+    $.ajax({
+        method: 'POST',
+        url: './app/api/deleteItinerary.php',
+        data: formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+  
+        success: function(data){
+            switch(data.ReturnCode){
+                case ITINERARY_DELETED:
+                    window.location = "./index.php";
+                        alert("Your itinerary has been deleted");
+                    break;
+                case DELETE_ITINERARY_FAIL: 
+                    $('#errorDelete').show().delay(3000).fadeOut(1000);
+                break;
+                default:
+                    alert("-");
+                    break;
+            }
+        },
+  
+        error: function (jqXHR){
+            error = "Error :";
+            switch(jqXHR.status){
+                case INVALID_JSON: 
+                    error = error + jqXHR.status + "invalid json";
+                break;
+                case FILE_NOT_FOUND:
+                    error = error + jqXHR.status + "Can't find createItinerary.php";
+                break;
+            }
+            alert(error);
+        }
+    });
+
 }
 /**
  * @brief Cancel the form 

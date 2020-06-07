@@ -34,6 +34,9 @@ const DISABLE_ACCOUNT_FAIL = 81;
 //Disable itinerary
 const ITINERARY_DISABLED = 90;
 const DISABLE_ITINERARY_FAIL = 91;
+//Delete itinerary 
+const ITINERARY_DELETED = 100;
+const DELETE_ITINERARY_FAIL = 101;
 
 
 

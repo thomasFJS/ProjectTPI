@@ -84,8 +84,8 @@ class FPhotoManager extends FDatabaseManager{
             $req = $this::getDb()->prepare($query);
             for($i = 0;$i<count($photos);$i++)
             {
-                $req->bindParam(':image', $photos[$i], PDO::PARAM_INT);
-                $req->bindParam(':idItinerary', $itineraryId, PDO::PARAM_STR);
+                $req->bindParam(':image', $photos[$i], PDO::PARAM_STR);
+                $req->bindParam(':idItinerary', $itineraryId, PDO::PARAM_INT);
                 $req->execute();
             }
         

@@ -183,6 +183,7 @@ class FItineraryManager extends FDatabaseManager{
             SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}` 
             FROM `{$this->tableName}`
             WHERE `{$this->fieldUser}` = :idUser
+            AND `{$this->fieldStatus}` = 2
         EX;
 
         try{
@@ -384,10 +385,11 @@ class FItineraryManager extends FDatabaseManager{
      * @brief Disable itinerary 
      * 
      * @param int $idItinerary itinerary's id
+     * @param string $title itinerary's title
      * 
      * @return bool true if disable success, else false
      */
-    public function DisableItinerary($idItinerary, $title){
+    public function Disable($idItinerary, $title){
         $query = <<<EX
             UPDATE `{$this->tableName}`
             SET `{$this->fieldStatus}` = 3
@@ -399,6 +401,28 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
 
             FMailerManager::sendMail("Your itinerary has been disabled", array(FUserManager::GetInstance()->GetById($this::GetById($idItinerary)->User)->Email), FMailerManager::getDisableItineraryMail($title));
+        } catch(PDOException $e){
+            return FALSE;
+        }
+        return TRUE;
+    }
+    /**
+     * @brief Delete itinerary 
+     * 
+     * @param int $idItinerary itinerary's id
+     * 
+     * @return bool true if delete success, else false
+     */
+    public function Delete($idItinerary){
+        $query = <<<EX
+            DELETE FROM `{$this->tableName}`
+            WHERE `{$this->fieldId}` = :idItinerary 
+        EX;
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->execute();
+
         } catch(PDOException $e){
             return FALSE;
         }
