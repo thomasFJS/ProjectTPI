@@ -28,8 +28,12 @@ if(strlen($username) > 0 && strlen($password) > 0) {
     }
 
     if($userLogged !== false) {
-        if(!FUserManager::GetInstance()->VerifyActivation($userLogged->Nickname)){
+        if(FUserManager::GetInstance()->VerifyActivation($userLogged->Nickname)==1){
             echo '{ "ReturnCode": 11, "Message": "Account not activate."}';
+            exit();
+        }
+        elseif(FUserManager::GetInstance()->VerifyActivation($userLogged->Nickname)==3){
+            echo '{ "ReturnCode": 13, "Message": "Account blocked."}';
             exit();
         }
         FSessionManager::setUserLogged($userLogged);

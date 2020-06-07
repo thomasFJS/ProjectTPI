@@ -177,7 +177,12 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
                             <label for="rateAvg">Average Rate :</p>
                             <p id="rateAvg"><?= FRateManager::GetInstance()->GetAvgByItinerary($itinerary->Id); ?>(<?= FRateManager::GetInstance()->GetNbByItinerary($itinerary->Id);?>)</p>
                             </div>
-                        </div>
+                            <div class="col">
+                                <?php if(FSessionManager::GetUserLogged()->Role == 2) :?>    
+                                    <a href="#" class="btn btn-danger" data-type="delete" data-target="#modalDisable" data-toggle="modal">Disable</a>  
+                                <?php endif; ?>
+                            </div>
+                            </div>
                         </div>
                         <?php if($itinerary->User == FSessionManager::GetUserLogged()->Id) : ?>
                         <div class="form-group">
@@ -224,6 +229,28 @@ $itinerary = FItineraryManager::GetInstance()->GetById($_GET['id']);
 </div>
 </div>
     </div>
+    <div class="modal fade" id="modalDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">-</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                -
+            </div>
+            <div class="modal-footer">
+                <form action="" method="post">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <input id="btnModal" class="btn btn-success" type="submit" name="" value="Disable">
+                    <input id="hiddenModal" type="hidden" name="" value="">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     <?php if($itinerary->User != FSessionManager::GetUserLogged()->Id) : ?>
     <div class="container">
     <div class="row justify-content-center mt-4">

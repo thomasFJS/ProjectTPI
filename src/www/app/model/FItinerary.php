@@ -30,7 +30,7 @@ class FItinerary{
      * @param Array<FPhotos> $PhotosParam Array with all itinerary's photos.
      * @param int $UserParam Owner's id
      */
-    public function __construct(int $IdParam , string $TitleParam = "", $RatingParam , string $DescriptionParam = "", string $DurationParam = "", string $DistanceParam = "", string $PreviewParam = "", string $CountryParam = "", int $StatusParam , array $WaypointsParam, $CommentsParam, $PhotosParam, int $UserParam)
+    public function __construct(int $IdParam , string $TitleParam = "", $RatingParam , string $DescriptionParam = "", string $DurationParam = "", string $DistanceParam = "", string $CountryParam = "", int $StatusParam , array $WaypointsParam, $CommentsParam, $PhotosParam, int $UserParam)
     {
         $this->Id = $IdParam;
         $this->Title = $TitleParam;
@@ -38,7 +38,6 @@ class FItinerary{
         $this->Description = $DescriptionParam;
         $this->Duration = $DurationParam;
         $this->Distance = $DistanceParam;
-        $this->Preview = $PreviewParam;
         $this->Country = $CountryParam;
         $this->Status = $StatusParam;
         $this->Waypoints = $WaypointsParam;
@@ -76,10 +75,6 @@ class FItinerary{
     * @var string Itinerary's distance
     */
     public $Distance;
-    /**
-     * @var string Itinerary's preview image encoded in base 64
-     */
-    public $Preview;
     /**
     * @var string Itinerary's country 
     */

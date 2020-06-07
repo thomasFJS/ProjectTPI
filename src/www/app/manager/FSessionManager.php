@@ -87,5 +87,15 @@ class FSessionManager {
             return FALSE;
         }
     }
+    /**
+     * @brief Unset the itinerary filters
+     * 
+     * @return void
+     */
+    public static function UnsetItineraryFilter(){
+        if(isset($_SESSION['filters'])){
+            unset($_SESSION['filters']);
+        }
+    }
 }
 ?>

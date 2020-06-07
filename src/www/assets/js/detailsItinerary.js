@@ -1,10 +1,25 @@
 $(document).ready(() => {
+    InitMap();
     $('#save').click(SaveItinerary);
     $('#sendComment').click(AddComment);
     $('#rate').click(AddRate);
     $('#cancel').click(Cancel);
     $('.errormsg').hide();
     $('.succesmsg').hide();
+    $('#btnModal').click(DisableItinerary);
+    // Set modal settings
+    $('#modalDisable').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)         
+        var type = button.data('type')
+        $('#modalDisable').modal('show')
+        if (type == "delete") {
+            var nickname = button.data('nickname') 
+            var modal = $(this)
+            modal.find('.modal-title').text('Are you sure you want to disable this itinerary')
+            modal.find('.modal-body').text('Disable the itinerary : ' + $("#title").val())
+            $('#btnModal').attr('name', 'deleteItinerary');
+        }
+    });
 });
 /* @var array Array with all waypoints's info */
 var waypoints = [];
@@ -47,7 +62,7 @@ function SaveItinerary(event) {
     formData.append("duration", duration);
     formData.append("distance", distance);
     formData.append("media[]", itineraryImages);
-    //formData.append("waypoints", JSON.stringify(fWaypointsArray));
+    formData.append("waypoints", JSON.stringify(fWaypointsArray));
     
 
     if (title.length == 0) {
@@ -81,14 +96,14 @@ function SaveItinerary(event) {
     } else{
       $("#distance").css("border-color", "");
     }
-    /*
+    
     if(waypoints.length < 2){
       $("#mapItinerary").css("border-color", "red");
       alert("Veuillez placer votre itinéraire");
       return;
     } else{
       $("#mapItinerary").css("border-color", "");
-    }*/
+    }
     
     $.ajax({
       method: 'POST',
@@ -268,25 +283,22 @@ function AddRate(event) {
 function InitMap(){
     L.mapquest.key = 'xTHtqDgrfGDrRKxzBKyFtDdkqRS4Uu8V';
     
-    $.getJSON('./app/api/getItineraryByTitle.php?title=', function(data) {
-    
+    $.getJSON('./app/api/getItineraryById.php?id=' + $('#itineraryId').val(), function(data) {
         var mapInit = [];
         var waypointsArray = [];
-        /* data will hold the php array as a javascript object */
-       $.each(data, function(key, val) {
         var map = L.mapquest.map('mapItinerary', {
-            center: [val.Waypoints[0].Latitude, val.Waypoints[0].Longitude],
+            center: [data.Waypoints[0].Latitude, data.Waypoints[0].Longitude],
             layers: L.mapquest.tileLayer('map'),
             zoom: 13,
             zoomControl: false
           });
           mapInit.push({     
-            start: val.Waypoints[key].Address,
-            end: val.Waypoints[val.Waypoints.length - 1].Address                                                          
+            start: data.Waypoints[0].Address,
+            end: data.Waypoints[data.Waypoints.length - 1].Address                                                          
           });
           /*Add waypoints in array */
-          for(let i = 1; i< val.Waypoints.length-1 ; i++){
-            waypointsArray.push(val.Waypoints[i].Latitude + ', ' + val.Waypoints[i].Longitude);
+          for(let i = 1; i< data.Waypoints.length-1 ; i++){
+            waypointsArray.push(data.Waypoints[i].Latitude + ', ' + data.Waypoints[i].Longitude);
             }
         if(waypointsArray.length > 0){
             mapInit[0].waypoints = waypointsArray;
@@ -302,13 +314,28 @@ function InitMap(){
             narrativeControl: {
               enabled: false,
               compactResults: false
+            },
+            startInput:{
+                compactResults: true,
+                disabled: false,
+                location: data.Waypoints[0].Address,
+                placeholderText: 'Starting point or click on the map...',
+                geolocation: {
+                  enabled: true
+                }
+            },
+            endInput:{
+                compactResults: true,
+                disabled: false,
+                location: data.Waypoints[data.Waypoints.length - 1].Address,
+                placeholderText: 'Destination',
+                geolocation: {
+                    enabled: true
+                }
             }
           }).addTo(map);
-          console.log(mapInit[0]);
             //console.log(L.mapquest.directions().route(mapInit[0]));           
             L.mapquest.directions().route(mapInit[0]);
-            waypointsArray = [];
-            mapInit = [];
     
           //When marker moove
           map.on('moveend', function(event) {
@@ -330,10 +357,66 @@ function InitMap(){
               }
             }
           });
-        });
     });
     
     
+}
+/**
+ * @brief Disable the itinerary
+ * 
+ * @param {*} event 
+ * 
+ * @return void
+ */
+function DisableItinerary(event){
+    if (event){
+        event.preventDefault();
+    }
+
+    let idItinerary = $("#itineraryId").val();
+    let title = $("#title").val();
+
+    //Create data to send
+    formData = new FormData();
+    formData.append("itineraryId", idItinerary);
+    formData.append("title", title);
+
+    
+    $.ajax({
+        method: 'POST',
+        url: './app/api/disableItinerary.php',
+        data: formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+  
+        success: function(data){
+            switch(data.ReturnCode){
+                case ITINERARY_DISABLED:
+                    window.location = "./index.php";
+                    break;
+                case DISABLE_ITINERARY_FAIL: 
+                    $('#errorDisable').show().delay(3000).fadeOut(1000);
+                break;
+                default:
+                    alert("-");
+                    break;
+            }
+        },
+  
+        error: function (jqXHR){
+            error = "Error :";
+            switch(jqXHR.status){
+                case INVALID_JSON: 
+                    error = error + jqXHR.status + "invalid json";
+                break;
+                case FILE_NOT_FOUND:
+                    error = error + jqXHR.status + "Can't find createItinerary.php";
+                break;
+            }
+            alert(error);
+        }
+    });
 }
 /**
  * @brief Cancel the form 

@@ -60,6 +60,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                         <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
                                         <p id="errorLogin" class="errormsg">Wrong username or password</p>
                                         <p id="errorActivation" class="errormsg">Account not activate</p>
+                                        <p id="errorBlocked" class="errormsg">Account blocked</p>
                                 </div>
                                 <div class="col">
                                     <label for="password">Password :</label>

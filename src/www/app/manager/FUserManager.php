@@ -275,20 +275,23 @@ class FUserManager extends FDatabaseManager{
      * 
      * @return bool true if account's activated, else false
      */
-    public function VerifyActivation(string $nickname) : bool{
+    public function VerifyActivation(string $nickname){
         $query = <<<EX
             SELECT `{$this->fieldStatus}`
             FROM `{$this->tableName}` 
             WHERE `{$this->fieldNickname}` = :nickname
         EX;
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $req->execute();
 
-        $req = $this::getDb()->prepare($query);
-        $req->bindParam(':nickname', $nickname, PDO::PARAM_STR);
-        $req->execute();
-
-        $result = $req->fetch();
-        //return true if account's activated (2)
-        return $result[0] == 2 ? TRUE : FALSE;
+            $result = $req->fetch();
+            //return status code
+            return $result[0];
+        }catch(PDOException $e){
+            return FALSE;
+        }      
     }
     /**
      * @brief Get user by id
@@ -316,6 +319,58 @@ class FUserManager extends FDatabaseManager{
         }
         
     }
+    /**
+     * @brief Get user by nickname
+     * 
+     * @param string $nickname user's unique nickname
+     * 
+     * @return FUser The user with the nickname
+     */
+    public function GetByNickname(string $nickname){
+        $query = <<<EX
+            SELECT `{$this->fieldId}`, `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldName}`,`{$this->fieldSurname}`, `{$this->fieldBio}`, `{$this->fieldAvatar}`, `{$this->fieldCountry}`, `{$this->fieldStatus}`, `{$this->fieldRole}`
+            FROM `{$this->tableName}`
+            WHERE `{$this->fieldNickname}` = :nickname
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $req->execute();
+
+            $result = $req->fetch(PDO::FETCH_ASSOC);  
+            return $result != false > 0 ? new FUser($result[$this->fieldId], $result[$this->fieldEmail],  $result[$this->fieldNickname], $result[$this->fieldName], $result[$this->fieldSurname], $result[$this->fieldBio], $result[$this->fieldAvatar], $result[$this->fieldCountry], $result[$this->fieldStatus], $result[$this->fieldRole]) : FALSE;            
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        
+    }
+    /**
+     * @brief Get all users
+     * 
+     * @return array Array of FUser with all users
+     */
+    public function GetAll(){
+        $result = array();
+
+        $query = <<<EX
+            SELECT `{$this->fieldId}`, `{$this->fieldEmail}`, `{$this->fieldNickname}`, `{$this->fieldName}`,`{$this->fieldSurname}`, `{$this->fieldBio}`, `{$this->fieldAvatar}`, `{$this->fieldCountry}`, `{$this->fieldStatus}`, `{$this->fieldRole}`
+            FROM `{$this->tableName}`
+        EX;
+
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->execute();
+
+            while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
+                $users = new FUser($row[$this->fieldId], $row[$this->fieldEmail],  $row[$this->fieldNickname], $row[$this->fieldName], $row[$this->fieldSurname], $row[$this->fieldBio], $row[$this->fieldAvatar], $row[$this->fieldCountry], $row[$this->fieldStatus], $row[$this->fieldRole]);
+                array_push($result, $users);
+            }
+        }catch(PDOException $e){
+            return FALSE;
+        }
+        return count($result) > 0 ? $result : FALSE;
+    } 
     /**
      * @brief Update user's infos
      * 
@@ -348,6 +403,30 @@ class FUserManager extends FDatabaseManager{
             $req->execute();          
         } catch(PDOException $e){
             return FALSE;
+        }
+        return TRUE;
+    }
+    /**
+     * @brief Disable account by nickname 
+     * 
+     * @param string $nickname user's nickname
+     * 
+     * @return bool true if disable success, else false
+     */
+    public function DisableAccount($nickname){
+        $query = <<<EX
+            UPDATE `{$this->tableName}`
+            SET `{$this->fieldStatus}` = 3
+            WHERE `{$this->fieldNickname}` = :nickname 
+        EX;
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':nickname', $nickname, PDO::PARAM_STR);
+            $req->execute();
+
+            FMailerManager::sendMail("Your account has been disabled", array($this::GetByNickname($nickname)->Email), FMailerManager::getDisableAccountMail());
+        } catch(PDOException $e){
+        return FALSE;
         }
         return TRUE;
     }

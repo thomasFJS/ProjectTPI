@@ -7,109 +7,76 @@
 *     Date début projet   :  04.09.2019.
     
 */
-require_once("./inc/function.php");
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSessionManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FUserManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/view/FAdminView.php';
 
-$deleteUser = filter_input(INPUT_POST, "deleteUser");
-
-if($deleteUser)
-{
-    $nickToDelete = filter_input(INPUT_POST, "hiddenNick");
-    deleteUser($nickToDelete);
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
-
-$nbUser = count(getAllUser());
-$userPerPage = 5;
-$nbPage = ceil($nbUser/$userPerPage);
-
-if(isset($_GET['page'])){
-    $actualPage = intval($_GET['page']);
-
-    if($actualPage>$nbPage){
-        $actualPage=$nbPage;
-    }
-}
-else{
-    $actualPage = 1;
-}
-
-$firstUser = ($actualPage-1)*$userPerPage;
 ?>
 <!DOCTYPE html>
 <html lang="FR" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <title>Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>User Management</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="./assets/css/styles.css" rel="stylesheet">
+    <!-- Fonts CSS-->
+    <link rel="stylesheet" href="./assets/css/heading.css">
+    <link rel="stylesheet" href="./assets/css/body.css">
 </head>
-<body>
+<body id="page-top">
 <?php
-    //Affiche une navbar selon si on est log ou non.
-    if (isLogged()) {
-        if (isAllowed("administrateur")) {
-            include "navbar/navbarAdmin.php";
+    
+    //Show the good navbar depends if logged and if user is admin
+    if (FUserManager::getInstance()->isLogged()) {
+        if (FUserManager::getInstance()->isAllowed(FSessionManager::getUserLogged())) {
+            include "./inc/navbar/navbarAdmin.php";
         }
         else {
-            header("Location: .\index.php");
-            exit;
+            include "./inc/navbar/navbarLogged.php";
         }
     } 
     else {
-        include "navbar/navbarNotLogged.php";
+        include "./inc/navbar/navbarNotLogged.php";
     }
+    
 ?>
-    <div id="panelAdmin">
+    <div class="masthead text-center">
+    <div class="text-center">
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">USER MANAGEMENT</h2>
+        </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+    </div>
+
+    <section class="page-section" id="panelAdmin">
+  
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Nickname</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
                     <th scope="col">Country</th>
-                    <th scope="col">Birthday</th>
-                    <th scope="col">Activation</th>
-                    <th scope="col">Role</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>                   
                 </tr>
             </thead>           
-        <?php foreach(getUserPerPage($firstUser ,$userPerPage) as $user): ?>
-                <tr>
-                    <td><?php echo $user->Nickname;?></td>
-                    <td><?php echo $user->Email;?></td>
-                    <td><?php echo $user->Country;?></td>
-                    <td><?php echo $user->Birthday;?></td>
-                <?php if($user->Activation == 1): ?>              
-                    <td>Activé</td>                   
-                <?php else: ?>                
-                    <td>Désactivé</td>
-                <?php endif; ?>
-
-                <?php switch($user->Role){
-                    case 1:
-                        echo '<td>Utilisateur</td>';
-                    break;
-
-                    case 2:
-                        echo "<td>Admin</td>";
-                    break;
-                } ?>
-                    <td><a href="#" class="btn btn-danger" data-type="delete" data-nickname="<?php echo $user->Nickname;?>" data-target="#modalDelete" data-toggle="modal">Delete</a></td>              
-                </tr>
-            <?php endforeach; ?>    
+           <?= FAdminView::DisplayUsers(FUserManager::GetInstance()->GetAll()) ?>
         </table>
-        <?php
-            echo '<p align="center"> Page : ';
-            for($i=1; $i<=$nbPage; $i++){
-                if($i==$actualPage){
-                echo ' [ '.$i.' ] ';
-                }
-                else{
-                    echo ' <a href="administration.php?page='.$i.'">'.$i.'</a>';
-                }
-            }
-            echo '</p>';
-        ?>
-    </div>
-    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalDisable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -124,33 +91,50 @@ $firstUser = ($actualPage-1)*$userPerPage;
             <div class="modal-footer">
                 <form action="" method="post">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <input id="btnModal" class="btn btn-success" type="submit" name="" value="Delete">
+                    <input id="btnModal" class="btn btn-success" type="submit" name="" value="Disable">
                     <input id="hiddenModal" type="hidden" name="" value="">
                 </form>
             </div>
         </div>
     </div>
-</div>
+</section>
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="mb-4">LOCATION</h4>
+                <p class="pre-wrap lead mb-0">CFPT Informatique
+Chemin Gérard-De-Ternier 10
+1213 Lancy</p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="mb-4">AROUND THE WEB</h4><a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/StartBootstrap"><i class="fab fa-fw fa-facebook-f"></i></a><a class="btn btn-outline-light btn-social mx-1" href="https://www.twitter.com/sbootstrap"><i class="fab fa-fw fa-twitter"></i></a><a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/startbootstrap"><i class="fab fa-fw fa-linkedin-in"></i></a><a class="btn btn-outline-light btn-social mx-1" href="https://www.dribble.com/startbootstrap"><i class="fab fa-fw fa-dribbble"></i></a>
+            </div>
+            <!-- Footer About Text-->
+            <div class="col-lg-4">
+                <h4 class="mb-4">ABOUT TRAVLER</h4>
+                <p class="pre-wrap lead mb-0">Travler is a project made by Thomas Fujise for his CFC work in the CFPT</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Copyright Section-->
+<section class="copyright py-4 text-center text-white">
+    <div class="container"><small class="pre-wrap">Copyright © Travler 2020</small></div>
+</section>
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+<div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<!-- Core theme JS-->
+<script src="./assets/js/script.js"></script>
+<script src="./constants/constants.js"></script>
+<!-- Include -->
+<script src="./assets/js/administration.js"></script>
 </body>
 </html>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<script>
-
-$('#modalDelete').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)         
-        var type = button.data('type')
-        $('#modalDelete').modal('show')
-        if (type == "delete") {
-            var nickname = button.data('nickname') 
-            var modal = $(this)
-            modal.find('.modal-title').text('Are you sure you want delete this user')
-            modal.find('.modal-body').text('Delete the user : ' + nickname)
-            $('#btnModal').attr('name', 'deleteUser');
-            $('#hiddenModal').attr('name', 'hiddenNick');
-            $('#hiddenModal').attr('value', nickname);
-        }
-    });
-</script>

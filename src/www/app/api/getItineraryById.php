@@ -2,9 +2,9 @@
 /*
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
-*     Page                :  getItineraryByTitle.
-*     Brief               :  Api to get the FItinerary object with title.
-*     Date                :  02.06.2020.
+*     Page                :  getItineraryById.
+*     Brief               :  Api to get the FItinerary object with itinerary id
+*     Date                :  03.06.2020.
 */
 /* Requirements */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
@@ -12,8 +12,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSession
 
 /* Set document type to text/javascript */
 header("Content-type: text/javascript");
-$title = $_GET['title'];
+$id = $_GET['id'];
 
 /* Encode the object FItinerary as json. */
-echo json_encode(FItineraryManager::GetInstance()->GetByTitle($title));
+echo json_encode(FItineraryManager::GetInstance()->GetById($id));
 ?>

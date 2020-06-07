@@ -133,7 +133,15 @@ else{
                                 <input type="time" id="durationMaxFilter" class="form-control" placeholder="Select time"> 
                             </div>
                         </div>
-                        <button type="submit"  id="itineraryFilter" class="form-control btn btn-outline-primary"  name="itineraryFilter" >Filter</button>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit"  id="itineraryFilterCancel" class="form-control btn btn-outline-danger"  name="itineraryFilter" >Cancel Filter</button>
+                        </div>
+                        <div class="col">
+                            <button type="submit"  id="itineraryFilter" class="form-control btn btn-outline-primary"  name="itineraryFilter" >Filter</button>
+                        </div>                
                     </div>
                 </div>
             </form>

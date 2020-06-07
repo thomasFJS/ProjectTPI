@@ -47,6 +47,9 @@ function login(event) {
                 case LOGIN_ACCOUNT_NOT_ACTIVATE :
                     $('#errorActivation').show().delay(3000).fadeOut(1000);                   
                     break;
+                case LOGIN_ACCOUNT_BLOCKED :
+                    $('#errorBlocked').show().delay(3000).fadeOut(1000);                   
+                    break;
                 case LOGIN_FAIL : 
                     $('#errorLogin').show().delay(3000).fadeOut(1000);
                 break;

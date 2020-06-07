@@ -72,7 +72,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="container">
         <!-- Portfolio Section Heading-->
         <div class="text-center">
-            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">ITINERARY</h2>
+            <h2 class="page-section-heading text-secondary mb-0 d-inline-block">YOUR ITINERARY</h2>
         </div>
         <!-- Icon Divider-->
         <div class="divider-custom">

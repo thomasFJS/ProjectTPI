@@ -9,6 +9,7 @@ const REGISTER_PASSWORD_DONT_MATCH_REQUIREMENTS = 3;
 const LOGIN_DONE = 10;
 const LOGIN_ACCOUNT_NOT_ACTIVATE = 11;
 const LOGIN_FAIL = 12;
+const LOGIN_ACCOUNT_BLOCKED = 13;
 //Update Info
 const INFOS_UPDATED = 30;
 const INFOS_UPDATED_FAIL = 31;
@@ -27,6 +28,14 @@ const COMMENT_ADD_FAIL = 51;
 const RATE_ADDED = 60;
 const RATE_ADD_FAIL = 61;
 const RATE_NOT_VALID = 62;
+//Disable account 
+const ACCOUNT_DISABLED = 80;
+const DISABLE_ACCOUNT_FAIL = 81;
+//Disable itinerary
+const ITINERARY_DISABLED = 90;
+const DISABLE_ITINERARY_FAIL = 91;
+
+
 
 //Error
 const INVALID_JSON = 200;

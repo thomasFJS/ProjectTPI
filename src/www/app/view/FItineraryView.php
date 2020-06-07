@@ -24,7 +24,7 @@ class FItineraryView{
      * 
      * @return string code html to display 
      */
-    public static function DisplayItineraries($itineraries) : string{
+    /*public static function DisplayItineraries($itineraries) : string{
         $result = '';
         if($itineraries == FALSE)
         {
@@ -49,6 +49,60 @@ class FItineraryView{
             }
         }
         return $result;
+    }*/
+    /**
+* @brief Display all itineraries
+*
+* @param array $itineraries all itineraries to display
+*
+* @return string code html to display
+*/
+public static function DisplayItineraries($itineraries) : string{
+    $result = '';
+    if($itineraries == FALSE)
+    {
+    $result .= <<<EX
+    <div class="lead font-weight-bold">You don't create itinerary yet</div>
+    EX;
+    }
+    else{
+    for($i = 0;$i<count($itineraries);$i++){
+    $result .= self::DisplayItinerary($itineraries[$i]);
+    }
+    }
+    return $result;
+    }
+    
+    /**
+    * @brief Display one itinerariy
+    *
+    * @param FItinary $itineraries all itineraries to display
+    *
+    * @return string code html to display
+    */
+    private static function DisplayItinerary($itinerary) : string{
+    $result = '';
+    if($itinerary == FALSE)
+    {
+    $result .= <<<EX
+    <div class="lead font-weight-bold">No itinerary available here, maybe create on ?</div>
+    EX;
+    }
+    else{
+    $result .= <<<EX
+    <div class="col-md-6 col-lg-4 mb-5">
+    <div class="portfolio-item mx-auto card" data-toggle="modal" data-target="#portfolioModal{$itinerary->Id}">
+    <div id="map{$itinerary->Id}" class="card-img-top" style="width: 100%; height: 200px;"></div>
+    <div class="card-body">
+    <a href="./itineraryDetails.php?id={$itinerary->Id}" ><h5 class="card-title">{$itinerary->Title}</h5></a>
+    <p class="card-text">{$itinerary->Description}</p>
+    <a href="#" id="info{$itinerary->Id}" class="btn btn-primary">More infos</a>
+    </div>
+    </div>
+    </div>
+    EX;
+    }
+    return $result;
     }
     /**
      * @brief Display all photos uploaded for a itinerary
@@ -70,6 +124,13 @@ class FItineraryView{
         }
         return $result;
     }
+    /**
+     * @brief Display all comments added for a itinerary
+     * 
+     * @param array $comments All the comments to display
+     * 
+     * @return string code html to display
+     */
     public static function DisplayCommentsItineraries($comments){
         $result = '';
         if($comments != FALSE){
@@ -87,43 +148,6 @@ class FItineraryView{
         }
         return $result;
     }
-    public static function DisplayModalItineraries(array $itineraries) : string{
-        $result = '';
-        for($i = 0; $i<count($itineraries);$i++){
-            $result .= <<<EX
-            <div class="portfolio-modal modal fade" id="portfolioModal{$itineraries[$i]->Id}" tabindex="-1" role="dialog" aria-labelledby="#portfolioModal{$itineraries[$i]->Id}Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary mb-0">{$itineraries[$i]->Title}</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Itinerary--><div id="mapModal{$itineraries[$i]->Id}" class="img-fluid rounderd mb-5" style="width: 100%; height: 530px;"></div>                                   
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">{$itineraries[$i]->Description}</p>
-                                    <button class="btn btn-primary" href="#" data-dismiss="modal"><i class="fas fa-times fa-fw"></i>Close Window</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            EX;
-        }
-
-        return $result;
-    }
-
 }
 
 ?>

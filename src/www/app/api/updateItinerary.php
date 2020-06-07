@@ -10,6 +10,7 @@
 //requirements
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FSessionManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FWaypointsManager.php';
 
 if(session_status() == PHP_SESSION_NONE){
     session_start();
@@ -22,11 +23,11 @@ $country = filter_input(INPUT_POST, "country", FILTER_SANITIZE_STRING);
 $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_STRING);
 $duration = filter_input(INPUT_POST, "duration", FILTER_SANITIZE_STRING);
 $distance = filter_input(INPUT_POST, "distance", FILTER_VALIDATE_FLOAT);
-//$waypoints = json_decode($_POST['waypoints']);
-
+$waypoints = json_decode($_POST['waypoints']);
 
 $idUser = FSessionManager::GetUserLogged()->Id;
 $idItinerary = FItineraryManager::GetInstance()->GetById($id)->Id;
+
 
 if(isset($_FILES["media"])){
     $photos = $_FILES["media"];
@@ -38,7 +39,7 @@ if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) {
     if($distance < 999 || $distance > 1) {     
     // if user add photos to his itinerary
     if(!isset($photos) || !is_uploaded_file($userLogo['tmp_name'][0])){
-        if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country)) { 
+        if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country, $waypoints)) { 
             echo '{ "ReturnCode": 70, "Message": "Itinerary updated"}';
             exit();
         }
@@ -54,7 +55,7 @@ if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) {
             $mime = $finfo->file($userLogo['tmp_name'][i]);
             array_push($srcPhotos, 'data:'.$mime.';base64,'.base64_encode($data)); 
         }             
-        if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country, $srcPhotos)) { 
+        if(FItineraryManager::GetInstance()->Update($idUser, $idItinerary, $title, $description, $duration, $distance, $country,$waypoints, $srcPhotos)) { 
             echo '{ "ReturnCode": 70, "Message": "Itinerary updated"}';
             exit();
         }

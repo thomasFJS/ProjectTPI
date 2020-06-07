@@ -32,7 +32,6 @@ class FItineraryManager extends FDatabaseManager{
         $this->fieldDescription = "DESCRIPTION";
         $this->fieldDuration = "DURATION";
         $this->fieldDistance = "DISTANCE";
-        $this->fieldPreview = "PREVIEW";
         $this->fieldCountry = "COUNTRIES_ISO2";
         $this->fieldStatus = "STATUS_ID";
         $this->fieldUser = "USERS_ID";        
@@ -56,8 +55,9 @@ class FItineraryManager extends FDatabaseManager{
         $result = array();
 
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`, `{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`, `{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
             FROM `{$this->tableName}`
+            WHERE `{$this->fieldStatus}` = 2
             ORDER BY `{$this->fieldRating}` DESC
         EX;
 
@@ -66,7 +66,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
 
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview], 
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance],
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
                 array_push($result, $itinerary);
@@ -102,90 +102,51 @@ class FItineraryManager extends FDatabaseManager{
         
         $firstCondition = false;
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`, `{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`
             FROM `{$this->tableName}` 
-            WHERE            
+            WHERE `{$this->fieldStatus}` = 2           
         EX;
         if($country !== null){
            $query .= <<<EX
-            `{$this->fieldCountry}` = :country
+            AND `{$this->fieldCountry}` = :country
            EX;
            array_push($filtersParam, ":country");
            array_push($filtersValue, $country);
-           $firstCondition =true;
+           
         }
         if($rateMin !== null){
-            if($firstCondition){
-                $query .= <<<EX
-                    AND `{$this->fieldRating}` >= :rating
-                EX;
-            }
-            else{
-                $query .= <<<EX
-                    `{$this->fieldRating}` >= :rating
-                EX;
-                $firstCondition = true;
-            }
+            $query .= <<<EX
+                AND `{$this->fieldRating}` >= :rating
+            EX;
+            
             array_push($filtersParam, ":rating");
             array_push($filtersValue, $rateMin);
         }
         if($durationMin !== null){
-            if($firstCondition){
-                $query .= <<<EX
-                    AND `{$this->fieldDuration}` >= :durationMin
-                EX;
-            }
-            else{
-                $query .= <<<EX
-                    `{$this->fieldDuration}` >= :durationMin
-                EX;
-                $firstCondition = true;
-            }
+            $query .= <<<EX
+                AND `{$this->fieldDuration}` >= :durationMin
+            EX;
             array_push($filtersParam, ":durationMin");
             array_push($filtersValue, $durationMin);
         }
         if($durationMax !== null){
-            if($firstCondition){
-                $query .= <<<EX
-                    AND `{$this->fieldDuration}` >= :durationMax
-                EX;
-            }
-            else{
-                $query .= <<<EX
-                    `{$this->fieldDuration}` >= :durationMax
-                EX;
-                $firstCondition = true;
-            }
+            $query .= <<<EX
+                AND `{$this->fieldDuration}` >= :durationMax
+            EX;
             array_push($filtersParam, ":durationMax");
             array_push($filtersValue, $durationMax);
         }
         if($distanceMin !== null){
-            if($firstCondition){
-                $query .= <<<EX
-                    AND `{$this->fieldDistance}` >= :distanceMin
-                EX;
-            }
-            else{
-                $query .= <<<EX
-                    `{$this->fieldDistance}` >= :distanceMin
-                EX;
-                $firstCondition = true;
-            }
+            $query .= <<<EX
+                AND `{$this->fieldDistance}` >= :distanceMin
+            EX;
             array_push($filtersParam, ":distanceMin");
             array_push($filtersValue, $distanceMin);
         }
         if($distanceMax !== null){
-            if($firstCondition){
-                $query .= <<<EX
-                    AND `{$this->fieldDistance}` <= :distanceMax
-                EX;
-            }
-            else{
-                $query .= <<<EX
-                    `{$this->fieldDistance}` <= :distanceMax
-                EX;
-                $firstCondition = true;
-            }
+            $query .= <<<EX
+                AND `{$this->fieldDistance}` <= :distanceMax
+            EX;
             array_push($filtersParam, ":distanceMax");
             array_push($filtersValue, $distanceMax);
         }
@@ -200,7 +161,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
 
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview], 
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
                 array_push($result, $itinerary);
@@ -219,7 +180,7 @@ class FItineraryManager extends FDatabaseManager{
         $result = array();
 
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}` 
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}` 
             FROM `{$this->tableName}`
             WHERE `{$this->fieldUser}` = :idUser
         EX;
@@ -230,7 +191,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
 
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview],
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);
                 array_push($result, $itinerary);
@@ -249,7 +210,7 @@ class FItineraryManager extends FDatabaseManager{
      */
     public function GetById(int $idItinerary){
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
             FROM `{$this->tableName}`
             WHERE `{$this->fieldId}` = :idItinerary
         EX;
@@ -260,7 +221,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
             
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview],
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);               
             }
@@ -284,8 +245,8 @@ class FItineraryManager extends FDatabaseManager{
      */
     public function Create($title, $description, $duration, $distance, $preview, $country,$waypoints, $idUser, $photos = []){
         $query = <<<EX
-            INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`, `{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
-            VALUES(:title, :description, :duration, :distance, :preview, :country, :status, :idUser)
+            INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`, `{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
+            VALUES(:title, :description, :duration, :distance, :country, :status, :idUser)
         EX;
 
         try{
@@ -298,7 +259,6 @@ class FItineraryManager extends FDatabaseManager{
             $req->bindParam(':description', $description, PDO::PARAM_STR);
             $req->bindParam(':duration', $duration, PDO::PARAM_STR);
             $req->bindParam(':distance', $distance, PDO::PARAM_STR);
-            $req->bindParam(':preview', $preview, PDO::PARAM_STR);
             $req->bindParam(':country', $country, PDO::PARAM_STR);
             $req->bindParam(':status', $status, PDO::PARAM_STR);
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
@@ -327,8 +287,10 @@ class FItineraryManager extends FDatabaseManager{
      * @param string $distance itinerary's distance
      * @param array $waypoints Array<FWaypoint> array with all itinerary's waypoints
      * @param array $photos Array<FPhoto> array with all itinerary's photos
+     *
+     * @return bool true if update success, else false
      */
-    public function Update($idUser,$idItinerary, $title, $description, $duration, $distance, $country, $photos = []){
+    public function Update($idUser,$idItinerary, $title, $description, $duration, $distance, $country, $waypoints = [],$photos = []){
         $query = <<<EX
             UPDATE `{$this->tableName}`
             SET `{$this->fieldTitle}` = :title, `{$this->fieldDescription}` = :description, `{$this->fieldDuration}` = :duration, `{$this->fieldDistance}` = :distance, `{$this->fieldCountry}` = :country
@@ -343,7 +305,6 @@ class FItineraryManager extends FDatabaseManager{
             $req->bindParam(':description', $description, PDO::PARAM_STR);
             $req->bindParam(':distance', $distance, PDO::PARAM_STR);
             $req->bindParam(':duration', $duration, PDO::PARAM_STR);
-            //$req->bindParam(':preview', $preview, PDO::PARAM_STR);
             $req->bindParam(':country', $country, PDO::PARAM_STR);
             $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
@@ -351,6 +312,12 @@ class FItineraryManager extends FDatabaseManager{
             if(!empty($photos)){
                 FPhotoManager::GetInstance()->Create($photos, $idItinerary);
             }
+            if(!empty($waypoints)){
+                FWaypointManager::GetInstance()->Delete($idItinerary);
+                FWaypointManager::GetInstance()->Create($waypoints, $idItinerary);
+            }
+            
+            
             $this::getDb()->commit();         
         } catch(PDOException $e){
             $this::getDb()->rollBack();
@@ -393,7 +360,7 @@ class FItineraryManager extends FDatabaseManager{
      */
     public function GetByTitle($title){
         $query = <<<EX
-            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldPreview}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
+            SELECT `{$this->fieldId}`, `{$this->fieldTitle}`, `{$this->fieldRating}`,`{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`, `{$this->fieldUser}`
             FROM `{$this->tableName}`
             WHERE `{$this->fieldTitle}` = :title
         EX;
@@ -404,7 +371,7 @@ class FItineraryManager extends FDatabaseManager{
             $req->execute();
             
             while($row=$req->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)){           
-                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], $row[$this->fieldPreview],
+                $itinerary = new FItinerary($row[$this->fieldId], $row[$this->fieldTitle], $row[$this->fieldRating], $row[$this->fieldDescription], $row[$this->fieldDuration], $row[$this->fieldDistance], 
                 $row[$this->fieldCountry], $row[$this->fieldStatus],FWaypointManager::GetInstance()->GetAllById($row[$this->fieldId]),FCommentManager::GetInstance()->GetAllById($row[$this->fieldId]),
                 FPhotoManager::GetInstance()->GetAllById($row[$this->fieldId]), $row[$this->fieldUser]);               
             }
@@ -412,6 +379,30 @@ class FItineraryManager extends FDatabaseManager{
             return FALSE;
         }
          return $itinerary != "" ? $itinerary : FALSE;
+    }
+    /**
+     * @brief Disable itinerary 
+     * 
+     * @param int $idItinerary itinerary's id
+     * 
+     * @return bool true if disable success, else false
+     */
+    public function DisableItinerary($idItinerary, $title){
+        $query = <<<EX
+            UPDATE `{$this->tableName}`
+            SET `{$this->fieldStatus}` = 3
+            WHERE `{$this->fieldId}` = :idItinerary 
+        EX;
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->execute();
+
+            FMailerManager::sendMail("Your itinerary has been disabled", array(FUserManager::GetInstance()->GetById($this::GetById($idItinerary)->User)->Email), FMailerManager::getDisableItineraryMail($title));
+        } catch(PDOException $e){
+            return FALSE;
+        }
+        return TRUE;
     }
 }
 ?>

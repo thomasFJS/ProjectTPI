@@ -81,6 +81,8 @@ class FMailerManager{
      * @brief Get the mail body for owner when a user comment his itinerary
      * 
      * @param string $comment the comment the user posted 
+     * @param string $nicknameUser user's nickname of the user who posted the comment
+     * @param string $itineraryTitle itinerary's title
      * 
      * @return string  mail body
      */
@@ -93,6 +95,55 @@ class FMailerManager{
                 </br>
                 <p>The user <b>{$nicknameUser}</b> comment your itinerary <b>{$itineraryTitle}</b> with the following comment : <i>{$comment}</i>.</p>
                 <p>Feel free to check it by yourself on your itinerary page</p>
+                </br>
+                <p>Sincerely,</p>
+                <p>Team Travler</p>
+            </body>
+        </html>
+        EOT;   
+        return $body;  
+    } 
+    
+    /**
+     * @brief Get the mail body for user when his account is blocked by an admin
+     * 
+     * 
+     * @return string  mail body
+     */
+    public static function getDisableAccountMail() : string{
+        $body = <<<EOT
+        <html> 
+            <head></head>
+            <body>
+                <p>Hello,</p>
+                </br>
+                <p>Your account has been suspend by an administrator for an indefinite period.</p>
+                <p>From now on you can't login with your account on our website</p>
+                </br>
+                <p>Sincerely,</p>
+                <p>Team Travler</p>
+            </body>
+        </html>
+        EOT;   
+        return $body;  
+    } 
+    
+    /**
+     * @brief Get the mail body for user when his itinerary is blocked by an admin
+     * 
+     * @param string $title the title of the itinerary
+     * 
+     * @return string  mail body
+     */
+    public static function getDisableItineraryMail($title) : string{
+        $body = <<<EOT
+        <html> 
+            <head></head>
+            <body>
+                <p>Hello,</p>
+                </br>
+                <p>Your itinerary : {$title} has been suspend by an administrator for an indefinite period.</p>
+                <p>From now on your itinerary cant be seen on our website</p>
                 </br>
                 <p>Sincerely,</p>
                 <p>Team Travler</p>

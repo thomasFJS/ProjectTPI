@@ -101,7 +101,28 @@ class FWaypointManager extends FDatabaseManager{
         //Done
         return TRUE;
     }
+    /**
+     * @brief Delete all waypoints from an itinerary
+     * 
+     * @param int $idItinerary itinerary's id
+     * 
+     * @return bool true if delete success, else false
+     */
+    public function Delete($idItinerary){
+        $query = <<<EX
+            DELETE FROM `{$this->tableName}`
+            WHERE `{$this->fieldItinerary}` = :idItinerary
+        EX;
 
+        try{
+            $req = $this::getDb()->prepare($query);
+            $req->bindParam(':idItinerary', $idItinerary, PDO::PARAM_INT);
+            $req->execute();        
+        } catch(PDOException $e){
+            return FALSE;
+        }
+        return TRUE;
+    }
 
 }
 ?>
