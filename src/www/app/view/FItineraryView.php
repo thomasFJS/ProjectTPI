@@ -115,7 +115,7 @@ public static function DisplayItineraries($itineraries) : string{
         $result = '';
         if($photos != FALSE){
             for($i = 0;$i<count($photos);$i++){
-                if($i > 0){
+                if($i == 0){
                     $result .= <<<EX
                     <div class="carousel-item active">
                         <img class="d-block w-100" height="450px" src="{$photos[$i]->Image}" alt="Photo from itinerary">

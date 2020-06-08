@@ -131,7 +131,7 @@ class FItineraryManager extends FDatabaseManager{
         }
         if($durationMax !== null){
             $query .= <<<EX
-                AND `{$this->fieldDuration}` >= :durationMax
+                AND `{$this->fieldDuration}` <= :durationMax
             EX;
             array_push($filtersParam, ":durationMax");
             array_push($filtersValue, $durationMax);

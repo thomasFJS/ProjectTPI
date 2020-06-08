@@ -42,7 +42,7 @@ class FMailerManager{
                 $mailer = Swift_Mailer::newInstance($instance);
                 $message = Swift_Message::newInstance();
                 $message->setSubject($subject);
-                $message->setFrom(array('thomasfujise13@gmail.com' => 'Thomas Fujise'));
+                $message->setFrom(array('travler.infos@gmail.com' => 'Travler Infos'));
                 $message->setTo($userEmail);
             
                 $message->setBody($body,'text/html');
