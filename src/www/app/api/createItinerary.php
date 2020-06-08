@@ -34,7 +34,7 @@ $srcPhotos = [];
 if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) { 
     if($distance < 999 || $distance > 1) {     
     // if user add photos to his itinerary
-    if(!isset($photos) || !is_uploaded_file($userLogo['tmp_name'][0])){
+    if(!isset($photos) || !is_uploaded_file($photos['tmp_name'][0])){
         if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance,$preview, $country, $waypoints,$idUser)) { 
             echo '{ "ReturnCode": 40, "Message": "Create itinerary done"}';
             exit();
@@ -43,12 +43,12 @@ if (strlen($title) > 2 && strlen($description) > 0 && strlen($duration) > 0) {
         exit();
     }
     else{
-        for($i = 0;$i<count($userLogo['tmp_name']);$i++){
-            $data = file_get_contents($userLogo['tmp_name'][i]);
+        for($i = 0;$i<count($photos['tmp_name']);$i++){
+            $data = file_get_contents($photos['tmp_name'][$i]);
             //Get MIME type 
             //Need to uncomment the line : extension=fileinfo in php.ini
             $finfo = new finfo(FILEINFO_MIME_TYPE);
-            $mime = $finfo->file($userLogo['tmp_name'][i]);
+            $mime = $finfo->file($photos['tmp_name'][$i]);
             array_push($srcPhotos, 'data:'.$mime.';base64,'.base64_encode($data)); 
         }             
         if(FItineraryManager::GetInstance()->Create($title, $description, $duration, $distance,$preview, $country, $waypoints,$idUser, $srcPhotos)) { 

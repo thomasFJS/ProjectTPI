@@ -87,30 +87,7 @@ function CreateItinerary(event) {
     } else{
       $("#mapItinerary").css("border-color", "");
     }
-    
-    const cnv = document.querySelector('#canvasPreview');
-    const ctx = cnv.getContext('2d');
-    const dv = document.querySelector('#mapItinerary');
-    const html = dv.innerHTML;
-    //Get pos map
-    var map = document.getElementById("mapItinerary").getBoundingClientRect();
-    render_html_to_canvas(html, ctx, map.x, map.y, 800, 630);
-    
-    setTimeout(ajaxCreateItinerary, 5000, formData);
-}
-/**
- * @brief Ajax call to send all the formData 
- * 
- * @param {*} formData Form data with all field value
- * 
- * @return void
- */
-function ajaxCreateItinerary(formData)
-{
-  const cnv = document.querySelector('#canvasPreview');
-  var dataURL = cnv.toDataURL();
-  formData.append("itineraryPreview", dataURL);
-
+      
   $.ajax({
     method: 'POST',
     url: './app/api/createItinerary.php',
@@ -149,7 +126,6 @@ function ajaxCreateItinerary(formData)
         alert(error);
     }
 });
-
 }
 
 /**
@@ -192,7 +168,6 @@ function InitMap(){
               for(let i = 0;i<marker._layers[prop].locations.length;i++){
                 waypoints[i] = marker._layers[prop].locations[i];
               }
-              console.log(waypoints);
           }
           // locationIndex- I am assuming 0 for start marker and 1 for end marker.
           if (marker._layers[prop].locationIndex === 1) {

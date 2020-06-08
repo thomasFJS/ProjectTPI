@@ -264,10 +264,11 @@ class FItineraryManager extends FDatabaseManager{
             $req->bindParam(':status', $status, PDO::PARAM_STR);
             $req->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             $req->execute();
+            $itineraryId = $this::getDb()->lastInsertId();
             if(!empty($photos)){
-                FPhotoManager::GetInstance()->Create($photos, $this::getDb()->lastInsertId());
+                FPhotoManager::GetInstance()->Create($photos, $itineraryId);
             }
-            FWaypointManager::GetInstance()->Create($waypoints, $this::getDb()->lastInsertId());
+            FWaypointManager::GetInstance()->Create($waypoints, $itineraryId);
             
             $this::getDb()->commit();
         }catch(PDOException $e){
