@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  addRate.
-*     Brief               :  api to add a rate to an itinerary.
+*     Brief               :  api to add a rate to an itinerary used for ajax call.
 *     Date                :  04.06.2020.
 */
 

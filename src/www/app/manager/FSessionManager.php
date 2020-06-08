@@ -8,7 +8,7 @@
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php';
 /**
- * Class FSessionManager
+ * Class FSessionManager, to manage session
  */
 class FSessionManager {
     /**
@@ -90,11 +90,15 @@ class FSessionManager {
     /**
      * @brief Unset the itinerary filters
      * 
-     * @return void
+     * @return bool true if unset done, else false
      */
     public static function UnsetItineraryFilter(){
         if(isset($_SESSION['filters'])){
             unset($_SESSION['filters']);
+            return TRUE;
+        }
+        else{
+            return FALSE;
         }
     }
 }

@@ -12,10 +12,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabas
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FWaypoint.php';
 
 /**
- * Waypoints's manager
+ * Waypoints's manager, manager for table waypoints in db
  */
 class FWaypointManager extends FDatabaseManager{
 
+    /**
+     * @var static $instance the instance for the manager 
+     * */
     private static $instance;
     /**
      * @brief Class constructor, init all field from table `WAYPOINTS`

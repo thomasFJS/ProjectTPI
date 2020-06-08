@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  updateProfil.
-*     Brief               :  api to update the profil.
+*     Brief               :  api to update the profil used for ajax call.
 *     Date                :  04.06.2020.
 */
 

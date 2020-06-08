@@ -12,10 +12,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabas
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FPhoto.php';
 
 /**
- * Photo's manager
+ * Photo's manager, manager for photos table in db
  */
 class FPhotoManager extends FDatabaseManager{
 
+    /**
+     * @var static $instance the instance for the manager 
+     * */
     private static $instance;
     /**
      * @brief Class constructor, init all field from table `PHOTOS`

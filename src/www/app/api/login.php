@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  login.
-*     Brief               :  api to log the user.
+*     Brief               :  api to log the user used for ajax call.
 *     Date                :  19.05.2020.
 */
 

@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  deleteItinerary.
-*     Brief               :  api to disable the account.
+*     Brief               :  api to disable the account used for ajax call.
 *     Date                :  04.06.2020.
 */
 

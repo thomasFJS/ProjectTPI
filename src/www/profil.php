@@ -92,7 +92,7 @@ $userLogged = FSessionManager::getUserLogged();
                                 <div class="row">
                                     <div class="col">
                                     <label for="userBio">Bio :</label>                                       
-                                    <textarea class="form-control" id="userBio" rows="3" value="<?= $userLogged->Bio?>"></textarea>
+                                    <textarea class="form-control" id="userBio" rows="3"><?= $userLogged->Bio?></textarea>
                                     </div>
                                 </div>
                             </div>

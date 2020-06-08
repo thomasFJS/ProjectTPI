@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  disableItinerary.
-*     Brief               :  api to disable the itinerary.
+*     Brief               :  api to disable the itinerary used for ajax call.
 *     Date                :  04.06.2020.
 */
 

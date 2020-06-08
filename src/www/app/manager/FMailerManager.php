@@ -8,10 +8,14 @@
 */
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/swiftmailer5/lib/swift_required.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
-//Class mailer
+//Class mailer, contains all function for the mailer 
 class FMailerManager{
 
+    /**
+     * @var static $instance the instance for the manager 
+     * */
     private static $instance; 
+
     private function __construct(){}
     private function __clone(){}
     /**

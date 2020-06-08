@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  getAllItineraries.
-*     Brief               :  Api to get all itineraries store in database.
+*     Brief               :  Api to get all itineraries store in database used for ajax call. 
 *     Date                :  02.06.2020.
 */
 /* Requirements */

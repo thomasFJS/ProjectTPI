@@ -13,6 +13,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
  * Class FDatabase
  */
 class FDatabaseManager {
+    /**
+     * @var static $db the instance for the manager 
+     * */
     private static $db ;
     /**
      * @brief Class constructor, create a new database connection if one doesn't exist.

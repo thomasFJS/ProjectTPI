@@ -10,7 +10,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FCountry.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
 /**
- * Class FCodeManager
+ * Class FCodeManager, manager for all code table in the db
  */
 class FCodeManager extends FDatabaseManager{
     /**

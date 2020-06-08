@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  updateItinerary.
-*     Brief               :  api to update an itinerary.
+*     Brief               :  api to update an itinerary used for ajax call.
 *     Date                :  05.06.2020.
 */
 

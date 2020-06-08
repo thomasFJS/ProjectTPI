@@ -17,40 +17,7 @@ class FItineraryView{
      * @brief Class constructor
      */
     function __construct(){}
-    /**
-     * @brief Display all itineraries
-     * 
-     * @param array $itineraries all itineraries to display
-     * 
-     * @return string code html to display 
-     */
-    /*public static function DisplayItineraries($itineraries) : string{
-        $result = '';
-        if($itineraries == FALSE)
-        {
-            $result .= <<<EX
-            <div class="lead font-weight-bold">You don't create itinerary yet</div>
-            EX;
-        }
-        else{
-            for($i = 0;$i<count($itineraries);$i++){
-                $result .= <<<EX
-                <div class="col-md-6 col-lg-4 mb-5">
-                <div class="portfolio-item mx-auto card" data-toggle="modal" data-target="#portfolioModal{$itineraries[$i]->Id}">
-                    <img id="map{$itineraries[$i]->Id}" class="card-img-top" style="width: 100%; height: 200px;">
-                    <div class="card-body">                       
-                        <a href="./itineraryDetails.php?id={$itineraries[$i]->Id}" ><h5 class="card-title">{$itineraries[$i]->Title}</h5></a>
-                        <p class="card-text">{$itineraries[$i]->Description}</p>
-                        <a href="#" id="info{$itineraries[$i]->Id}" class="btn btn-primary">More infos</a>
-                    </div>
-                </div>
-                </div>
-                EX;
-            }
-        }
-        return $result;
-    }*/
-    /**
+/**
 * @brief Display all itineraries
 *
 * @param array $itineraries all itineraries to display

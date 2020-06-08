@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  getMyItineraries.
-*     Brief               :  Api to get only the itineraries created by the user logged.
+*     Brief               :  Api to get only the itineraries created by the user logged used for ajax call.
 *     Date                :  02.06.2020.
 */
 /* Requirements */

@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  register.
-*     Brief               :  api to register the user.
+*     Brief               :  api to register the user used for ajax call.
 *     Date                :  19.05.2020.
 */
 

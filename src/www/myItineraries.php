@@ -87,59 +87,6 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
     </div>
 </section>
-<section class="page-section bg-primary text-white mb-0" id="about">
-    <div class="container">
-        <!-- About Section Heading-->
-        <div class="text-center">
-            <h2 class="page-section-heading d-inline-block text-white">ABOUT</h2>
-        </div>
-        <!-- Icon Divider-->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- About Section Content-->
-        <div class="row">
-            <div class="col-lg-4 ml-auto">
-                <p class="pre-wrap lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p>
-            </div>
-            <div class="col-lg-4 mr-auto">
-                <p class="pre-wrap lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="page-section" id="contact">
-    <div class="container">
-        <!-- Contact Section Heading-->
-        <div class="text-center">
-            <h2 class="page-section-heading text-secondary d-inline-block mb-0">CONTACT</h2>
-        </div>
-        <!-- Icon Divider-->
-        <div class="divider-custom">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Contact Section Content-->
-        <div class="row justify-content-center">
-            <div class="col-lg-4">
-                <div class="d-flex flex-column align-items-center">
-                    <div class="icon-contact mb-3"><i class="fas fa-mobile-alt"></i></div>
-                    <div class="text-muted">Phone</div>
-                    <div class="lead font-weight-bold">(555) 555-5555</div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="d-flex flex-column align-items-center">
-                    <div class="icon-contact mb-3"><i class="far fa-envelope"></i></div>
-                    <div class="text-muted">Email</div><a class="lead font-weight-bold" href="mailto:name@example.com">name@example.com</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <footer class="footer text-center">
     <div class="container">
         <div class="row">

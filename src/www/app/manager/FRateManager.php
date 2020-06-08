@@ -10,7 +10,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FDatabaseManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 /**
- * Class FCodeManager
+ * Class FRateManager, manager for table rating in db
  */
 class FRateManager extends FDatabaseManager{
     /**
@@ -18,7 +18,7 @@ class FRateManager extends FDatabaseManager{
      * */
     private static $instance;
     /**
-     * @brief Class constructor, init all field from table `COUNTRIES`
+     * @brief Class constructor, init all field from table `RATING`
      */
     function __construct(){
         $this->tableName = "RATING";

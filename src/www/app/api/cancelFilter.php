@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  cancelFilter.
-*     Brief               :  api to cancel the itinerary filter.
+*     Brief               :  api to cancel the itinerary filter used for ajax call.
 *     Date                :  04.06.2020.
 */
 

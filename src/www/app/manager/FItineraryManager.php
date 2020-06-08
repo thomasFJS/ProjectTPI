@@ -16,10 +16,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FComment
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FPhotoManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/constants/constants.php';
 /**
- * Itinerary's manager
+ * Itinerary's manager, manager for the table itinerary in the db
  */
 class FItineraryManager extends FDatabaseManager{
 
+    /**
+     * @var static $instance the instance for the manager 
+     * */
     private static $instance;
     /**
      * @brief Class constructor, init all field from table `ITINERARY`
@@ -244,7 +247,7 @@ class FItineraryManager extends FDatabaseManager{
      * @param array $photos Array<FPhoto> array with all itinerary's photos
      * @param int $idUser owner's id
      */
-    public function Create($title, $description, $duration, $distance, $preview, $country,$waypoints, $idUser, $photos = []){
+    public function Create($title, $description, $duration, $distance, $country,$waypoints, $idUser, $photos = []){
         $query = <<<EX
             INSERT INTO `{$this->tableName}`(`{$this->fieldTitle}`, `{$this->fieldDescription}`,`{$this->fieldDuration}`,`{$this->fieldDistance}`,`{$this->fieldCountry}`,`{$this->fieldStatus}`,`{$this->fieldUser}`)
             VALUES(:title, :description, :duration, :distance, :country, :status, :idUser)

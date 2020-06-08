@@ -14,10 +14,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/model/FUser.php'
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/constants/constants.php';
 
 /**
- * User's manager
+ * User's manager, manager for table users in db
  */
 class FUserManager extends FDatabaseManager{
 
+    /**
+     * @var static $instance the instance for the manager 
+     * */
     private static $instance;
     /**
      * @brief Class constructor, init all field from table `USERS`
@@ -36,49 +39,6 @@ class FUserManager extends FDatabaseManager{
         $this->fieldStatus = "STATUS_ID";     
         $this->fieldRole = "ROLES_ID";
         $this->fieldCountry = "COUNTRIES_ISO2";
-    }
-    /**
-     * @brief Get salt from field 
-     * How to use :
-     *      "$this->GetSalt(['userEmail' => "john.doe@gmail.com"])" => to get the salt with email
-     *      "$this->GetSalt(['userNickname' => "JohnDoe"])" => to get the salt with nickname
-     *
-     * @param array $args Array with the field you want to use in salt
-     *
-     * @return string||null
-     */
-    private function GetSalt(array $args): ?string {
-        $args += [
-            'userEmail' => null,
-            'userNickname' => null
-        ];
-        
-        // Extract the keys of the array has variables
-        extract($args); 
-
-        $field = "";
-        $value = "";
-        if ($userEmail !== null) {
-            $field = $this->fieldEmail;
-            $value = $userEmail;
-        } else if ($userNickname !== null) {
-            $field = $this->fieldNickname;
-            $value = $userNickname;
-        }
-
-        $query = <<<EX
-            SELECT `{$this->fieldSalt}`
-            FROM {$this->tableName}
-            WHERE {$field} = :value
-        EX;
-        
-        $req = $this::getDb()->prepare($query);
-        $req->bindParam(':value', $value);
-        $req->execute();
-
-        $result = $req->fetch(PDO::FETCH_ASSOC);
-
-        return $result !== FALSE ? $result[$this->fieldSalt] : null;
     }
     /**
      * @brief Get User if login informations are correct

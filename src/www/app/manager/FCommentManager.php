@@ -15,10 +15,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FMailerM
 require_once $_SERVER['DOCUMENT_ROOT'].'/ProjectTPI/src/www/app/manager/FItineraryManager.php';
 
 /**
- * Comment's manager
+ * Comment's manager, manager for comment table
  */
 class FCommentManager extends FDatabaseManager{
 
+    /**
+     * @var static $instance the instance for the manager 
+     * */
     private static $instance;
     /**
      * @brief Class constructor, init all field from table `COMMENTS`

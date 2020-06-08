@@ -3,7 +3,7 @@
 *     Author              :  Fujise Thomas.
 *     Project             :  ProjetTPI.
 *     Page                :  getItineraryById.
-*     Brief               :  Api to get the FItinerary object with itinerary id
+*     Brief               :  Api to get the FItinerary object with itinerary id used for ajax call
 *     Date                :  03.06.2020.
 */
 /* Requirements */
